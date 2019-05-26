@@ -16,4 +16,4 @@ Please open an issue for discussion before sending a pull request. Please update
 
 ## License
 
-(LICENSE)[../LICENSE]
+[LICENSE](LICENSE)
