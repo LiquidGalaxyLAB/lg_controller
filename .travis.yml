@@ -1,0 +1,25 @@
+language: dart
+dart:
+  - stable
+os:
+  - linux
+sudo: false
+dist: xenial
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - lib32stdc++6
+      - fonts-droid
+before_script:
+  - git clone https://github.com/flutter/flutter.git -b beta
+  - ./flutter/bin/flutter doctor
+script:
+  - ./flutter/bin/flutter packages get
+  - ./flutter/bin/flutter analyze --no-pub --no-current-package lib
+  - ./flutter/bin/flutter test
+cache:
+  directories:
+    - flutter
+    - $HOME/.pub-cache
