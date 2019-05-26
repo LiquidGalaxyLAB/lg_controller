@@ -16,4 +16,4 @@ Please open an issue for discussion before sending a pull request. Please update
 
 ## License
 
-(License)[https://github.com/Sreyas-108/lg_controller/blob/master/LICENSEE]
+[LICENSE]
