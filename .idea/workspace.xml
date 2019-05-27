@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f90faa16-3cf3-4cd4-9e10-6e2ed817952b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/screens/GuidePage.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/screens/OverlayPage.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/screens/POIPage.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/screens/ProfilePage.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/screens/SettingsPage.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/screens/TourPage.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/ui/ScreenBackground.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/screens/HomePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/HomePage.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
@@ -28,7 +35,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="dart" value="3" />
+          <entry key="dart" value="15" />
           <entry key="gitignore" value="1" />
           <entry key="md" value="2" />
           <entry key="metadata" value="1" />
@@ -43,7 +50,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Dart" value="3" />
+          <entry key="Dart" value="15" />
           <entry key="Image" value="8" />
           <entry key="PLAIN_TEXT" value="6" />
           <entry key="Properties" value="1" />
@@ -54,7 +61,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dart" value="148" />
+          <entry key="dart" value="373" />
           <entry key="md" value="304" />
           <entry key="plist" value="18" />
           <entry key="xml" value="234" />
@@ -63,7 +70,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Dart" value="148" />
+          <entry key="Dart" value="373" />
           <entry key="PLAIN_TEXT" value="322" />
           <entry key="XML" value="234" />
           <entry key="YAML" value="165" />
@@ -73,11 +80,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/main.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="71">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -94,11 +101,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/src/screens/HomePage.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="289">
+              <caret line="17" column="10" lean-forward="true" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -127,8 +134,16 @@
         <option value="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/android/app/src/main/res/drawable/launch_background.xml" />
         <option value="$PROJECT_DIR$/pubspec.yaml" />
-        <option value="$PROJECT_DIR$/lib/src/screens/HomePage.dart" />
         <option value="$PROJECT_DIR$/lib/main.dart" />
+        <option value="$PROJECT_DIR$/lib/src/widgets/ScreenBackground.dart" />
+        <option value="$PROJECT_DIR$/lib/src/ui/ScreenBackground.dart" />
+        <option value="$PROJECT_DIR$/lib/src/screens/HomePage.dart" />
+        <option value="$PROJECT_DIR$/lib/src/screens/POIPage.dart" />
+        <option value="$PROJECT_DIR$/lib/src/screens/TourPage.dart" />
+        <option value="$PROJECT_DIR$/lib/src/screens/GuidePage.dart" />
+        <option value="$PROJECT_DIR$/lib/src/screens/OverlayPage.dart" />
+        <option value="$PROJECT_DIR$/lib/src/screens/SettingsPage.dart" />
+        <option value="$PROJECT_DIR$/lib/src/screens/ProfilePage.dart" />
       </list>
     </option>
   </component>
@@ -155,7 +170,20 @@
             <path>
               <item name="lg_controller" type="b2602c69:ProjectViewProjectNode" />
               <item name="lg_controller" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="lg_controller" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lg_controller" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="lg_controller" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lg_controller" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="screens" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -217,8 +245,8 @@
       <window_info id="Image Layers" />
       <window_info id="Designer" />
       <window_info id="Captures" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24966443" />
-      <window_info active="true" anchor="bottom" id="Run" visible="true" weight="0.32907802" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24966443" />
+      <window_info anchor="bottom" id="Run" visible="true" weight="0.32907802" />
       <window_info anchor="bottom" id="Dart Analysis" weight="0.32907802" />
       <window_info anchor="bottom" id="Logcat" weight="0.32907802" />
       <window_info anchor="bottom" id="TODO" weight="0.32907802" />
@@ -327,9 +355,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/screens/HomePage.dart">
+    <entry file="file://$PROJECT_DIR$/lib/src/widgets/ScreenBackground.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
+          <caret line="5" column="38" lean-forward="true" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/main.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="71">
           <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
@@ -337,10 +372,77 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/main.dart">
+    <entry file="file://$PROJECT_DIR$/lib/src/ui/ScreenBackground.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="68">
+          <caret line="4" column="45" lean-forward="true" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/screens/POIPage.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="60" selection-start-line="1" selection-start-column="60" selection-end-line="1" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/screens/TourPage.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="60" selection-start-line="1" selection-start-column="60" selection-end-line="1" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/screens/OverlayPage.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/screens/GuidePage.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/screens/ProfilePage.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/screens/SettingsPage.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/screens/HomePage.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="10" lean-forward="true" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
