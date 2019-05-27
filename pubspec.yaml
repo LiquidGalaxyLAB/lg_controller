@@ -21,10 +21,17 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^0.1.2
+  flutter_launcher_icons: "^0.7.2"
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+
+flutter_icons:
+  image_path: "image_assets/AppLogo.png"
+  android: true
+  ios: true
 
 
 # For information on the generic Dart part of this file, see the
@@ -36,8 +43,4 @@ flutter:
   assets:
     - image_assets/
 
-  fonts:
-  - family: RobotoMono
-    fonts:
-    - asset: fonts/RobotoMono-Regular.ttf
-    - asset: fonts/RobotoMono-Bold.ttf
+
