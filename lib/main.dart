@@ -37,27 +37,6 @@ class _MyAppState extends State<MyApp> {
       DeviceOrientation.landscapeRight,
       DeviceOrientation.landscapeLeft,
     ]);
-    /*return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-          brightness: Brightness.light,
-          primarySwatch: Colors.teal,
-          cardColor: Colors.white,
-        iconTheme: new IconThemeData(
-            color: Colors.white,
-            opacity: 1.0,
-        ),
-          fontFamily: 'RobotoMono',
-          textTheme: TextTheme(
-            headline:    TextStyle(fontSize: 34, color:Colors.white, fontWeight: FontWeight.bold),
-            title:       TextStyle(fontSize: 20, color:Colors.black, fontWeight: FontWeight.bold),
-            body1:        TextStyle(fontSize: 12, color:Colors.white),
-            body2:        TextStyle(fontSize: 16, color:Colors.white, fontWeight: FontWeight.bold),
-
-    ),
-      ),
-      home: HomePage(),
-    );*/
     return BlocProvider<PageBloc>(
       bloc: pageBloc,
       child: MaterialApp(
