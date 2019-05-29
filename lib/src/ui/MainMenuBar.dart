@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lg_controller/src/menu/MainMenu.dart';
+import 'package:lg_controller/src/blocs/PageBloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lg_controller/src/states_events/PageActions.dart';
 
 class MainMenuBar extends StatelessWidget {
 
@@ -22,7 +25,7 @@ class MainMenuBar extends StatelessWidget {
           Column(
             children: <Widget>[
               GestureDetector(
-              onTap: () {labelSelected(ic);},
+              onTap: () {labelSelected(ic,context);},
           child:Container(
               child:
               Text(ic.title, style: Theme
@@ -37,7 +40,7 @@ class MainMenuBar extends StatelessWidget {
     }
     return list;
   }
-  labelSelected(MainMenu ic)
+  labelSelected(MainMenu ic,context)
   {
     switch(ic)
     {
@@ -48,7 +51,7 @@ class MainMenuBar extends StatelessWidget {
         {}
         break;
       case MainMenu.POI:
-        {}
+        {BlocProvider.of<PageBloc>(context).dispatch(PageEvent.POI);}
         break;
       case MainMenu.GUIDE:
         {}
