@@ -11,7 +11,7 @@ class AppTitle extends StatelessWidget {
         child: Column(
             children: <Widget>[
             GestureDetector(
-            onTap: () {onFlyTo(context);},
+            onTap: () => onFlyTo(context),
         child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
