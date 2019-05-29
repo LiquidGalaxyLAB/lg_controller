@@ -10,6 +10,8 @@ import 'package:lg_controller/src/screens/POIPage.dart';
 import 'package:lg_controller/src/screens/ProfilePage.dart';
 import 'package:lg_controller/src/screens/SettingsPage.dart';
 import 'package:lg_controller/src/screens/TourPage.dart';
+import 'package:lg_controller/src/screens/TutorialPage.dart';
+import 'package:page_transition/page_transition.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,7 +22,8 @@ var routes = <String, WidgetBuilder>{
   "/POIPage": (BuildContext context) => new POIPage(),
   "/ProfilePage": (BuildContext context) => new ProfilePage(),
   "/SettingsPage": (BuildContext context) => new SettingsPage(),
-  "/TourPage": (BuildContext context) => new TourPage()
+  "/TourPage": (BuildContext context) => new TourPage(),
+  "/TutorialPage": (BuildContext context) => new TutorialPage()
 };
 
 class MyApp extends StatefulWidget {
@@ -41,6 +44,7 @@ class _MyAppState extends State<MyApp> {
       bloc: pageBloc,
       child: MaterialApp(
         title: 'LG Controller',
+        routes: routes,
         theme: ThemeData(
           brightness: Brightness.light,
           primarySwatch: Colors.teal,
@@ -61,18 +65,43 @@ class _MyAppState extends State<MyApp> {
 
           ),
         ),
-        home: BlocBuilder<PageEvent, PageState>(
+        home: BlocListener(
           bloc: pageBloc,
-          builder: (BuildContext context, PageState state) {
+          child: TutorialPage(),
+          listener: (BuildContext context, PageState state) {
             if (state is HomeState) {
-              return HomePage();
+              Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, duration: Duration(milliseconds: 500), child: HomePage()));
             }
-            if (state is POIState) {
-              return POIPage();
+            else if (state is POIState) {
+              Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, duration: Duration(milliseconds: 500), child: POIPage()));
             }
+            else if (state is GuideState) {
+              Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, duration: Duration(milliseconds: 500), child: GuidePage()));
+            }
+            else if (state is OverState) {
+              Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, duration: Duration(milliseconds: 500), child: OverlayPage()));
+            }
+            else if (state is TourState) {
+              Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, duration: Duration(milliseconds: 500), child: TourPage()));
+            }
+            else if (state is ProfileState) {
+              Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, duration: Duration(milliseconds: 500), child: ProfilePage()));
+            }
+            else if (state is SettingsState) {
+              Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, duration: Duration(milliseconds: 500), child: SettingsPage()));
+            }
+            else if(state is TutorialState)
+              {
+                Navigator.popAndPushNamed(context, '/TutorialPage');
+              }
           },
         ),
       ),
     );
+  }
+  @override
+  void dispose() {
+    super.dispose();
+    pageBloc.dispose();
   }
 }
