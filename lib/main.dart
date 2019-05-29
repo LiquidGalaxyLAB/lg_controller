@@ -40,7 +40,7 @@ class _MyAppState extends State<MyApp> {
     return BlocProvider<PageBloc>(
       bloc: pageBloc,
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'LG Controller',
         theme: ThemeData(
           brightness: Brightness.light,
           primarySwatch: Colors.teal,
