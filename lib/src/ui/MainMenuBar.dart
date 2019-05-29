@@ -25,7 +25,7 @@ class MainMenuBar extends StatelessWidget {
           Column(
             children: <Widget>[
               GestureDetector(
-              onTap: () {labelSelected(ic,context);},
+              onTap: () => labelSelected(ic,context),
           child:Container(
               child:
               Text(ic.title, style: Theme
@@ -45,19 +45,19 @@ class MainMenuBar extends StatelessWidget {
     switch(ic)
     {
       case MainMenu.HOME:
-        {}
+        {BlocProvider.of<PageBloc>(context).dispatch(PageEvent.HOME);}
         break;
       case MainMenu.TOURS:
-        {}
+        {BlocProvider.of<PageBloc>(context).dispatch(PageEvent.TOUR);}
         break;
       case MainMenu.POI:
         {BlocProvider.of<PageBloc>(context).dispatch(PageEvent.POI);}
         break;
       case MainMenu.GUIDE:
-        {}
+        {BlocProvider.of<PageBloc>(context).dispatch(PageEvent.GUIDE);}
         break;
       case MainMenu.OVERLAY:
-        {}
+        {BlocProvider.of<PageBloc>(context).dispatch(PageEvent.OVERLAY);}
         break;
       default:
         {}
