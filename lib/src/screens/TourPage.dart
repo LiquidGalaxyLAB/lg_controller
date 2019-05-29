@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lg_controller/src/ui/ScreenBackground.dart';
+import 'package:flutter/services.dart';
 
 class TourPage extends StatefulWidget {
   TourPage();
@@ -11,11 +12,13 @@ class _TourPageState extends State<TourPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () =>SystemNavigator.pop(),
+    child:Scaffold(
       body: Container(
         decoration: ScreenBackground.getBackgroundDecoration(),
         child: Center(child:Text("tour"),),
       ),
-    );
+    ),);
   }
 }
