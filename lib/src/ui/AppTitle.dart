@@ -8,7 +8,9 @@ class AppTitle extends StatelessWidget {
     return Container(
         padding: new EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
         //margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
-        child: Column(
+        child: Tooltip(
+          message: "Fly To",
+          child:Column(
             children: <Widget>[
             GestureDetector(
             onTap: () => onFlyTo(context),
@@ -29,7 +31,8 @@ class AppTitle extends StatelessWidget {
               ),
             ),
             ]
-        )
+        ),
+        ),
     );
   }
   onFlyTo(context)
