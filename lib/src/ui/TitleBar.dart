@@ -11,10 +11,10 @@ class TitleBar extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Container(
-        padding: new EdgeInsets.symmetric(vertical: 8.0, horizontal: 2.0),
+        padding: new EdgeInsets.symmetric(vertical: 0.0, horizontal: 2.0),
         child: Column(
             children: <Widget>[
-              SizedBox(height: 10,),
+              SizedBox(height: 16,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
