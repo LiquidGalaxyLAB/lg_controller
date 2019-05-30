@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
             headline: TextStyle(
                 fontSize: 34, color: Colors.white, fontWeight: FontWeight.bold),
             title: TextStyle(
-                fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
+                fontSize: 16, color: Colors.black87, fontWeight: FontWeight.bold),
             body1: TextStyle(fontSize: 12, color: Colors.white),
             body2: TextStyle(
                 fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
