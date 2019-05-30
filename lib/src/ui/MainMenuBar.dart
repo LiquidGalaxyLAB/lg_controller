@@ -24,7 +24,8 @@ class MainMenuBar extends StatelessWidget {
       list.add(
           Column(
             children: <Widget>[
-              GestureDetector(
+          Hero(tag:"tab_"+ic.title,
+              child:GestureDetector(
               onTap: () => labelSelected(ic,context),
           child:Container(
               child:
@@ -32,7 +33,7 @@ class MainMenuBar extends StatelessWidget {
                 .of(context)
                 .textTheme
                 .body1),
-          ),),
+          ),),),
           state==ic?Hero(tag:"tab_underline",child:Container(color: Colors.white,width: 40,height: 1.0,),):Container()
           ]
         ),
