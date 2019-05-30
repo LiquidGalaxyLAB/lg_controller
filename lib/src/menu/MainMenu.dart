@@ -11,4 +11,5 @@ class MainMenu
   static const MainMenu POI =const MainMenu("POI");
   static const MainMenu GUIDE =const MainMenu("Guide");
   static const MainMenu OVERLAY =const MainMenu("Overlay");
+  static const MainMenu NONE =const MainMenu("None");
 }
