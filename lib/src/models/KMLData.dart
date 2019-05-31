@@ -13,4 +13,13 @@ class KMLData
   {
     return desc;
   }
+  KMLData.fromJson(Map<String, dynamic> json)
+      : title = json['title'],
+        desc = json['desc'];
+
+  Map<String, dynamic> toJson() =>
+      {
+        'title': title,
+        'desc': desc,
+      };
 }
