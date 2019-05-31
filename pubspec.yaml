@@ -20,6 +20,8 @@ dependencies:
   bloc: ^0.14.0
   flutter_bloc: ^0.14.0
   page_transition: '^1.1.0'
+  equatable: ^0.2.0
+  shared_preferences: ^0.4.3
   flutter:
     sdk: flutter
 
