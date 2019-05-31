@@ -26,7 +26,7 @@ class _TutorialPageState extends State<TutorialPage> with NavigatorObserver{
   void initState() {
     super.initState();
     if(!isFirstTime()){
-      BlocProvider.of<PageBloc>(context).dispatch(PageEvent.HOME);
+      BlocProvider.of<PageBloc>(context).dispatch(HOME(null));
     }
   }
   @override

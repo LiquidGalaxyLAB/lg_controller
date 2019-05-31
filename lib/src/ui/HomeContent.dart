@@ -15,7 +15,7 @@ class HomeContent extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               SearchBar(),
-              KMLDataView(data),
+              (data!=null)?KMLDataView(data):Container(),
               Expanded(child: NavigationView(),),
             ]
         )
