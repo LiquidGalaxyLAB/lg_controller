@@ -1,4 +1,3 @@
-class Strings
-{
-  static const APP_NAME="LG Controller";
+class Strings {
+  static const APP_NAME = "LG Controller";
 }

@@ -1,24 +1,22 @@
-class KMLData
-{
+class KMLData {
   String title;
   String desc;
 
-  KMLData(this.title,this.desc);
+  KMLData(this.title, this.desc);
 
-  getTitle()
-  {
+  getTitle() {
     return title;
   }
-  getDesc()
-  {
+
+  getDesc() {
     return desc;
   }
+
   KMLData.fromJson(Map<String, dynamic> json)
       : title = json['title'],
         desc = json['desc'];
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         'title': title,
         'desc': desc,
       };

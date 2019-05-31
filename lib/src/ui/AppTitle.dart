@@ -3,40 +3,34 @@ import 'package:lg_controller/src/menu/FlyToMenu.dart';
 import 'package:lg_controller/src/utils/Images.dart';
 
 class AppTitle extends StatelessWidget {
-
   Widget build(BuildContext context) {
     return Container(
-        padding: new EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
-        //margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
-        child: Tooltip(
-          message: "Fly To",
-          child:Column(
-            children: <Widget>[
-            GestureDetector(
+      padding: new EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+      //margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+      child: Tooltip(
+        message: "Fly To",
+        child: Column(children: <Widget>[
+          GestureDetector(
             onTap: () => onFlyTo(context),
-        child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  CircleAvatar(
-                    maxRadius: 12,
-                    backgroundColor: Colors.transparent,
-                    backgroundImage: Images.APP_LOGO,
-                  ),
-                  Padding(padding: EdgeInsets.only(left: 6.0)),
-                  Text('LG Controller', style: Theme
-                      .of(context)
-                      .textTheme
-                      .body2),
-                ],
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                CircleAvatar(
+                  maxRadius: 12,
+                  backgroundColor: Colors.transparent,
+                  backgroundImage: Images.APP_LOGO,
+                ),
+                Padding(padding: EdgeInsets.only(left: 6.0)),
+                Text('LG Controller', style: Theme.of(context).textTheme.body2),
+              ],
             ),
-            ]
-        ),
-        ),
+          ),
+        ]),
+      ),
     );
   }
-  onFlyTo(context)
-  {
+
+  onFlyTo(context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -44,43 +38,46 @@ class AppTitle extends StatelessWidget {
         return AlertDialog(
           content: SizedBox(
             width: 300,
-          height: 80,
-          child:Container(
-        //padding: new EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
-        //margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children:getIcons(context),
-        ),
-        ),),
+            height: 80,
+            child: Container(
+              //padding: new EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+              //margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: getIcons(context),
+              ),
+            ),
+          ),
         );
       },
     );
   }
-  List<Widget> getIcons(context)
-  {
+
+  List<Widget> getIcons(context) {
     List<Widget> list = new List<Widget>();
-    for(var ic in FlyToMenu.values()){
+    for (var ic in FlyToMenu.values()) {
       list.add(
-          GestureDetector(
-              onTap: () {iconSelected(ic);Navigator.of(context).pop();},
-              child:CircleAvatar(
-          maxRadius: 30,
-          minRadius: 24,
-          backgroundColor: Colors.transparent,
-          backgroundImage: ic.image,
-        ),
+        GestureDetector(
+          onTap: () {
+            iconSelected(ic);
+            Navigator.of(context).pop();
+          },
+          child: CircleAvatar(
+            maxRadius: 30,
+            minRadius: 24,
+            backgroundColor: Colors.transparent,
+            backgroundImage: ic.image,
           ),
+        ),
       );
       list.add(Padding(padding: EdgeInsets.all(8)));
     }
     list.removeLast();
     return list;
   }
-  iconSelected(FlyToMenu ic)
-  {
-    switch(ic)
-    {
+
+  iconSelected(FlyToMenu ic) {
+    switch (ic) {
       case FlyToMenu.EARTH:
         {}
         break;
