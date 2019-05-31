@@ -16,7 +16,7 @@ import 'package:page_transition/page_transition.dart';
 void main() => runApp(MyApp());
 
 var routes = <String, WidgetBuilder>{
-  "/HomePage": (BuildContext context) => new HomePage(),
+  "/HomePage": (BuildContext context) => new HomePage(null),
   "/GuidePage": (BuildContext context) => new GuidePage(),
   "/OverlayPage": (BuildContext context) => new OverlayPage(),
   "/POIPage": (BuildContext context) => new POIPage(),
@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
             headline: TextStyle(
                 fontSize: 34, color: Colors.white, fontWeight: FontWeight.bold),
             title: TextStyle(
-                fontSize: 16, color: Colors.black87, fontWeight: FontWeight.bold),
+                fontSize: 16, color: Colors.black54, fontWeight: FontWeight.bold),
             body1: TextStyle(fontSize: 12, color: Colors.white),
             body2: TextStyle(
                 fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
@@ -70,7 +70,7 @@ class _MyAppState extends State<MyApp> {
           child: TutorialPage(),
           listener: (BuildContext context, PageState state) {
             if (state is HomeState) {
-              Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, duration: Duration(milliseconds: 500), child: HomePage()));
+              Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, duration: Duration(milliseconds: 500), child: HomePage(state.data)));
             }
             else if (state is POIState) {
               Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, duration: Duration(milliseconds: 500), child: POIPage()));

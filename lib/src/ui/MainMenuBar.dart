@@ -46,19 +46,19 @@ class MainMenuBar extends StatelessWidget {
     switch(ic)
     {
       case MainMenu.HOME:
-        {BlocProvider.of<PageBloc>(context).dispatch(PageEvent.HOME);}
+        {BlocProvider.of<PageBloc>(context).dispatch(HOME(null));}
         break;
       case MainMenu.TOURS:
-        {BlocProvider.of<PageBloc>(context).dispatch(PageEvent.TOUR);}
+        {BlocProvider.of<PageBloc>(context).dispatch(TOUR());}
         break;
       case MainMenu.POI:
-        {BlocProvider.of<PageBloc>(context).dispatch(PageEvent.POI);}
+        {BlocProvider.of<PageBloc>(context).dispatch(POI());}
         break;
       case MainMenu.GUIDE:
-        {BlocProvider.of<PageBloc>(context).dispatch(PageEvent.GUIDE);}
+        {BlocProvider.of<PageBloc>(context).dispatch(GUIDE());}
         break;
       case MainMenu.OVERLAY:
-        {BlocProvider.of<PageBloc>(context).dispatch(PageEvent.OVERLAY);}
+        {BlocProvider.of<PageBloc>(context).dispatch(OVERLAY());}
         break;
       default:
         {}

@@ -7,14 +7,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:lg_controller/src/ui/HomeContent.dart';
 import 'package:lg_controller/src/models/POIData.dart';
+import 'package:lg_controller/src/models/KMLData.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage();
+  KMLData data;
+  HomePage(this.data);
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomePageState createState() => _HomePageState(data);
 }
 
 class _HomePageState extends State<HomePage> {
+
+  KMLData data;
+  _HomePageState(this.data);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +37,7 @@ class _HomePageState extends State<HomePage> {
               Expanded(
                   child:Container(
                     padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
-                  child:HomeContent(new POIData("Test","Trial description"))
+                  child:HomeContent(data)
                   ),
               ),
             ]

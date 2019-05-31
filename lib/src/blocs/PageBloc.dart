@@ -1,5 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:lg_controller/src/states_events/PageActions.dart';
+import 'package:lg_controller/src/models/KMLData.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
 class PageBloc extends Bloc<PageEvent, PageState> {
 
@@ -8,31 +11,55 @@ class PageBloc extends Bloc<PageEvent, PageState> {
 
   @override
   Stream<PageState> mapEventToState(PageEvent event) async* {
-    switch (event) {
-      case PageEvent.HOME:
-        yield HomeState();
-        break;
-      case PageEvent.POI:
+      if(event is HOME) {
+        yield HomeState(event.data);
+        if(event.data==null)
+          {
+            event.data=await getKMLData();
+            yield HomeState(event.data);
+          }
+          else
+          {
+            saveKMLData(event.data);
+          }
+      }
+      else if(event is CLEARDATA)
+        {
+          clearKMLData();
+          yield HomeState(null);
+        }
+      else if(event is POI)
         yield POIState();
-        break;
-      case PageEvent.GUIDE:
+      else if(event is GUIDE)
         yield GuideState();
-        break;
-      case PageEvent.OVERLAY:
+      else if(event is OVERLAY)
         yield OverState();
-        break;
-      case PageEvent.PROFILE:
+      else if(event is PROFILE)
         yield ProfileState();
-        break;
-      case PageEvent.TOUR:
+      else if(event is TOUR)
         yield TourState();
-        break;
-      case PageEvent.SETTINGS:
+      else if(event is SETTINGS)
         yield SettingsState();
-        break;
-      case PageEvent.ADDITIONAL:
+      else if(event is ADDITIONAL)
         yield SettingsState();
-        break;
-    }
+  }
+  void saveKMLData(KMLData data) async
+  {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString('KMLData', jsonEncode(data));
+  }
+  void clearKMLData() async
+  {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('KMLData');
+  }
+  Future<KMLData> getKMLData() async
+  {
+    final prefs = await SharedPreferences.getInstance();
+    final dataString = prefs.getString('KMLData') ?? '';
+    if((dataString..compareTo(''))==0){return null;}
+    Map userMap = jsonDecode(dataString);
+    var data = new KMLData.fromJson(userMap);
+    return data;
   }
 }
