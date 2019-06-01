@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lg_controller/src/ui/ScreenBackground.dart';
+import 'package:lg_controller/src/ui/TitleBar.dart';
+import 'package:lg_controller/src/menu/MainMenu.dart';
 
 class GuidePage extends StatefulWidget {
   GuidePage();
@@ -18,7 +20,23 @@ class _GuidePageState extends State<GuidePage> {
         body: Container(
           decoration: ScreenBackground.getBackgroundDecoration(),
           child: Center(
-            child: Text("Guide"),
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 64,
+                  child: TitleBar(MainMenu.GUIDE),
+                ),
+                Expanded(
+                  child: Container(
+                    padding:
+                    EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+                    child: Center(
+                      child: Text("guide"),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

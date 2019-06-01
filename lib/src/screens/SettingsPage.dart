@@ -20,7 +20,23 @@ class _SettingsPageState extends State<SettingsPage> {
         body: Container(
           decoration: ScreenBackground.getBackgroundDecoration(),
           child: Center(
-            child: new TitleBar(MainMenu.NONE),
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 64,
+                  child: TitleBar(MainMenu.NONE),
+                ),
+                Expanded(
+                  child: Container(
+                    padding:
+                    EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+                    child: Center(
+                      child: Text("settings"),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
