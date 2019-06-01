@@ -6,23 +6,28 @@ class AppTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: new EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
-      //margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
       child: Tooltip(
         message: "Fly To",
         child: Column(children: <Widget>[
-          GestureDetector(
-            onTap: () => onFlyTo(context),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                CircleAvatar(
-                  maxRadius: 12,
-                  backgroundColor: Colors.transparent,
-                  backgroundImage: Images.APP_LOGO,
-                ),
-                Padding(padding: EdgeInsets.only(left: 6.0)),
-                Text('LG Controller', style: Theme.of(context).textTheme.body2),
-              ],
+          Hero(
+            tag: "app_title",
+            child: GestureDetector(
+              onTap: () => onFlyTo(context),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  CircleAvatar(
+                    maxRadius: 12,
+                    backgroundColor: Colors.transparent,
+                    backgroundImage: Images.APP_LOGO,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 6.0),
+                  ),
+                  Text('LG Controller',
+                      style: Theme.of(context).textTheme.body2),
+                ],
+              ),
             ),
           ),
         ]),
@@ -34,14 +39,11 @@ class AppTitle extends StatelessWidget {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        // return object of type Dialog
         return AlertDialog(
           content: SizedBox(
             width: 300,
             height: 80,
             child: Container(
-              //padding: new EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
-              //margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: getIcons(context),
