@@ -18,11 +18,11 @@ class AuxillaryMenuBar extends StatelessWidget {
     List<Widget> list = new List<Widget>();
     for (var ic in AuxillaryMenu.values()) {
       list.add(
-        Expanded(
+        Hero(
+          tag: "tab_" + ic.title,
+          child: Expanded(
           flex: 10,
-          child: Hero(
-            tag: "tab_" + ic.title,
-            child: IconButton(
+          child: IconButton(
               icon: ic.icon,
               tooltip: ic.title,
               onPressed: () => iconSelected(ic, context),
