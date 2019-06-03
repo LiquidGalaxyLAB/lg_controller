@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lg_controller/src/blocs/PageBloc.dart';
 import 'package:lg_controller/src/menu/NavBarMenu.dart';
 import 'package:lg_controller/src/states_events/PageActions.dart';
+import 'package:lg_controller/src/states_events/NavBarActions.dart';
+import 'package:lg_controller/src/blocs/NavBarBloc.dart';
 
 class NavBar extends StatelessWidget {
   NavBar();
@@ -46,7 +48,17 @@ class NavBar extends StatelessWidget {
               onTap: () => labelSelected(ic, context),
               child: Container(
                 padding: EdgeInsets.all(8),
-                child: Text(ic.title, style: Theme.of(context).textTheme.body1),
+                child: BlocBuilder<NavBarEvent, NavBarState>(
+                  bloc: BlocProvider.of<NavBarBloc>(context),
+                  builder: (BuildContext context, NavBarState state) {
+                    if (ic.title.compareTo(state.toString())==0) {
+                      return Text(ic.title, style: Theme.of(context).textTheme.body2);
+                    }
+                    else {
+                      return Text(ic.title, style: Theme.of(context).textTheme.body1);
+                    }
+                  },
+                ),
               ),
             ),
           ],
@@ -60,32 +72,32 @@ class NavBar extends StatelessWidget {
     switch (ic) {
       case NavBarMenu.RECENTLY_VIEWED:
         {
-          BlocProvider.of<PageBloc>(context).dispatch(HOME(null));
+          BlocProvider.of<NavBarBloc>(context).dispatch(RECENTLY());
         }
         break;
       case NavBarMenu.CATEGORY_1:
         {
-          BlocProvider.of<PageBloc>(context).dispatch(TOUR());
+          BlocProvider.of<NavBarBloc>(context).dispatch(CATEGORY_1());
         }
         break;
       case NavBarMenu.CATEGORY_2:
         {
-          BlocProvider.of<PageBloc>(context).dispatch(POI());
+          BlocProvider.of<NavBarBloc>(context).dispatch(CATEGORY_2());
         }
         break;
       case NavBarMenu.CATEGORY_3:
         {
-          BlocProvider.of<PageBloc>(context).dispatch(GUIDE());
+          BlocProvider.of<NavBarBloc>(context).dispatch(CATEGORY_3());
         }
         break;
       case NavBarMenu.CATEGORY_4:
         {
-          BlocProvider.of<PageBloc>(context).dispatch(OVERLAY());
+          BlocProvider.of<NavBarBloc>(context).dispatch(CATEGORY_4());
         }
         break;
       case NavBarMenu.CATEGORY_5:
         {
-          BlocProvider.of<PageBloc>(context).dispatch(OVERLAY());
+          BlocProvider.of<NavBarBloc>(context).dispatch(CATEGORY_5());
         }
         break;
       default:
