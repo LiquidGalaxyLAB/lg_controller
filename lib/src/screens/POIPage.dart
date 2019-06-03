@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lg_controller/src/blocs/NavBarBloc.dart';
+import 'package:lg_controller/src/blocs/KMLFilesBloc.dart';
 import 'package:lg_controller/src/menu/MainMenu.dart';
 import 'package:lg_controller/src/ui/NavBar.dart';
 import 'package:lg_controller/src/ui/POIContent.dart';
@@ -15,6 +18,9 @@ class POIPage extends StatefulWidget {
 }
 
 class _POIPageState extends State<POIPage> {
+  final NavBarBloc nvBloc = NavBarBloc();
+  final KMLFilesBloc fBloc = KMLFilesBloc();
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -30,29 +36,35 @@ class _POIPageState extends State<POIPage> {
                   child: TitleBar(MainMenu.POI),
                 ),
                 Expanded(
-                  child: Container(
-                    padding: EdgeInsets.fromLTRB(0, 8, 8, 0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        SizedBox(
-                          width: 160,
-                          child: Container(
-                            color: Colors.blueGrey[800],
-                            child: NavBar(),
+                  child: BlocProviderTree(
+                    blocProviders: [
+                      BlocProvider<NavBarBloc>(bloc: nvBloc),
+                      BlocProvider<KMLFilesBloc>(bloc: fBloc),
+                    ],
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(0, 8, 8, 0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          SizedBox(
+                            width: 160,
+                            child: Container(
+                              color: Colors.blueGrey[800],
+                              child: NavBar(),
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            children: <Widget>[
-                              SearchBar(),
-                              Expanded(
-                                child: POIContent(),
-                              ),
-                            ],
+                          Expanded(
+                            child: Column(
+                              children: <Widget>[
+                                SearchBar(),
+                                Expanded(
+                                  child: POIContent(),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
