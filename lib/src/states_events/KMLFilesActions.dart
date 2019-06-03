@@ -14,7 +14,6 @@ class ErrorState extends KMLFilesState {}
 class LoadingState extends KMLFilesState {}
 
 class LoadedState extends KMLFilesState {
-
   List<KMLData> data;
 
   LoadedState(this.data);

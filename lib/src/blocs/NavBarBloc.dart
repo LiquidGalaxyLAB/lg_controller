@@ -1,12 +1,7 @@
-import 'dart:convert';
-
 import 'package:bloc/bloc.dart';
-import 'package:lg_controller/src/models/KMLData.dart';
 import 'package:lg_controller/src/states_events/NavBarActions.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class NavBarBloc extends Bloc<NavBarEvent, NavBarState> {
-
   @override
   NavBarState get initialState => RecentlyState();
 
@@ -24,7 +19,6 @@ class NavBarBloc extends Bloc<NavBarEvent, NavBarState> {
       yield Category_3_State();
     else if (event is CATEGORY_4)
       yield Category_4_State();
-    else if (event is CATEGORY_5)
-      yield Category_5_State();
+    else if (event is CATEGORY_5) yield Category_5_State();
   }
 }
