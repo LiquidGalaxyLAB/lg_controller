@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lg_controller/src/blocs/NavBarBloc.dart';
 import 'package:lg_controller/src/blocs/KMLFilesBloc.dart';
+import 'package:lg_controller/src/blocs/NavBarBloc.dart';
 import 'package:lg_controller/src/menu/MainMenu.dart';
 import 'package:lg_controller/src/ui/NavBar.dart';
 import 'package:lg_controller/src/ui/POIContent.dart';

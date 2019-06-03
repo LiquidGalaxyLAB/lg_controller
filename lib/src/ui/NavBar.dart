@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lg_controller/src/blocs/PageBloc.dart';
-import 'package:lg_controller/src/menu/NavBarMenu.dart';
-import 'package:lg_controller/src/states_events/PageActions.dart';
-import 'package:lg_controller/src/states_events/NavBarActions.dart';
 import 'package:lg_controller/src/blocs/NavBarBloc.dart';
+import 'package:lg_controller/src/menu/NavBarMenu.dart';
+import 'package:lg_controller/src/states_events/NavBarActions.dart';
 
 class NavBar extends StatelessWidget {
   NavBar();
@@ -51,11 +49,12 @@ class NavBar extends StatelessWidget {
                 child: BlocBuilder<NavBarEvent, NavBarState>(
                   bloc: BlocProvider.of<NavBarBloc>(context),
                   builder: (BuildContext context, NavBarState state) {
-                    if (ic.title.compareTo(state.toString())==0) {
-                      return Text(ic.title, style: Theme.of(context).textTheme.body2);
-                    }
-                    else {
-                      return Text(ic.title, style: Theme.of(context).textTheme.body1);
+                    if (ic.title.compareTo(state.toString()) == 0) {
+                      return Text(ic.title,
+                          style: Theme.of(context).textTheme.body2);
+                    } else {
+                      return Text(ic.title,
+                          style: Theme.of(context).textTheme.body1);
                     }
                   },
                 ),

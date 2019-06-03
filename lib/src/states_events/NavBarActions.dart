@@ -3,11 +3,17 @@ import 'package:equatable/equatable.dart';
 abstract class NavBarEvent extends Equatable {}
 
 class RECENTLY extends NavBarEvent {}
+
 class SEARCH extends NavBarEvent {}
+
 class CATEGORY_1 extends NavBarEvent {}
+
 class CATEGORY_2 extends NavBarEvent {}
+
 class CATEGORY_3 extends NavBarEvent {}
+
 class CATEGORY_4 extends NavBarEvent {}
+
 class CATEGORY_5 extends NavBarEvent {}
 
 abstract class NavBarState {}
