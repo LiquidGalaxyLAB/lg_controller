@@ -22,6 +22,10 @@ dependencies:
   page_transition: '^1.1.0'
   equatable: ^0.2.0
   shared_preferences: ^0.4.3
+  googleapis: 'any'
+  googleapis_auth: '0.2.7'
+  path_provider: '^0.4.0'
+  sqflite: ^1.1.0
   flutter:
     sdk: flutter
 
