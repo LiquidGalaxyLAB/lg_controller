@@ -20,7 +20,7 @@ abstract class NavBarState {}
 
 class RecentlyState extends NavBarState {
   @override
-  String toString() => 'Recently Viewed';
+  String toString() => 'Recently_Viewed';
 }
 
 class SearchState extends NavBarState {
@@ -30,25 +30,25 @@ class SearchState extends NavBarState {
 
 class Category_1_State extends NavBarState {
   @override
-  String toString() => 'Category 1';
+  String toString() => 'Category_1';
 }
 
 class Category_2_State extends NavBarState {
   @override
-  String toString() => 'Category 2';
+  String toString() => 'Category_2';
 }
 
 class Category_3_State extends NavBarState {
   @override
-  String toString() => 'Category 3';
+  String toString() => 'Category_3';
 }
 
 class Category_4_State extends NavBarState {
   @override
-  String toString() => 'Category 4';
+  String toString() => 'Category_4';
 }
 
 class Category_5_State extends NavBarState {
   @override
-  String toString() => 'Category 5';
+  String toString() => 'Category_5';
 }
