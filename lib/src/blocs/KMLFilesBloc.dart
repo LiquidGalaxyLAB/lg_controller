@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:lg_controller/src/gdrive/FileRequests.dart';
+import 'package:lg_controller/src/menu/NavBarMenu.dart';
 import 'package:lg_controller/src/models/KMLData.dart';
 import 'package:lg_controller/src/states_events/KMLFilesActions.dart';
 import 'package:path/path.dart';
@@ -14,7 +15,7 @@ class KMLFilesBloc extends Bloc<KMLFilesEvent, KMLFilesState> {
   Stream<KMLFilesState> mapEventToState(KMLFilesEvent event) async* {
     if (event is GET_FILES) {
       yield LoadingState();
-      List<KMLData> data = await getData();
+      Map<String, List<KMLData>> data = await getData();
       if (data != null) {
         yield LoadedState(data);
       }
@@ -26,23 +27,31 @@ class KMLFilesBloc extends Bloc<KMLFilesEvent, KMLFilesState> {
     }
   }
 
-  Future<void> saveData(List<KMLData> data) async {
-    final Database db = await createDatabase();
-    for (var mod in data) {
+  Future<void> saveData(Map<String, List<KMLData>> data) async {
+    for (var ic in NavBarMenu.values()) {
+      await insertInTable(ic.title, data[ic.title]);
+    }
+  }
+
+  insertInTable(String key, value) async {
+    final Database db = await createDatabase('modules' + key);
+    for (var mod in value) {
       await db.insert(
-        'modules',
+        'modules' + key,
         mod.toJson(),
         conflictAlgorithm: ConflictAlgorithm.replace,
       );
     }
   }
 
-  Future<Database> createDatabase() async {
+  Future<Database> createDatabase(String title) async {
     final Future<Database> database = openDatabase(
-      join(await getDatabasesPath(), 'modules_database.db'),
+      join(await getDatabasesPath(), 'modules_database' + title + '.db'),
       onCreate: (db, version) {
         return db.execute(
-          "CREATE TABLE modules(id INTEGER PRIMARY KEY, title TEXT UNIQUE, desc TEXT UNIQUE)",
+          "CREATE TABLE " +
+              title +
+              "(id INTEGER PRIMARY KEY, title TEXT UNIQUE, desc TEXT UNIQUE)",
         );
       },
       version: 1,
@@ -50,9 +59,20 @@ class KMLFilesBloc extends Bloc<KMLFilesEvent, KMLFilesState> {
     return database;
   }
 
-  Future<List<KMLData>> getData() async {
-    final Database db = await createDatabase();
-    final List<Map<String, dynamic>> maps = await db.query('modules');
+  Future<Map<String, List<KMLData>>> getData() async {
+    Map<String, List<KMLData>> segData = new Map<String, List<KMLData>>();
+    for (var ic in NavBarMenu.values()) {
+      segData.addAll({ic.title: new List<KMLData>()});
+    }
+    for (var ic in NavBarMenu.values()) {
+      segData[ic.title].addAll(await getValues(ic.title));
+    }
+    return segData;
+  }
+
+  Future<List<KMLData>> getValues(String key) async {
+    Database db = await createDatabase('modules' + key);
+    List<Map<String, dynamic>> maps = await db.query('modules' + key);
     if (maps == null) return [];
     return List.generate(maps.length, (i) {
       return KMLData(maps[i]['title'], maps[i]['desc']);

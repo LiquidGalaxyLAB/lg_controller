@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:googleapis/drive/v2.dart' as drive;
 import 'package:googleapis_auth/auth_io.dart' as auth;
+import 'package:lg_controller/src/menu/NavBarMenu.dart';
 import 'package:lg_controller/src/models/KMLData.dart';
 
 class FileRequests {
@@ -11,7 +12,7 @@ class FileRequests {
   ''');
   final scopes = [drive.DriveApi.DriveScope];
 
-  Future<List<KMLData>> getPOIFiles() async {
+  Future<Map<String, List<KMLData>>> getPOIFiles() async {
     var client = await authorizeUser();
     if (client == null) return null;
     var api = new drive.DriveApi(client);
@@ -20,21 +21,26 @@ class FileRequests {
     List<drive.File> files =
         await searchFiles(api, 24, query).catchError((error) {
       print('An error occured: ' + (error.toString()));
-      return [];
+      return null;
     }).whenComplete(() {
       client.close();
     });
     return decodeFiles(files);
   }
 
-  Future<List<KMLData>> decodeFiles(files) async {
-    List<KMLData> d=new List<KMLData>();
-    for (var file in files) {
-      print(
-          ' - ${file.mimeType} ${file.title} ${KMLData.fromJson(jsonDecode(file.description)).title} ${file.id} ');
-      d.add(new KMLData.fromJson(jsonDecode(file.description)));
+  Future<Map<String, List<KMLData>>> decodeFiles(files) async {
+    Map<String, List<KMLData>> segData = new Map<String, List<KMLData>>();
+    for (var ic in NavBarMenu.values()) {
+      segData.addAll({ic.title: new List<KMLData>()});
     }
-    return d;
+    SegregatedKmlData d;
+    for (var file in files) {
+      d = new SegregatedKmlData.fromJson(jsonDecode(file.description));
+      if (segData.containsKey(d.category)) {
+        segData[d.category].add(KMLData.fromJson(jsonDecode(d.data)));
+      }
+    }
+    return segData;
   }
 
   Future<auth.AuthClient> authorizeUser() async {
@@ -64,4 +70,13 @@ class FileRequests {
 
     return next(null);
   }
+}
+
+class SegregatedKmlData {
+  String data;
+  String category;
+
+  SegregatedKmlData.fromJson(Map<String, dynamic> json)
+      : data = json['data'],
+        category = json['category'];
 }
