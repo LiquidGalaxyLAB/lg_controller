@@ -14,10 +14,10 @@ class NavBarMenu {
     ];
   }
 
-  static const NavBarMenu RECENTLY_VIEWED = const NavBarMenu("Recently Viewed");
-  static const NavBarMenu CATEGORY_1 = const NavBarMenu("Category 1");
-  static const NavBarMenu CATEGORY_2 = const NavBarMenu("Category 2");
-  static const NavBarMenu CATEGORY_3 = const NavBarMenu("Category 3");
-  static const NavBarMenu CATEGORY_4 = const NavBarMenu("Category 4");
-  static const NavBarMenu CATEGORY_5 = const NavBarMenu("Category 5");
+  static const NavBarMenu RECENTLY_VIEWED = const NavBarMenu("Recently_Viewed");
+  static const NavBarMenu CATEGORY_1 = const NavBarMenu("Category_1");
+  static const NavBarMenu CATEGORY_2 = const NavBarMenu("Category_2");
+  static const NavBarMenu CATEGORY_3 = const NavBarMenu("Category_3");
+  static const NavBarMenu CATEGORY_4 = const NavBarMenu("Category_4");
+  static const NavBarMenu CATEGORY_5 = const NavBarMenu("Category_5");
 }
