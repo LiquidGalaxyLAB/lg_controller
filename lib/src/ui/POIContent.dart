@@ -13,9 +13,7 @@ class POIContent extends StatelessWidget {
       child: BlocBuilder<NavBarEvent, NavBarState>(
         bloc: BlocProvider.of<NavBarBloc>(context),
         builder: (BuildContext context, NavBarState state) {
-          if ("Recently Viewed".compareTo(state.toString()) == 0) {
-            return GridContent();
-          } else {
+          if ("Recently_Viewed".compareTo(state.toString()) == 0) {
             return GridView.builder(
               itemCount: 16,
               scrollDirection: Axis.vertical,
@@ -29,6 +27,8 @@ class POIContent extends StatelessWidget {
                     "Test " + index.toString(), "Trial description"));
               },
             );
+          } else {
+            return GridContent(state.toString());
           }
         },
       ),
@@ -37,6 +37,10 @@ class POIContent extends StatelessWidget {
 }
 
 class GridContent extends StatelessWidget {
+  final String choice;
+
+  GridContent(this.choice);
+
   Widget build(BuildContext context) {
     return BlocBuilder<KMLFilesEvent, KMLFilesState>(
         bloc: BlocProvider.of<KMLFilesBloc>(context),
@@ -47,7 +51,7 @@ class GridContent extends StatelessWidget {
             return Text("Error.", style: Theme.of(context).textTheme.body1);
           } else if (state is LoadedState) {
             return GridView.builder(
-              itemCount: state.data.length,
+              itemCount: state.data[choice].length,
               scrollDirection: Axis.vertical,
               gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
                 childAspectRatio: 1.667,
@@ -55,7 +59,7 @@ class GridContent extends StatelessWidget {
                     ((MediaQuery.of(context).size.width - 176) ~/ 128),
               ),
               itemBuilder: (BuildContext context, int index) {
-                return new KMLModuleView(state.data[index]);
+                return new KMLModuleView(state.data[choice][index]);
               },
             );
           } else {
