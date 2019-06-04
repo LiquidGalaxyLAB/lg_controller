@@ -7,13 +7,7 @@ import 'package:lg_controller/src/models/KMLData.dart';
 
 class FileRequests {
   final _credentials = new auth.ServiceAccountCredentials.fromJson(r'''
-  {
-  "private_key_id": "<>",
-  "private_key": "<>",
-  "client_email": "<>",
-  "client_id": "<>",
-  "type": "<>"
-  }
+  
   ''');
   final scopes = [drive.DriveApi.DriveScope];
 
@@ -26,15 +20,15 @@ class FileRequests {
     List<drive.File> files =
         await searchFiles(api, 24, query).catchError((error) {
       print('An error occured: ' + (error.toString()));
-      return null;
+      return [];
     }).whenComplete(() {
       client.close();
     });
-    return await decodeFiles(files);
+    return decodeFiles(files);
   }
 
   Future<List<KMLData>> decodeFiles(files) async {
-    List<KMLData> d;
+    List<KMLData> d=new List<KMLData>();
     for (var file in files) {
       print(
           ' - ${file.mimeType} ${file.title} ${KMLData.fromJson(jsonDecode(file.description)).title} ${file.id} ');
