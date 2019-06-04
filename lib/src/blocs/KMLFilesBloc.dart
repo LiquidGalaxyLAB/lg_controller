@@ -19,8 +19,10 @@ class KMLFilesBloc extends Bloc<KMLFilesEvent, KMLFilesState> {
         yield LoadedState(data);
       }
       data = await fileRequests.getPOIFiles();
-      yield LoadedState(data);
-      saveData(data);
+      if (data != null) {
+        yield LoadedState(data);
+        saveData(data);
+      }
     }
   }
 
@@ -40,7 +42,7 @@ class KMLFilesBloc extends Bloc<KMLFilesEvent, KMLFilesState> {
       join(await getDatabasesPath(), 'modules_database.db'),
       onCreate: (db, version) {
         return db.execute(
-          "CREATE TABLE modules(id INTEGER PRIMARY KEY, title TEXT, desc TEXT)",
+          "CREATE TABLE modules(id INTEGER PRIMARY KEY, title TEXT UNIQUE, desc TEXT UNIQUE)",
         );
       },
       version: 1,
