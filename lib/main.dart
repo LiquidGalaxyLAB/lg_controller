@@ -13,7 +13,13 @@ import 'package:lg_controller/src/screens/TutorialPage.dart';
 import 'package:lg_controller/src/states_events/PageActions.dart';
 import 'package:page_transition/page_transition.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.landscapeRight,
+    DeviceOrientation.landscapeLeft,
+  ]);
+  runApp(MyApp());
+}
 
 var routes = <String, WidgetBuilder>{
   "/HomePage": (BuildContext context) => new HomePage(null),
@@ -36,10 +42,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeLeft,
-    ]);
     return BlocProvider<PageBloc>(
       bloc: pageBloc,
       child: MaterialApp(
