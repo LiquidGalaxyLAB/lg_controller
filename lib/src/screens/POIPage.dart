@@ -26,6 +26,7 @@ class _POIPageState extends State<POIPage> {
     return WillPopScope(
       onWillPop: () => SystemNavigator.pop(),
       child: Scaffold(
+        resizeToAvoidBottomPadding: false,
         body: Container(
           decoration: ScreenBackground.getBackgroundDecoration(),
           child: Center(
