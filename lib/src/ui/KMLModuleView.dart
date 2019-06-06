@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lg_controller/src/blocs/PageBloc.dart';
 import 'package:lg_controller/src/models/KMLData.dart';
+import 'package:lg_controller/src/resources/SQLDatabase.dart';
 import 'package:lg_controller/src/states_events/PageActions.dart';
 import 'package:lg_controller/src/utils/Images.dart';
 
 class KMLModuleView extends StatelessWidget {
   final KMLData data;
+  final String state;
 
-  KMLModuleView(this.data);
+  KMLModuleView(this.state, this.data);
+
+  final database = SQLDatabase();
 
   Widget build(BuildContext context) {
     return Container(
@@ -70,6 +74,7 @@ class KMLModuleView extends StatelessWidget {
   }
 
   moduleSelected(context) {
+    database.updateViewed(state, data.getTitle(), data.getDesc());
     BlocProvider.of<PageBloc>(context).dispatch(HOME(data));
   }
 }
