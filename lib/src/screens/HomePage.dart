@@ -25,7 +25,6 @@ class _HomePageState extends State<HomePage> {
     return WillPopScope(
       onWillPop: () => SystemNavigator.pop(),
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
         body: Container(
           decoration: ScreenBackground.getBackgroundDecoration(),
           child: Center(
