@@ -1,10 +1,15 @@
 import 'package:equatable/equatable.dart';
+import 'package:lg_controller/src/models/KMLData.dart';
 
 abstract class NavBarEvent extends Equatable {}
 
 class RECENTLY extends NavBarEvent {}
 
-class SEARCH extends NavBarEvent {}
+class SEARCH extends NavBarEvent {
+  String searchText;
+
+  SEARCH(this.searchText);
+}
 
 class CATEGORY_1 extends NavBarEvent {}
 
@@ -24,6 +29,10 @@ class RecentlyState extends NavBarState {
 }
 
 class SearchState extends NavBarState {
+  List<KMLData> searchData;
+
+  SearchState(this.searchData);
+
   @override
   String toString() => 'Search';
 }
