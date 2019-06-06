@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lg_controller/src/blocs/KMLFilesBloc.dart';
 import 'package:lg_controller/src/blocs/NavBarBloc.dart';
 import 'package:lg_controller/src/menu/MainMenu.dart';
+import 'package:lg_controller/src/states_events/NavBarActions.dart';
 import 'package:lg_controller/src/ui/NavBar.dart';
 import 'package:lg_controller/src/ui/POIContent.dart';
 import 'package:lg_controller/src/ui/ScreenBackground.dart';
@@ -57,7 +58,7 @@ class _POIPageState extends State<POIPage> {
                           Expanded(
                             child: Column(
                               children: <Widget>[
-                                SearchBar(),
+                                SearchWidget(),
                                 Expanded(
                                   child: POIContent(),
                                 ),
@@ -75,5 +76,14 @@ class _POIPageState extends State<POIPage> {
         ),
       ),
     );
+  }
+}
+
+class SearchWidget extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return SearchBar(
+        (() => BlocProvider.of<NavBarBloc>(context).dispatch(RECENTLY())),
+        ((searchText) =>
+            BlocProvider.of<NavBarBloc>(context).dispatch(SEARCH(searchText))));
   }
 }
