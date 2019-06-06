@@ -20,4 +20,10 @@ class KMLData {
         'title': title,
         'desc': desc,
       };
+
+  Map<String, dynamic> toDatabaseMap() => {
+        'title': title,
+        'desc': desc,
+        'count': 0,
+      };
 }
