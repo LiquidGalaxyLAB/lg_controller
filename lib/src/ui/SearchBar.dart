@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lg_controller/src/blocs/NavBarBloc.dart';
-import 'package:lg_controller/src/states_events/NavBarActions.dart';
 
 class SearchBar extends StatelessWidget {
   final TextEditingController controller = TextEditingController();
   final FocusNode focus = new FocusNode();
+  ClearOption clearOption = new ClearOption();
   String searchText = "";
+  Function onClear, onSearch;
+
+  SearchBar(this.onClear, this.onSearch);
 
   Widget build(BuildContext context) {
-    controller.addListener(() {
-      //TODO: Add prediction dropdown.
-    });
+    clearOption.clearOptionsState.setClearAction(onClearField);
+    controller.addListener(() => onShowPrediction(controller.text));
     focus.addListener(() {
-      if (focus.hasFocus)
-        BlocProvider.of<NavBarBloc>(context).dispatch(SEARCH(searchText));
+      if (focus.hasFocus) onClear();
       if (!focus.hasFocus && searchText.compareTo("") == 0)
-        BlocProvider.of<NavBarBloc>(context).dispatch(RECENTLY());
+        onSearch(searchText);
     });
     return Container(
       padding: new EdgeInsets.symmetric(vertical: 2.0, horizontal: 2.0),
@@ -40,8 +39,7 @@ class SearchBar extends StatelessWidget {
                       onSubmitted: (value) {
                         searchText = value;
                         FocusScope.of(context).requestFocus(new FocusNode());
-                        BlocProvider.of<NavBarBloc>(context)
-                            .dispatch(SEARCH(searchText));
+                        onSearch(searchText);
                       },
                       focusNode: focus,
                       keyboardType: TextInputType.text,
@@ -58,19 +56,56 @@ class SearchBar extends StatelessWidget {
                   ),
                 ),
               ),
-              IconButton(
-                icon: Icon(IconData(0xe5cd, fontFamily: 'MaterialIcons'),
-                    color: Colors.black54),
-                onPressed: () {
-                  controller.clear();
-                  FocusScope.of(context).requestFocus(new FocusNode());
-                  BlocProvider.of<NavBarBloc>(context).dispatch(RECENTLY());
-                },
-              ),
+              clearOption,
             ],
           ),
         ),
       ),
     );
+  }
+
+  onClearField(context) {
+    controller.clear();
+    FocusScope.of(context).requestFocus(new FocusNode());
+    onClear();
+  }
+
+  onShowPrediction(value) {
+    //TODO: Add prediction dropdown.
+    if (value.compareTo("") != 0)
+      clearOption.clearOptionsState.setCurrentWidget(true);
+    else
+      clearOption.clearOptionsState.setCurrentWidget(false);
+  }
+}
+
+class ClearOption extends StatefulWidget {
+  final _ClearOptionState clearOptionsState = _ClearOptionState();
+
+  @override
+  _ClearOptionState createState() => clearOptionsState;
+}
+
+class _ClearOptionState extends State<ClearOption> {
+  Function clear;
+  bool closeEnable = false;
+
+  setClearAction(Function clear) {
+    this.clear = clear;
+  }
+
+  setCurrentWidget(bool val) {
+    setState(() => closeEnable = val);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return (closeEnable)
+        ? IconButton(
+            icon: Icon(IconData(0xe5cd, fontFamily: 'MaterialIcons'),
+                color: Colors.black54),
+            onPressed: () => clear(context),
+          )
+        : Container();
   }
 }
