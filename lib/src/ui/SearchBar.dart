@@ -39,7 +39,6 @@ class SearchBar extends StatelessWidget {
                       onSubmitted: (value) {
                         searchText = value;
                         FocusScope.of(context).requestFocus(new FocusNode());
-                        onSearch(searchText);
                       },
                       focusNode: focus,
                       keyboardType: TextInputType.text,
@@ -71,9 +70,11 @@ class SearchBar extends StatelessWidget {
   }
 
   onShowPrediction(value) {
-    //TODO: Add prediction dropdown.
-    if (value.compareTo("") != 0)
+    if (value.compareTo("") != 0) {
       clearOption.clearOptionsState.setCurrentWidget(true);
+      searchText = value;
+      onSearch(searchText);
+    }
     else
       clearOption.clearOptionsState.setCurrentWidget(false);
   }
