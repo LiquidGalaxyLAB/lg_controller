@@ -16,5 +16,5 @@ script:
   - ./flutter/bin/flutter test
 cache:
   directories:
-    - flutter
+    - flutter			# If flutter folder is removed from cache, please add   "- git clone https://github.com/flutter/flutter.git -b beta" in before_scripts.
     - $HOME/.pub-cache
