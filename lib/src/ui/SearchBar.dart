@@ -74,8 +74,7 @@ class SearchBar extends StatelessWidget {
       clearOption.clearOptionsState.setCurrentWidget(true);
       searchText = value;
       onSearch(searchText);
-    }
-    else
+    } else
       clearOption.clearOptionsState.setCurrentWidget(false);
   }
 }
