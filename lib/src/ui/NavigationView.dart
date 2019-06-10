@@ -15,6 +15,7 @@ class NavigationView extends StatelessWidget {
   NavigationView(this.initialData);
 
   Widget build(BuildContext context) {
+    _controller = Completer();
     Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
     if (initialData == null) {
       initialData = new KMLData(
