@@ -1,7 +1,7 @@
 import 'package:lg_controller/src/models/KMLData.dart';
 
 class TourData extends KMLData {
-  TourData(String title, String desc) : super(title, desc);
+  TourData(String title, String desc) : super(title:title, desc:desc);
 
   String getTitle() {
     return super.getTitle();
