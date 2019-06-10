@@ -44,9 +44,11 @@ class SQLDatabase {
       segData.addAll({ic.title: new List<KMLData>()});
     }
     for (var ic in NavBarMenu.values()) {
+      if(ic.title==NavBarMenu.RECENTLY_VIEWED.title) continue;
       segData[ic.title].addAll(await getValues(ic.title));
     }
     for (var ic in NavBarMenu.values()) {
+      if(ic.title==NavBarMenu.RECENTLY_VIEWED.title) continue;
       List<KMLData> recent = await getRecent(ic.title);
       if (recent != null) segData["Recently_Viewed"].addAll(recent);
     }
@@ -76,8 +78,7 @@ class SQLDatabase {
     Database db = await createDatabase('modules' + key);
     await db.rawUpdate(
         'UPDATE modules' + key + ' SET count = ? WHERE title = ?',
-        [3, title]).catchError((error) {
-      print(error);
+        [1, title]).catchError((error) {
     });
   }
 

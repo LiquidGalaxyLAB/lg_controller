@@ -14,7 +14,6 @@
       <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/resources/SQLDatabase.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/resources/SQLDatabase.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/screens/POIPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/POIPage.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -45,7 +44,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="dart" value="509" />
+          <entry key="dart" value="511" />
           <entry key="flutter-plugins" value="2" />
           <entry key="gitignore" value="2" />
           <entry key="java" value="2" />
@@ -62,7 +61,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Dart" value="509" />
+          <entry key="Dart" value="511" />
           <entry key="Image" value="9" />
           <entry key="JAVA" value="2" />
           <entry key="PLAIN_TEXT" value="10" />
@@ -74,7 +73,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dart" value="18096" />
+          <entry key="dart" value="18196" />
           <entry key="gitignore" value="14" />
           <entry key="md" value="304" />
           <entry key="plist" value="18" />
@@ -84,7 +83,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Dart" value="18096" />
+          <entry key="Dart" value="18196" />
           <entry key="PLAIN_TEXT" value="336" />
           <entry key="XML" value="268" />
           <entry key="YAML" value="251" />
@@ -110,7 +109,7 @@
         <entry file="file://$PROJECT_DIR$/lib/src/screens/POIPage.dart">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="263">
-              <caret line="82" column="21" lean-forward="true" selection-start-line="82" selection-start-column="21" selection-end-line="82" selection-end-column="21" />
+              <caret line="82" column="21" selection-start-line="82" selection-start-column="21" selection-end-line="82" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -130,8 +129,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/src/resources/SQLDatabase.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="81" column="3" lean-forward="true" selection-start-line="81" selection-start-column="3" selection-end-line="81" selection-end-column="3" />
+            <state relative-caret-position="381">
+              <caret line="69" column="78" selection-start-line="69" selection-start-column="78" selection-end-line="69" selection-end-column="78" />
               <folding>
                 <element signature="e#0#56#0" expanded="true" />
               </folding>
@@ -207,7 +206,6 @@
         <option value="$PROJECT_DIR$/pubspec.yaml" />
         <option value="$PROJECT_DIR$/lib/src/osc/OSCMessage.dart" />
         <option value="$PROJECT_DIR$/lib/src/osc/OSCReceiver.dart" />
-        <option value="$PROJECT_DIR$/lib/src/ui/HomeContent.dart" />
         <option value="$PROJECT_DIR$/lib/src/osc/OSCActions.dart" />
         <option value="$PROJECT_DIR$/lib/src/osc/ModuleType.dart" />
         <option value="$PROJECT_DIR$/lib/src/ui/AppTitle.dart" />
@@ -223,10 +221,11 @@
         <option value="$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart" />
         <option value="$PROJECT_DIR$/lib/src/screens/POIPage.dart" />
         <option value="$PROJECT_DIR$/lib/src/resources/SQLDatabase.dart" />
+        <option value="$PROJECT_DIR$/lib/src/ui/HomeContent.dart" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
     <option name="y" value="-10" />
     <option name="width" value="1750" />
@@ -262,7 +261,7 @@
               <item name="lg_controller" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="screens" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -320,7 +319,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24161074" />
@@ -590,13 +589,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/screens/HomePage.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-74">
-          <caret line="22" column="12" lean-forward="true" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/states_events/NavBarActions.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
@@ -615,13 +607,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/ui/HomeContent.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="17" column="40" lean-forward="true" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -685,6 +670,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="201">
           <caret line="87" column="9" lean-forward="true" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -742,14 +730,28 @@
     <entry file="file://$PROJECT_DIR$/lib/src/screens/POIPage.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="263">
-          <caret line="82" column="21" lean-forward="true" selection-start-line="82" selection-start-column="21" selection-end-line="82" selection-end-column="21" />
+          <caret line="82" column="21" selection-start-line="82" selection-start-column="21" selection-end-line="82" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/screens/HomePage.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="22" column="12" lean-forward="true" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/ui/HomeContent.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="21" column="10" lean-forward="true" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/resources/SQLDatabase.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="81" column="3" lean-forward="true" selection-start-line="81" selection-start-column="3" selection-end-line="81" selection-end-column="3" />
+        <state relative-caret-position="381">
+          <caret line="69" column="78" selection-start-line="69" selection-start-column="78" selection-end-line="69" selection-end-column="78" />
           <folding>
             <element signature="e#0#56#0" expanded="true" />
           </folding>
