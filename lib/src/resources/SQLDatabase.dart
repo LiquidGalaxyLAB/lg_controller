@@ -8,6 +8,7 @@ class SQLDatabase {
 
   Future<void> saveData(Map<String, List<KMLData>> data) async {
     for (var ic in NavBarMenu.values()) {
+      if (ic.title.compareTo(NavBarMenu.RECENTLY_VIEWED.title) == 0) continue;
       await insertInTable(ic.title, data[ic.title]);
     }
   }
@@ -44,14 +45,16 @@ class SQLDatabase {
       segData.addAll({ic.title: new List<KMLData>()});
     }
     for (var ic in NavBarMenu.values()) {
-      if(ic.title==NavBarMenu.RECENTLY_VIEWED.title) continue;
+      if (ic.title.compareTo(NavBarMenu.RECENTLY_VIEWED.title) == 0) continue;
       segData[ic.title].addAll(await getValues(ic.title));
     }
-    for (var ic in NavBarMenu.values()) {
-      if(ic.title==NavBarMenu.RECENTLY_VIEWED.title) continue;
+    /*for (var ic in NavBarMenu.values()) {
+      if(ic.title.compareTo(NavBarMenu.RECENTLY_VIEWED.title)==0) continue;
       List<KMLData> recent = await getRecent(ic.title);
       if (recent != null) segData["Recently_Viewed"].addAll(recent);
-    }
+    }*/
+    List<KMLData> recent = await getRecent();
+    if (recent != null) segData["Recently_Viewed"].addAll(recent);
     return segData;
   }
 
@@ -60,32 +63,49 @@ class SQLDatabase {
     List<Map<String, dynamic>> maps = await db.query('modules' + key);
     if (maps == null) return [];
     return List.generate(maps.length, (i) {
-      return KMLData.fromJson(maps[i]);
+      return KMLData.fromDatabaseMap(maps[i]);
     });
   }
 
-  Future<List<KMLData>> getRecent(String key) async {
-    Database db = await createDatabase('modules' + key);
-    List<Map<String, dynamic>> maps =
-        await db.rawQuery('SELECT * FROM modules' + key + ' WHERE count > 0');
-    if (maps == null) return [];
-    return List.generate(maps.length, (i) {
-      return KMLData.fromJson(maps[i]);
-    });
+  Future<List<KMLData>> getRecent() async {
+    List<KMLData> recent = new List<KMLData>();
+    for (var ic in NavBarMenu.values()) {
+      if (ic.title.compareTo(NavBarMenu.RECENTLY_VIEWED.title) == 0) continue;
+      Database db = await createDatabase('modules' + ic.title);
+      List<Map<String, dynamic>> maps = await db
+          .rawQuery('SELECT * FROM modules' + ic.title + ' WHERE count > 0');
+      if (maps == null) return [];
+      for (int i = 0; i < maps.length; i++)
+        addInOrder(recent, KMLData.fromDatabaseMap(maps[i]));
+    }
+    return recent;
   }
 
-  updateViewed(String key, String title, String desc) async {
+  addInOrder(List<KMLData> recent, KMLData data) {
+    if (recent.length < RECENT_SIZE)
+      recent.add(data);
+    else {
+      int i = RECENT_SIZE - 1;
+      while (i > 0 && recent.elementAt(i - 1).count < data.count) {
+        i--;
+        recent[i] = recent[i - 1];
+      }
+      if (recent.elementAt(i).count < data.count) recent[i] = data;
+    }
+  }
+
+  updateViewed(String key, KMLData data) async {
+    if (key.compareTo(NavBarMenu.RECENTLY_VIEWED.title) == 0) return;
     Database db = await createDatabase('modules' + key);
     await db.rawUpdate(
-        'UPDATE modules' + key + ' SET count = ? WHERE title = ?',
-        [1, title]).catchError((error) {
-    });
+        'UPDATE modules' + key + ' SET count = count+1 WHERE title = ?',
+        [data.getTitle()]).catchError((error) {});
   }
 
   Future<List<KMLData>> getSearchData(String searchText) async {
     List<KMLData> result = new List<KMLData>();
     for (var ic in NavBarMenu.values()) {
-      if(ic.title==NavBarMenu.RECENTLY_VIEWED.title) continue;
+      if (ic.title.compareTo(NavBarMenu.RECENTLY_VIEWED.title) == 0) continue;
       result.addAll(await getSearchResult(ic.title, searchText));
     }
     return result;
@@ -101,7 +121,7 @@ class SQLDatabase {
             '%\'');
     if (maps == null) return [];
     return List.generate(maps.length, (i) {
-      return KMLData.fromJson(maps[i]);
+      return KMLData.fromDatabaseMap(maps[i]);
     });
   }
 }

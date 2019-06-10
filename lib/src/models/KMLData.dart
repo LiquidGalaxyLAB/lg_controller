@@ -70,4 +70,14 @@ class KMLData {
         'tilt': tilt,
         'count': 0,
       };
+
+  KMLData.fromDatabaseMap(Map<String, dynamic> json)
+      : title = json['title'],
+        desc = json['desc'],
+        latitude = json['latitude'],
+        longitude = json['longitude'],
+        bearing = json['bearing'],
+        zoom = json['zoom'],
+        tilt = json['tilt'],
+        count = json['count'];
 }
