@@ -30,7 +30,7 @@ class SQLDatabase {
         return db.execute(
           "CREATE TABLE " +
               title +
-              "(id INTEGER PRIMARY KEY, title TEXT UNIQUE, desc TEXT UNIQUE, count INTEGER)",
+              "(id INTEGER PRIMARY KEY, title TEXT UNIQUE, desc TEXT UNIQUE, count INTEGER, latitude REAL, longitude REAL, bearing REAL, zoom REAL, tilt REAL)",
         );
       },
       version: 1,
@@ -58,7 +58,7 @@ class SQLDatabase {
     List<Map<String, dynamic>> maps = await db.query('modules' + key);
     if (maps == null) return [];
     return List.generate(maps.length, (i) {
-      return KMLData(maps[i]['title'], maps[i]['desc']);
+      return KMLData.fromJson(maps[i]);
     });
   }
 
@@ -68,7 +68,7 @@ class SQLDatabase {
         await db.rawQuery('SELECT * FROM modules' + key + ' WHERE count > 0');
     if (maps == null) return [];
     return List.generate(maps.length, (i) {
-      return KMLData(maps[i]['title'], maps[i]['desc']);
+      return KMLData.fromJson(maps[i]);
     });
   }
 
@@ -99,7 +99,7 @@ class SQLDatabase {
             '%\'');
     if (maps == null) return [];
     return List.generate(maps.length, (i) {
-      return KMLData(maps[i]['title'], maps[i]['desc']);
+      return KMLData.fromJson(maps[i]);
     });
   }
 }
