@@ -77,6 +77,13 @@ class _POIPageState extends State<POIPage> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    nvBloc.dispose();
+    fBloc.dispose();
+    super.dispose();
+  }
 }
 
 class SearchWidget extends StatelessWidget {
