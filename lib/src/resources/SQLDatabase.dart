@@ -85,6 +85,7 @@ class SQLDatabase {
   Future<List<KMLData>> getSearchData(String searchText) async {
     List<KMLData> result = new List<KMLData>();
     for (var ic in NavBarMenu.values()) {
+      if(ic.title==NavBarMenu.RECENTLY_VIEWED.title) continue;
       result.addAll(await getSearchResult(ic.title, searchText));
     }
     return result;
