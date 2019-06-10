@@ -5,10 +5,11 @@ import 'package:googleapis/drive/v2.dart' as drive;
 import 'package:googleapis_auth/auth_io.dart' as auth;
 import 'package:lg_controller/src/menu/NavBarMenu.dart';
 import 'package:lg_controller/src/models/KMLData.dart';
+import 'package:lg_controller/src/models/SegregatedKMLData.dart';
 
 class FileRequests {
   final _credentials = new auth.ServiceAccountCredentials.fromJson(r'''
-
+  
   ''');
   final scopes = [drive.DriveApi.DriveScope];
 
@@ -34,11 +35,15 @@ class FileRequests {
       segData.addAll({ic.title: new List<KMLData>()});
     }
     SegregatedKmlData d;
-    for (var file in files) {
-      d = new SegregatedKmlData.fromJson(jsonDecode(file.description));
-      if (segData.containsKey(d.category)) {
-        segData[d.category].add(KMLData.fromJson(jsonDecode(d.data)));
+    try {
+      for (var file in files) {
+        d = new SegregatedKmlData.fromJson(jsonDecode(file.description));
+        if (segData.containsKey(d.category)) {
+          segData[d.category].add(KMLData.fromJson(jsonDecode(d.data)));
+        }
       }
+    } catch (e) {
+      print(e.toString());
     }
     return segData;
   }
@@ -70,13 +75,4 @@ class FileRequests {
 
     return next(null);
   }
-}
-
-class SegregatedKmlData {
-  String data;
-  String category;
-
-  SegregatedKmlData.fromJson(Map<String, dynamic> json)
-      : data = json['data'],
-        category = json['category'];
 }
