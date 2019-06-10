@@ -17,7 +17,7 @@ class HomeContent extends StatelessWidget {
           SearchBar(() => {}, (searchText) => {}),
           (data != null) ? KMLDataView(data) : Container(),
           Expanded(
-            child: NavigationView(),
+            child: NavigationView(data),
           ),
         ],
       ),
