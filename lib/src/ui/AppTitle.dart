@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lg_controller/src/menu/FlyToMenu.dart';
+import 'package:lg_controller/src/osc/ModuleType.dart';
+import 'package:lg_controller/src/osc/OSCActions.dart';
 import 'package:lg_controller/src/utils/Images.dart';
 
 class AppTitle extends StatelessWidget {
@@ -81,16 +83,24 @@ class AppTitle extends StatelessWidget {
   iconSelected(FlyToMenu ic) {
     switch (ic) {
       case FlyToMenu.EARTH:
-        {}
+        {
+          OSCActions().sendModule(ModuleType.FLYTO, ic.title);
+        }
         break;
       case FlyToMenu.SUN:
-        {}
+        {
+          OSCActions().sendModule(ModuleType.FLYTO, ic.title);
+        }
         break;
       case FlyToMenu.MOON:
-        {}
+        {
+          OSCActions().sendModule(ModuleType.FLYTO, ic.title);
+        }
         break;
       case FlyToMenu.SKY:
-        {}
+        {
+          OSCActions().sendModule(ModuleType.FLYTO, ic.title);
+        }
         break;
       default:
         {}
