@@ -18,10 +18,11 @@ class KMLFilesBloc extends Bloc<KMLFilesEvent, KMLFilesState> {
       if (data != null) {
         yield LoadedState(data);
       }
-      data = await fileRequests.getPOIFiles();
-      if (data != null) {
-        yield LoadedState(data);
-        database.saveData(data);
+      Map<String, List<KMLData>> dataNetwork = await fileRequests.getPOIFiles();
+      dataNetwork["Recently_Viewed"] = data["Recently_Viewed"];
+      if (dataNetwork != null) {
+        yield LoadedState(dataNetwork);
+        database.saveData(dataNetwork);
       }
     }
   }
