@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lg_controller/src/menu/MainMenu.dart';
 import 'package:lg_controller/src/models/KMLData.dart';
+import 'package:lg_controller/src/osc/ModuleType.dart';
+import 'package:lg_controller/src/osc/OSCActions.dart';
 import 'package:lg_controller/src/ui/HomeContent.dart';
 import 'package:lg_controller/src/ui/ScreenBackground.dart';
 import 'package:lg_controller/src/ui/TitleBar.dart';
@@ -19,6 +23,14 @@ class _HomePageState extends State<HomePage> {
   KMLData data;
 
   _HomePageState(this.data);
+
+  @override
+  void initState() {
+    if (data != null) {
+      OSCActions().sendModule(ModuleType.POI, jsonEncode(data));
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
