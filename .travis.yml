@@ -10,11 +10,12 @@ addons:
       - lib32stdc++6
       - fonts-droid-fallback
 before_script:
+  - git clone https://github.com/flutter/flutter.git -b beta
   - ./flutter/bin/flutter doctor
 script:
   - ./flutter/bin/flutter packages get
   - ./flutter/bin/flutter test
 cache:
   directories:
-    - flutter			# If flutter folder is removed from cache, please add   "- git clone https://github.com/flutter/flutter.git -b beta" in before_scripts.
+#    - flutter			# If flutter folder is removed from cache, please add   "- git clone https://github.com/flutter/flutter.git -b beta" in before_scripts.
     - $HOME/.pub-cache
