@@ -91,6 +91,7 @@ class SearchWidget extends StatelessWidget {
     return SearchBar(
         (() => BlocProvider.of<NavBarBloc>(context).dispatch(RECENTLY())),
         ((searchText) =>
-            BlocProvider.of<NavBarBloc>(context).dispatch(SEARCH(searchText))));
+            BlocProvider.of<NavBarBloc>(context).dispatch(SEARCH(searchText))),
+        () => {});
   }
 }

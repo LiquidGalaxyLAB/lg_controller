@@ -5,9 +5,9 @@ class SearchBar extends StatelessWidget {
   final FocusNode focus = new FocusNode();
   ClearOption clearOption = new ClearOption();
   String searchText = "";
-  Function onClear, onSearch;
+  Function onClear, onSearch, onComplete;
 
-  SearchBar(this.onClear, this.onSearch);
+  SearchBar(this.onClear, this.onSearch, this.onComplete);
 
   Widget build(BuildContext context) {
     clearOption.clearOptionsState.setClearAction(onClearField);
@@ -38,6 +38,7 @@ class SearchBar extends StatelessWidget {
                       controller: controller,
                       onSubmitted: (value) {
                         searchText = value;
+                        onComplete(searchText);
                         FocusScope.of(context).requestFocus(new FocusNode());
                       },
                       focusNode: focus,
