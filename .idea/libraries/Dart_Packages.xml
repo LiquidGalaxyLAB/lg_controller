@@ -100,6 +100,13 @@
             </list>
           </value>
         </entry>
+        <entry key="flutter_google_places">
+          <value>
+            <list>
+              <option value="D:/Applications/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_google_places-0.2.3/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="flutter_launcher_icons">
           <value>
             <list>
@@ -118,6 +125,13 @@
           <value>
             <list>
               <option value="D:/Applications/flutter/.pub-cache/hosted/pub.dartlang.org/google_maps_flutter-0.5.16/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="google_maps_webservice">
+          <value>
+            <list>
+              <option value="D:/Applications/flutter/.pub-cache/hosted/pub.dartlang.org/google_maps_webservice-0.0.14/lib" />
             </list>
           </value>
         </entry>
@@ -333,8 +347,10 @@
       <root url="file://D:/Applications/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-0.1.2/lib" />
       <root url="file://D:/Applications/flutter/.pub-cache/hosted/pub.dartlang.org/equatable-0.2.6/lib" />
       <root url="file://D:/Applications/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_bloc-0.14.0/lib" />
+      <root url="file://D:/Applications/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_google_places-0.2.3/lib" />
       <root url="file://D:/Applications/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_launcher_icons-0.7.2/lib" />
       <root url="file://D:/Applications/flutter/.pub-cache/hosted/pub.dartlang.org/google_maps_flutter-0.5.16/lib" />
+      <root url="file://D:/Applications/flutter/.pub-cache/hosted/pub.dartlang.org/google_maps_webservice-0.0.14/lib" />
       <root url="file://D:/Applications/flutter/.pub-cache/hosted/pub.dartlang.org/googleapis-0.53.0/lib" />
       <root url="file://D:/Applications/flutter/.pub-cache/hosted/pub.dartlang.org/googleapis_auth-0.2.7/lib" />
       <root url="file://D:/Applications/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.12.0+2/lib" />
