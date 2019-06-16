@@ -5,7 +5,7 @@ abstract class KMLFilesEvent extends Equatable {}
 
 class GET_FILES extends KMLFilesEvent {}
 
-abstract class KMLFilesState {}
+abstract class KMLFilesState extends Equatable {}
 
 class UninitializedState extends KMLFilesState {}
 
