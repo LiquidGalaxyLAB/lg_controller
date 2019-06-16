@@ -1,4 +1,6 @@
-class KMLData {
+import 'package:equatable/equatable.dart';
+
+class KMLData extends Equatable {
   String title = "";
   String desc = "";
   double latitude = 0, longitude = 0, bearing = 0, zoom = 0, tilt = 0;
