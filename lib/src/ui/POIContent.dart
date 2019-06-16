@@ -48,7 +48,7 @@ class GridContent extends StatelessWidget {
                     ((MediaQuery.of(context).size.width - 176) ~/ 128),
               ),
               itemBuilder: (BuildContext context, int index) {
-                return new KMLModuleView(choice.toString(), content[index]);
+                return new KMLModuleView(choice, content[index]);
               },
             );
           } else {

@@ -3,12 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lg_controller/src/blocs/PageBloc.dart';
 import 'package:lg_controller/src/models/KMLData.dart';
 import 'package:lg_controller/src/resources/SQLDatabase.dart';
+import 'package:lg_controller/src/states_events/NavBarActions.dart';
 import 'package:lg_controller/src/states_events/PageActions.dart';
 import 'package:lg_controller/src/utils/Images.dart';
 
 class KMLModuleView extends StatelessWidget {
   final KMLData data;
-  final String state;
+  final NavBarState state;
 
   KMLModuleView(this.state, this.data);
 
@@ -74,7 +75,7 @@ class KMLModuleView extends StatelessWidget {
   }
 
   moduleSelected(context) {
-    database.updateViewed(state, data);
+    database.updateViewed(state.toString(), data);
     BlocProvider.of<PageBloc>(context).dispatch(HOME(data));
   }
 }
