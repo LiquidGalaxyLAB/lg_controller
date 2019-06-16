@@ -7,8 +7,10 @@ import 'package:lg_controller/src/states_events/KMLFilesActions.dart';
 class KMLFilesBloc extends Bloc<KMLFilesEvent, KMLFilesState> {
   @override
   KMLFilesState get initialState => UninitializedState();
-  final fileRequests = FileRequests();
-  final database = SQLDatabase();
+  final FileRequests fileRequests;
+  final SQLDatabase database;
+
+  KMLFilesBloc(this.fileRequests, this.database);
 
   @override
   Stream<KMLFilesState> mapEventToState(KMLFilesEvent event) async* {
@@ -19,7 +21,8 @@ class KMLFilesBloc extends Bloc<KMLFilesEvent, KMLFilesState> {
         yield LoadedState(data);
       }
       Map<String, List<KMLData>> dataNetwork = await fileRequests.getPOIFiles();
-      dataNetwork["Recently_Viewed"] = data["Recently_Viewed"];
+      if (data != null && data.containsKey("Recently_Viewed"))
+        dataNetwork["Recently_Viewed"] = data["Recently_Viewed"];
       if (dataNetwork != null) {
         yield LoadedState(dataNetwork);
         database.saveData(dataNetwork);
