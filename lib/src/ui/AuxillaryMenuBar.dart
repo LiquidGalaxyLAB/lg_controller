@@ -21,6 +21,7 @@ class AuxillaryMenuBar extends StatelessWidget {
         Expanded(
           flex: 10,
           child: IconButton(
+            key: Key('AuxillaryMenu_items_' + ic.title),
             icon: ic.icon,
             tooltip: ic.title,
             onPressed: () => iconSelected(ic, context),

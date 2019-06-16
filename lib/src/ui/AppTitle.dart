@@ -62,6 +62,7 @@ class AppTitle extends StatelessWidget {
     for (var ic in FlyToMenu.values()) {
       list.add(
         GestureDetector(
+          key: Key('AppTitle_items_' + ic.title),
           onTap: () {
             iconSelected(ic);
             Navigator.of(context).pop();
