@@ -11,7 +11,6 @@ class KMLDataView extends StatelessWidget {
   KMLDataView(this.data);
 
   Widget build(BuildContext context) {
-    runKMLData();
     return Container(
       padding: new EdgeInsets.symmetric(vertical: 2.0, horizontal: 2.0),
       child: SizedBox(
@@ -20,12 +19,12 @@ class KMLDataView extends StatelessWidget {
         child: Hero(
           tag: 'KML_View_Card' + data.getTitle() + data.getDesc(),
           child: GestureDetector(
-            onTap: () => runKMLData(),
+            onTap: () => {},
             child: Card(
               color: Colors.white70,
               child: Container(
                 padding:
-                    new EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+                new EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -65,8 +64,9 @@ class KMLDataView extends StatelessWidget {
                     Align(
                       alignment: Alignment.topRight,
                       child: GestureDetector(
-                        onTap: () => BlocProvider.of<PageBloc>(context)
-                            .dispatch(CLEARDATA()),
+                        onTap: () =>
+                            BlocProvider.of<PageBloc>(context)
+                                .dispatch(CLEARDATA()),
                         child: Icon(
                             IconData(0xe5cd, fontFamily: 'MaterialIcons'),
                             color: Colors.white),
@@ -81,6 +81,4 @@ class KMLDataView extends StatelessWidget {
       ),
     );
   }
-
-  void runKMLData() {}
 }
