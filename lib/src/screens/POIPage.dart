@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lg_controller/src/blocs/KMLFilesBloc.dart';
 import 'package:lg_controller/src/blocs/NavBarBloc.dart';
+import 'package:lg_controller/src/gdrive/FileRequests.dart';
 import 'package:lg_controller/src/menu/MainMenu.dart';
+import 'package:lg_controller/src/resources/SQLDatabase.dart';
 import 'package:lg_controller/src/states_events/NavBarActions.dart';
 import 'package:lg_controller/src/ui/NavBar.dart';
 import 'package:lg_controller/src/ui/POIContent.dart';
@@ -20,7 +22,7 @@ class POIPage extends StatefulWidget {
 
 class _POIPageState extends State<POIPage> {
   final NavBarBloc nvBloc = NavBarBloc();
-  final KMLFilesBloc fBloc = KMLFilesBloc();
+  final KMLFilesBloc fBloc = KMLFilesBloc(FileRequests(), SQLDatabase());
 
   @override
   Widget build(BuildContext context) {
