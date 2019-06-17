@@ -8,7 +8,7 @@ import 'package:lg_controller/src/ui/SearchBar.dart';
 import 'package:lg_controller/src/ui/TitleBar.dart';
 
 void main() {
-  testWidgets('Home page component check', (WidgetTester tester) async {
+  testWidgets('POI page component check', (WidgetTester tester) async {
     Widget root = new POIPage();
     await tester.pumpWidget(
         new Material(child: new MaterialApp(theme: testTheme(), home: root)));

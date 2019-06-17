@@ -6,51 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f90faa16-3cf3-4cd4-9e10-6e2ed817952b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/blocs/KMLFilesBloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/blocs/KMLFilesBloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/blocs/NavBarBloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/blocs/NavBarBloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/blocs/PageBloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/blocs/PageBloc.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/menu/AuxillaryMenu.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/menu/AuxillaryMenu.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/menu/FlyToMenu.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/menu/FlyToMenu.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/menu/MainMenu.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/menu/MainMenu.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/menu/NavBarMenu.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/menu/NavBarMenu.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/models/KMLData.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/models/KMLData.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/models/POIData.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/models/POIData.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/models/SegregatedKMLData.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/models/SegregatedKMLData.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/models/TourData.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/models/TourData.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/osc/ModuleType.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/osc/ModuleType.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/osc/OSCActions.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/osc/OSCActions.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/osc/OSCMessage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/osc/OSCMessage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/osc/OSCReceiver.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/osc/OSCReceiver.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/osc/OSCSender.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/osc/OSCSender.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/resources/SQLDatabase.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/resources/SQLDatabase.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/screens/GuidePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/GuidePage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/screens/HomePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/HomePage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/screens/OverlayPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/OverlayPage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/screens/POIPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/POIPage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/screens/ProfilePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/ProfilePage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/screens/SettingsPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/SettingsPage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/screens/TourPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/TourPage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/screens/TutorialPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/TutorialPage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/states_events/KMLFilesActions.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/states_events/KMLFilesActions.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/states_events/NavBarActions.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/states_events/NavBarActions.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/states_events/PageActions.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/states_events/PageActions.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/ui/AppTitle.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/AppTitle.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/ui/AuxillaryMenuBar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/AuxillaryMenuBar.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/ui/HomeContent.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/HomeContent.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/ui/KMLDataView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/KMLDataView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/ui/KMLModuleView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/KMLModuleView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/ui/MainMenuBar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/MainMenuBar.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/ui/NavBar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/NavBar.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/ui/NavigationView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/NavigationView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/ui/POIContent.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/POIContent.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/ui/ScreenBackground.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/ScreenBackground.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/ui/SearchBar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/SearchBar.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/ui/TitleBar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/TitleBar.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/utils/Images.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/utils/Images.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/utils/Strings.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/utils/Strings.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/widget_test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/widget_tests/POIPage_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/widget_tests/POIPage_test.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -84,7 +42,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="dart" value="781" />
+          <entry key="dart" value="786" />
           <entry key="flutter-plugins" value="2" />
           <entry key="gitignore" value="2" />
           <entry key="java" value="2" />
@@ -101,7 +59,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Dart" value="781" />
+          <entry key="Dart" value="786" />
           <entry key="Image" value="9" />
           <entry key="JAVA" value="2" />
           <entry key="PLAIN_TEXT" value="10" />
@@ -113,7 +71,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dart" value="32353" />
+          <entry key="dart" value="32359" />
           <entry key="gitignore" value="14" />
           <entry key="md" value="304" />
           <entry key="plist" value="18" />
@@ -123,7 +81,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Dart" value="32353" />
+          <entry key="Dart" value="32359" />
           <entry key="PLAIN_TEXT" value="336" />
           <entry key="XML" value="268" />
           <entry key="YAML" value="282" />
@@ -148,8 +106,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="391">
+              <caret line="23" column="45" lean-forward="true" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -197,7 +155,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/test/widget_tests/SearchBar_test.dart" />
-        <option value="$PROJECT_DIR$/test/widget_tests/POIPage_test.dart" />
         <option value="$PROJECT_DIR$/test/widget_tests/POIContent_test.dart" />
         <option value="$PROJECT_DIR$/test_driver/app.dart" />
         <option value="$PROJECT_DIR$/test_driver/app_test.dart" />
@@ -247,6 +204,7 @@
         <option value="$PROJECT_DIR$/lib/src/ui/ScreenBackground.dart" />
         <option value="$PROJECT_DIR$/lib/src/ui/TitleBar.dart" />
         <option value="$PROJECT_DIR$/lib/src/ui/SearchBar.dart" />
+        <option value="$PROJECT_DIR$/test/widget_tests/POIPage_test.dart" />
       </list>
     </option>
   </component>
@@ -283,7 +241,20 @@
             <path>
               <item name="lg_controller" type="b2602c69:ProjectViewProjectNode" />
               <item name="lg_controller" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="lg_controller" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lg_controller" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="lg_controller" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lg_controller" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="widget_tests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -411,36 +382,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test/widget_tests/SearchBar_test.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="101" column="36" lean-forward="true" selection-start-line="101" selection-start-column="36" selection-end-line="101" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/widget_tests/POIPage_test.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/widget_tests/POIContent_test.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_driver/app.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -841,16 +782,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/ui/POIContent.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="46" column="45" lean-forward="true" selection-start-line="46" selection-start-column="45" selection-end-line="46" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/ui/ScreenBackground.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -878,10 +809,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test/widget_tests/POIPage_test.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/ui/POIContent.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/widget_tests/POIContent_test.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/widget_tests/HomePage_test.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="22" lean-forward="true" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="391">
+          <caret line="23" column="45" lean-forward="true" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
