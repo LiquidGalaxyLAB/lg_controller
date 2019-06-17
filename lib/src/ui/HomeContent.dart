@@ -13,15 +13,19 @@ class HomeContent extends StatelessWidget {
   /// Data of recently running KML Data.
   final KMLData data;
 
+  /// Search bar widget of home page.
+  SearchBar searchbar;
+
   HomeContent(this.data);
 
   Widget build(BuildContext context) {
+    searchbar=SearchBar(() => {}, (searchText) => {},
+            (searchText) => searchPlace(context, searchText));
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          SearchBar(() => {}, (searchText) => {},
-              (searchText) => searchPlace(context, searchText)),
+          searchbar,
           (data != null) ? KMLDataView(data) : Container(),
           Expanded(
             child: NavigationView(data),
@@ -33,7 +37,7 @@ class HomeContent extends StatelessWidget {
 
   /// Search and show places on the map.
   searchPlace(BuildContext context, String text) async {
-    GoogleMapsPlaces _places = GoogleMapsPlaces(apiKey: "<<<<<API_KEY>>>>>");
+    GoogleMapsPlaces _places = GoogleMapsPlaces(apiKey: "<<<API_KEY>>>");
     PlacesSearchResponse response = await _places.searchByText(text);
     print(response.status);
     if (response.isOkay && response.results.length > 0) {
@@ -46,5 +50,9 @@ class HomeContent extends StatelessWidget {
           bearing: 0,
           tilt: 0)));
     }
+    else
+      {
+        searchbar.onClearField(context);
+      }
   }
 }
