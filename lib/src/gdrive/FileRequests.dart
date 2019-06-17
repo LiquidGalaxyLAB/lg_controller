@@ -7,12 +7,23 @@ import 'package:lg_controller/src/menu/NavBarMenu.dart';
 import 'package:lg_controller/src/models/KMLData.dart';
 import 'package:lg_controller/src/models/SegregatedKMLData.dart';
 
+/// To handle all functionalities with Google Drive.
 class FileRequests {
+  /// Credentials of the service account.
   final _credentials = new auth.ServiceAccountCredentials.fromJson(r'''
-  
+  {
+  "private_key_id": "<>",
+  "private_key": "<>",
+  "client_email": "<>",
+  "client_id": "<>",
+  "type": "<>"
+  }
   ''');
+
+  /// Drive scope required for getting file data.
   final scopes = [drive.DriveApi.DriveScope];
 
+  /// To get the KML data for POI modules.
   Future<Map<String, List<KMLData>>> getPOIFiles() async {
     var client = await authorizeUser();
     if (client == null) return null;
@@ -20,7 +31,7 @@ class FileRequests {
     var query =
         "mimeType = 'application/vnd.google-earth.kml+xml' and '1Gs-KiheWHACyUtYtvGZma8xsBX6r1iTJ' in parents";
     List<drive.File> files =
-        await searchFiles(api, 24, query).catchError((error) {
+    await searchFiles(api, 24, query).catchError((error) {
       print('An error occured: ' + (error.toString()));
       return null;
     }).whenComplete(() {
@@ -29,6 +40,7 @@ class FileRequests {
     return decodeFiles(files);
   }
 
+  /// To get the KML data in required map format from [drive.File].
   Future<Map<String, List<KMLData>>> decodeFiles(files) async {
     Map<String, List<KMLData>> segData = new Map<String, List<KMLData>>();
     for (var ic in NavBarMenu.values()) {
@@ -48,6 +60,7 @@ class FileRequests {
     return segData;
   }
 
+  /// To authorize and return the client for the service account.
   Future<auth.AuthClient> authorizeUser() async {
     var client = await auth
         .clientViaServiceAccount(_credentials, scopes)
@@ -58,19 +71,24 @@ class FileRequests {
     return client;
   }
 
+  /// Returns a list of [drive.File] according to the [query] provided.
   Future<List<drive.File>> searchFiles(
       drive.DriveApi api, int max, String query) async {
     List<drive.File> docs = [];
     Future<List<drive.File>> next(String token) {
-      return api.files
-          .list(q: query, pageToken: token, maxResults: max)
-          .then((results) {
-        docs.addAll(results.items);
-        if (docs.length < max && results.nextPageToken != null) {
-          return next(results.nextPageToken);
-        }
-        return docs;
-      });
+      try {
+        return api.files
+            .list(q: query, pageToken: token, maxResults: max)
+            .then((results) {
+          docs.addAll(results.items);
+          if (docs.length < max && results.nextPageToken != null) {
+            return next(results.nextPageToken);
+          }
+          return docs;
+        });
+      } catch (e) {
+        return null;
+      }
     }
 
     return next(null);
