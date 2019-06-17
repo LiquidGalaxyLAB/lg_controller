@@ -20,5 +20,3 @@ doc/api/
 *.js.deps
 *.js.map
 mytrial.dart
-src/gdrive/FileRequests.dart
-src/ui/HomeContent.dart
