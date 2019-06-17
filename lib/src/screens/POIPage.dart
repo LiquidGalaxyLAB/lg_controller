@@ -13,6 +13,7 @@ import 'package:lg_controller/src/ui/ScreenBackground.dart';
 import 'package:lg_controller/src/ui/SearchBar.dart';
 import 'package:lg_controller/src/ui/TitleBar.dart';
 
+/// POI screen root.
 class POIPage extends StatefulWidget {
   POIPage();
 
@@ -88,6 +89,7 @@ class _POIPageState extends State<POIPage> {
   }
 }
 
+/// Search bar of the POI screen.
 class SearchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SearchBar(

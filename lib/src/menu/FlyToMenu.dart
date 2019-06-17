@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lg_controller/src/utils/Images.dart';
 
+/// Menu items for Fly To menu dialog box.
 class FlyToMenu {
   final String title;
   final AssetImage image;

@@ -4,6 +4,7 @@ import 'package:lg_controller/src/menu/MainMenu.dart';
 import 'package:lg_controller/src/ui/ScreenBackground.dart';
 import 'package:lg_controller/src/ui/TitleBar.dart';
 
+/// Settings screen root.
 class SettingsPage extends StatefulWidget {
   SettingsPage();
 
@@ -29,7 +30,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 Expanded(
                   child: Container(
                     padding:
-                    EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+                        EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
                     child: Center(
                       child: Text("settings"),
                     ),

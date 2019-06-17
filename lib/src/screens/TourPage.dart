@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:lg_controller/src/menu/MainMenu.dart';
 import 'package:lg_controller/src/ui/ScreenBackground.dart';
 import 'package:lg_controller/src/ui/TitleBar.dart';
-import 'package:lg_controller/src/menu/MainMenu.dart';
 
+/// Tour screen root.
 class TourPage extends StatefulWidget {
   TourPage();
 
@@ -30,7 +31,7 @@ class _TourPageState extends State<TourPage> {
                 Expanded(
                   child: Container(
                     padding:
-                    EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+                        EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
                     child: Center(
                       child: Text("tour"),
                     ),

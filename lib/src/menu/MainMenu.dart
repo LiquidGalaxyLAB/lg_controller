@@ -1,3 +1,6 @@
+import 'package:lg_controller/src/ui/MainMenuBar.dart';
+
+/// Menu items for [MainMenuBar].
 class MainMenu {
   final String title;
 

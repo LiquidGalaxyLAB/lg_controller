@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 
+/// Search bar widget.
 class SearchBar extends StatelessWidget {
+  /// Controller for text field.
   final TextEditingController controller = TextEditingController();
+  /// Focus controller of the text field.
   final FocusNode focus = new FocusNode();
+  /// Clear option widget.
   ClearOption clearOption = new ClearOption();
+  /// Search query text.
   String searchText = "";
-  Function onClear, onSearch, onComplete;
+  /// To be executed on clearing text field.
+  Function onClear;
+  /// To be executed on searching the query.
+  Function onSearch;
+  /// To be executed on completing search tasks.
+  Function onComplete;
 
   SearchBar(this.onClear, this.onSearch, this.onComplete);
 
@@ -64,12 +74,14 @@ class SearchBar extends StatelessWidget {
     );
   }
 
+  /// Clear text field.
   onClearField(context) {
     controller.clear();
     FocusScope.of(context).requestFocus(new FocusNode());
     onClear();
   }
 
+  /// Show predictions on search query.
   onShowPrediction(value) {
     if (value.compareTo("") != 0) {
       clearOption.clearOptionsState.setCurrentWidget(true);
@@ -80,6 +92,7 @@ class SearchBar extends StatelessWidget {
   }
 }
 
+/// Widget for clearing search text field.
 class ClearOption extends StatefulWidget {
   final _ClearOptionState clearOptionsState = _ClearOptionState();
 
@@ -88,13 +101,17 @@ class ClearOption extends StatefulWidget {
 }
 
 class _ClearOptionState extends State<ClearOption> {
+  /// To be executed on selecting this widget.
   Function clear;
+  /// Enabling state of clear option.
   bool closeEnable = false;
 
+  /// Set clear functionality.
   setClearAction(Function clear) {
     this.clear = clear;
   }
 
+  /// Set enabling state [closeEnable] of clear option.
   setCurrentWidget(bool val) {
     setState(() => closeEnable = val);
   }

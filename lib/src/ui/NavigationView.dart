@@ -7,9 +7,15 @@ import 'package:lg_controller/src/models/KMLData.dart';
 import 'package:lg_controller/src/osc/ModuleType.dart';
 import 'package:lg_controller/src/osc/OSCActions.dart';
 
+/// Navigation view (Google map view) for home screen.
 class NavigationView extends StatelessWidget {
+  /// Controller for google map.
   Completer<GoogleMapController> _controller = Completer();
+
+  /// Current position of camera of the map.
   CameraPosition current;
+
+  /// KML data to be displayed.
   KMLData initialData;
 
   NavigationView(this.initialData);
@@ -80,6 +86,7 @@ class NavigationView extends StatelessWidget {
     );
   }
 
+  /// Initiate OSC action on change in camera position.
   changePosition() {
     KMLData data = new KMLData(
         title: "Gesture",

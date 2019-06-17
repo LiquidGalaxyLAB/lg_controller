@@ -1,3 +1,6 @@
+import 'package:lg_controller/src/ui/NavBar.dart';
+
+/// Menu items for [NavBar].
 class NavBarMenu {
   final String title;
 

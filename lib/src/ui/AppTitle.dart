@@ -4,7 +4,9 @@ import 'package:lg_controller/src/osc/ModuleType.dart';
 import 'package:lg_controller/src/osc/OSCActions.dart';
 import 'package:lg_controller/src/utils/Images.dart';
 
+/// App title widget.
 class AppTitle extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: new EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
@@ -37,6 +39,7 @@ class AppTitle extends StatelessWidget {
     );
   }
 
+  /// Show dialog with Fly to options.
   onFlyTo(context) {
     showDialog(
       context: context,
@@ -57,6 +60,7 @@ class AppTitle extends StatelessWidget {
     );
   }
 
+  /// Get icons for the Fly to options.
   List<Widget> getIcons(context) {
     List<Widget> list = new List<Widget>();
     for (var ic in FlyToMenu.values()) {
@@ -81,6 +85,7 @@ class AppTitle extends StatelessWidget {
     return list;
   }
 
+  /// Initiate OSC action for the [ic] option selected.
   iconSelected(FlyToMenu ic) {
     switch (ic) {
       case FlyToMenu.EARTH:

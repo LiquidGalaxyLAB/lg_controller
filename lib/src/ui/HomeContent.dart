@@ -8,7 +8,9 @@ import 'package:lg_controller/src/ui/KMLDataView.dart';
 import 'package:lg_controller/src/ui/NavigationView.dart';
 import 'package:lg_controller/src/ui/SearchBar.dart';
 
+/// Content of Home screen.
 class HomeContent extends StatelessWidget {
+  /// Data of recently running KML Data.
   final KMLData data;
 
   HomeContent(this.data);
@@ -29,11 +31,12 @@ class HomeContent extends StatelessWidget {
     );
   }
 
+  /// Search and show places on the map.
   searchPlace(BuildContext context, String text) async {
     GoogleMapsPlaces _places = GoogleMapsPlaces(apiKey: "<<<<<API_KEY>>>>>");
     PlacesSearchResponse response = await _places.searchByText(text);
     print(response.status);
-    if (response.isOkay && response.results.length>0) {
+    if (response.isOkay && response.results.length > 0) {
       BlocProvider.of<PageBloc>(context).dispatch(HOME(KMLData(
           title: response.results[0].name,
           desc: response.results[0].formattedAddress,

@@ -1,9 +1,22 @@
 import 'package:equatable/equatable.dart';
 
+/// Base model for KML data.
 class KMLData extends Equatable {
+  /// Title of the module data.
   String title = "";
+  /// Description of the module data.
   String desc = "";
-  double latitude = 0, longitude = 0, bearing = 0, zoom = 0, tilt = 0;
+  /// Latitude of the module data.
+  double latitude = 0;
+  /// Longitude of the module data.
+  double longitude = 0;
+  /// Bearing of the module data.
+  double bearing = 0;
+  /// Zoom of the module data.
+  double zoom = 0;
+  /// Tilt of the module data.
+  double tilt = 0;
+  /// Count of the module data which denotes the no. of times a module has been viewed.
   int count = 0;
 
   KMLData(
@@ -43,6 +56,7 @@ class KMLData extends Equatable {
     return tilt;
   }
 
+  /// Create [KMLData] instance from JSON map.
   KMLData.fromJson(Map<String, dynamic> json)
       : title = json['title'],
         desc = json['desc'],
@@ -52,6 +66,7 @@ class KMLData extends Equatable {
         zoom = json['zoom'],
         tilt = json['tilt'];
 
+  /// Convert [KMLData] instance to JSON map.
   Map<String, dynamic> toJson() => {
         'title': title,
         'desc': desc,
@@ -62,6 +77,7 @@ class KMLData extends Equatable {
         'tilt': tilt,
       };
 
+  /// Convert [KMLData] instance to database map.
   Map<String, dynamic> toDatabaseMap() => {
         'title': title,
         'desc': desc,
@@ -73,6 +89,7 @@ class KMLData extends Equatable {
         'count': 0,
       };
 
+  /// Create [KMLData] instance from database map.
   KMLData.fromDatabaseMap(Map<String, dynamic> json)
       : title = json['title'],
         desc = json['desc'],

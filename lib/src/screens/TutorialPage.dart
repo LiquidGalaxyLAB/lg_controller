@@ -4,6 +4,7 @@ import 'package:lg_controller/src/blocs/PageBloc.dart';
 import 'package:lg_controller/src/states_events/PageActions.dart';
 import 'package:lg_controller/src/ui/ScreenBackground.dart';
 
+/// Tutorial screen root.
 class TutorialPage extends StatefulWidget {
   TutorialPage();
 
@@ -32,6 +33,7 @@ class _TutorialPageState extends State<TutorialPage> with NavigatorObserver {
     );
   }
 
+  /// Check if the user launches app for 1st time.
   bool isFirstTime() {
     return false;
   }

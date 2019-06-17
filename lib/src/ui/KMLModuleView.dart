@@ -7,12 +7,16 @@ import 'package:lg_controller/src/states_events/NavBarActions.dart';
 import 'package:lg_controller/src/states_events/PageActions.dart';
 import 'package:lg_controller/src/utils/Images.dart';
 
+/// Show details of KMLData modules.
 class KMLModuleView extends StatelessWidget {
+  /// Data of currently running KML module.
   final KMLData data;
+  /// Current Nav bar state.
   final NavBarState state;
 
   KMLModuleView(this.state, this.data);
 
+  /// To update selection of a module.
   final database = SQLDatabase();
 
   Widget build(BuildContext context) {
@@ -74,6 +78,7 @@ class KMLModuleView extends StatelessWidget {
     );
   }
 
+  /// Select KML module.
   moduleSelected(context) {
     database.updateViewed(state.toString(), data);
     BlocProvider.of<PageBloc>(context).dispatch(HOME(data));

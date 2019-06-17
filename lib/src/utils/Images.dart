@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Image assets.
 class Images {
   static const APP_LOGO = const AssetImage("image_assets/AppLogo.png");
   static const BACKGROUND = const AssetImage("image_assets/background.png");

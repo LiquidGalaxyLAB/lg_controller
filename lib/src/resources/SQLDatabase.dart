@@ -3,9 +3,12 @@ import 'package:lg_controller/src/models/KMLData.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+/// To handle all functionalities with SQL databse for storing module data.
 class SQLDatabase {
+  /// Maximum number of elements in the recents screen.
   static const int RECENT_SIZE = 12;
 
+  /// To save module data in the respective tables according to its category.
   Future<void> saveData(Map<String, List<KMLData>> data) async {
     for (var ic in NavBarMenu.values()) {
       if (ic.title.compareTo(NavBarMenu.RECENTLY_VIEWED.title) == 0) continue;
@@ -13,6 +16,7 @@ class SQLDatabase {
     }
   }
 
+  /// To insert [value] in the table denoted by [key].
   insertInTable(String key, value) async {
     final Database db = await createDatabase('modules' + key);
     for (var mod in value) {
@@ -24,6 +28,7 @@ class SQLDatabase {
     }
   }
 
+  /// To create database and table if it doesn't exist denoted by [title].
   Future<Database> createDatabase(String title) async {
     final Future<Database> database = openDatabase(
       join(await getDatabasesPath(), 'modules_database' + title + '.db'),
@@ -39,6 +44,7 @@ class SQLDatabase {
     return database;
   }
 
+  /// To retrieve the stored module data.
   Future<Map<String, List<KMLData>>> getData() async {
     Map<String, List<KMLData>> segData = new Map<String, List<KMLData>>();
     for (var ic in NavBarMenu.values()) {
@@ -48,16 +54,12 @@ class SQLDatabase {
       if (ic.title.compareTo(NavBarMenu.RECENTLY_VIEWED.title) == 0) continue;
       segData[ic.title].addAll(await getValues(ic.title));
     }
-    /*for (var ic in NavBarMenu.values()) {
-      if(ic.title.compareTo(NavBarMenu.RECENTLY_VIEWED.title)==0) continue;
-      List<KMLData> recent = await getRecent(ic.title);
-      if (recent != null) segData["Recently_Viewed"].addAll(recent);
-    }*/
     List<KMLData> recent = await getRecent();
     if (recent != null) segData["Recently_Viewed"].addAll(recent);
     return segData;
   }
 
+  /// To retrieve the stored module data from table denoted by [key].
   Future<List<KMLData>> getValues(String key) async {
     Database db = await createDatabase('modules' + key);
     List<Map<String, dynamic>> maps = await db.query('modules' + key);
@@ -67,6 +69,7 @@ class SQLDatabase {
     });
   }
 
+  /// To retrieve the recents data from all tables.
   Future<List<KMLData>> getRecent() async {
     List<KMLData> recent = new List<KMLData>();
     for (var ic in NavBarMenu.values()) {
@@ -81,6 +84,7 @@ class SQLDatabase {
     return recent;
   }
 
+  /// To add recents data in sorted order.
   addInOrder(List<KMLData> recent, KMLData data) {
     if (recent.length < RECENT_SIZE)
       recent.add(data);
@@ -94,6 +98,7 @@ class SQLDatabase {
     }
   }
 
+  /// To update the [data.count] value of the module to denote no. of times it has been viewed.
   updateViewed(String key, KMLData data) async {
     if (key.compareTo(NavBarMenu.RECENTLY_VIEWED.title) == 0) return;
     Database db = await createDatabase('modules' + key);
@@ -102,6 +107,7 @@ class SQLDatabase {
         [data.getTitle()]).catchError((error) {});
   }
 
+  /// To return search results according to given [searchText].
   Future<List<KMLData>> getSearchData(String searchText) async {
     List<KMLData> result = new List<KMLData>();
     for (var ic in NavBarMenu.values()) {
@@ -111,6 +117,7 @@ class SQLDatabase {
     return result;
   }
 
+  /// To return search results according to given [searchText] from database denoted by [key].
   Future<List<KMLData>> getSearchResult(String key, String searchText) async {
     Database db = await createDatabase('modules' + key);
     List<Map<String, dynamic>> maps = await db.rawQuery(

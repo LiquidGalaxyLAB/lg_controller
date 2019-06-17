@@ -13,6 +13,7 @@ import 'package:lg_controller/src/screens/TutorialPage.dart';
 import 'package:lg_controller/src/states_events/PageActions.dart';
 import 'package:page_transition/page_transition.dart';
 
+/// Entry point of the application.
 void main() async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.landscapeRight,
@@ -20,7 +21,7 @@ void main() async {
   ]);
   runApp(MyApp());
 }
-
+/// Routes of all the major screens of the app.
 var routes = <String, WidgetBuilder>{
   "/HomePage": (BuildContext context) => new HomePage(null),
   "/GuidePage": (BuildContext context) => new GuidePage(),
@@ -32,12 +33,16 @@ var routes = <String, WidgetBuilder>{
   "/TutorialPage": (BuildContext context) => new TutorialPage()
 };
 
+/// Root widget.
 class MyApp extends StatefulWidget {
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
+/// State class of root widget.
 class _MyAppState extends State<MyApp> {
+
+  /// Instance of [PageBloc] for handling screen navigation.
   PageBloc pageBloc = PageBloc();
 
   @override

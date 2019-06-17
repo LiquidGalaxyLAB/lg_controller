@@ -5,7 +5,9 @@ import 'package:lg_controller/src/models/KMLData.dart';
 import 'package:lg_controller/src/states_events/PageActions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// Bloc structure for handling page transitions.
 class PageBloc extends Bloc<PageEvent, PageState> {
+  /// Initial state of [PageBloc].
   @override
   PageState get initialState => TutorialState();
 
@@ -37,16 +39,19 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     else if (event is ADDITIONAL) yield SettingsState();
   }
 
+  /// To save the KML data of the current module.
   void saveKMLData(KMLData data) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString('KMLData', jsonEncode(data));
   }
 
+  /// To clear the KML data of the current module.
   void clearKMLData() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('KMLData');
   }
 
+  /// To fetch the KML data of the current module from shared preferences.
   Future<KMLData> getKMLData() async {
     final prefs = await SharedPreferences.getInstance();
     final dataString = prefs.getString('KMLData') ?? '';

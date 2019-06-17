@@ -4,6 +4,7 @@ import 'package:lg_controller/src/blocs/PageBloc.dart';
 import 'package:lg_controller/src/menu/AuxillaryMenu.dart';
 import 'package:lg_controller/src/states_events/PageActions.dart';
 
+/// auxillary menu bar widget.
 class AuxillaryMenuBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
@@ -14,6 +15,7 @@ class AuxillaryMenuBar extends StatelessWidget {
     );
   }
 
+  /// Get icons for the auxillary menu options.
   List<Widget> getIcons(context) {
     List<Widget> list = new List<Widget>();
     for (var ic in AuxillaryMenu.values()) {
@@ -40,6 +42,7 @@ class AuxillaryMenuBar extends StatelessWidget {
     return list;
   }
 
+  /// Initiate page event for [ic] selected.
   iconSelected(AuxillaryMenu ic, context) {
     switch (ic) {
       case AuxillaryMenu.PROFILE:

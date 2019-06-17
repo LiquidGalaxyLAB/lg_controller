@@ -7,6 +7,7 @@ import 'package:lg_controller/src/states_events/KMLFilesActions.dart';
 import 'package:lg_controller/src/states_events/NavBarActions.dart';
 import 'package:lg_controller/src/ui/KMLModuleView.dart';
 
+/// Content of POI screen.
 class POIContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
@@ -20,7 +21,9 @@ class POIContent extends StatelessWidget {
   }
 }
 
+/// Grid view of the KML modules.
 class GridContent extends StatelessWidget {
+  /// Current Nav bar selection.
   final NavBarState choice;
 
   GridContent(this.choice);

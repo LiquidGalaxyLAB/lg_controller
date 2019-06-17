@@ -4,7 +4,9 @@ import 'package:lg_controller/src/ui/AppTitle.dart';
 import 'package:lg_controller/src/ui/AuxillaryMenuBar.dart';
 import 'package:lg_controller/src/ui/MainMenuBar.dart';
 
+/// Title bar of the app.
 class TitleBar extends StatelessWidget {
+  /// Current main menu selection.
   final MainMenu state;
 
   TitleBar(this.state);

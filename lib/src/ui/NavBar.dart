@@ -4,7 +4,9 @@ import 'package:lg_controller/src/blocs/NavBarBloc.dart';
 import 'package:lg_controller/src/menu/NavBarMenu.dart';
 import 'package:lg_controller/src/states_events/NavBarActions.dart';
 
+/// Nav menu bar widget.
 class NavBar extends StatelessWidget {
+
   NavBar();
 
   Widget build(BuildContext context) {
@@ -17,6 +19,7 @@ class NavBar extends StatelessWidget {
     );
   }
 
+  /// Get list of options of nav bar menu.
   List<Widget> getLabels(context) {
     List<Widget> list = new List<Widget>();
     list.add(
@@ -67,6 +70,7 @@ class NavBar extends StatelessWidget {
     return list;
   }
 
+  /// Initiate action when a tab of nav bar menu is selected.
   labelSelected(NavBarMenu ic, context) {
     switch (ic) {
       case NavBarMenu.RECENTLY_VIEWED:

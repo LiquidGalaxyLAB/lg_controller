@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lg_controller/src/ui/AuxillaryMenuBar.dart';
 
+/// Menu items for [AuxillaryMenuBar].
 class AuxillaryMenu {
   final String title;
   final Icon icon;

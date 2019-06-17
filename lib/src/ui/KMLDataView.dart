@@ -5,7 +5,9 @@ import 'package:lg_controller/src/models/KMLData.dart';
 import 'package:lg_controller/src/states_events/PageActions.dart';
 import 'package:lg_controller/src/utils/Images.dart';
 
+/// Show details of KMLData.
 class KMLDataView extends StatelessWidget {
+  /// Data of currently running KML module.
   final KMLData data;
 
   KMLDataView(this.data);
@@ -24,7 +26,7 @@ class KMLDataView extends StatelessWidget {
               color: Colors.white70,
               child: Container(
                 padding:
-                new EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+                    new EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -64,9 +66,8 @@ class KMLDataView extends StatelessWidget {
                     Align(
                       alignment: Alignment.topRight,
                       child: GestureDetector(
-                        onTap: () =>
-                            BlocProvider.of<PageBloc>(context)
-                                .dispatch(CLEARDATA()),
+                        onTap: () => BlocProvider.of<PageBloc>(context)
+                            .dispatch(CLEARDATA()),
                         child: Icon(
                             IconData(0xe5cd, fontFamily: 'MaterialIcons'),
                             color: Colors.white),

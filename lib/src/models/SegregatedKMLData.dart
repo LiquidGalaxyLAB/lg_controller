@@ -1,3 +1,4 @@
+/// Model to serialize/de-serialize Google Drive description.
 class SegregatedKmlData {
   String data;
   String category;

@@ -4,7 +4,9 @@ import 'package:lg_controller/src/blocs/PageBloc.dart';
 import 'package:lg_controller/src/menu/MainMenu.dart';
 import 'package:lg_controller/src/states_events/PageActions.dart';
 
+/// Main menu bar widget.
 class MainMenuBar extends StatelessWidget {
+  /// Main menu bar selected state.
   final MainMenu state;
 
   MainMenuBar(this.state);
@@ -18,6 +20,7 @@ class MainMenuBar extends StatelessWidget {
     );
   }
 
+  /// Get list of tabs of main menu.
   List<Widget> getLabels(context) {
     List<Widget> list = new List<Widget>();
     for (var ic in MainMenu.values()) {
@@ -51,6 +54,7 @@ class MainMenuBar extends StatelessWidget {
     return list;
   }
 
+  /// Initiate action when a tab of main menu is selected.
   labelSelected(MainMenu ic, context) {
     switch (ic) {
       case MainMenu.HOME:

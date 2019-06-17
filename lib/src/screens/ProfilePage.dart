@@ -4,6 +4,7 @@ import 'package:lg_controller/src/ui/ScreenBackground.dart';
 import 'package:lg_controller/src/ui/TitleBar.dart';
 import 'package:lg_controller/src/menu/MainMenu.dart';
 
+/// Profile screen root.
 class ProfilePage extends StatefulWidget {
   ProfilePage();
 

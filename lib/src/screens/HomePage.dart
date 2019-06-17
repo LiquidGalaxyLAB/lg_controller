@@ -10,6 +10,7 @@ import 'package:lg_controller/src/ui/HomeContent.dart';
 import 'package:lg_controller/src/ui/ScreenBackground.dart';
 import 'package:lg_controller/src/ui/TitleBar.dart';
 
+/// Home screen root.
 class HomePage extends StatefulWidget {
   final KMLData data;
 
