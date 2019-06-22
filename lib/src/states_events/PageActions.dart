@@ -33,9 +33,6 @@ class SETTINGS extends PageEvent {}
 /// Tour page event.
 class TOUR extends PageEvent {}
 
-/// Additional page event.
-class ADDITIONAL extends PageEvent {}
-
 /// Bloc states for page transitions.
 abstract class PageState {}
 

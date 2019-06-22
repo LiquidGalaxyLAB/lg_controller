@@ -34,9 +34,7 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield ProfileState();
     else if (event is TOUR)
       yield TourState();
-    else if (event is SETTINGS)
-      yield SettingsState();
-    else if (event is ADDITIONAL) yield SettingsState();
+    else if (event is SETTINGS) yield SettingsState();
   }
 
   /// To save the KML data of the current module.

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lg_controller/src/blocs/PageBloc.dart';
 import 'package:lg_controller/src/menu/AuxillaryMenu.dart';
+import 'package:lg_controller/src/osc/ModuleType.dart';
+import 'package:lg_controller/src/osc/OSCActions.dart';
 import 'package:lg_controller/src/states_events/PageActions.dart';
 
 /// auxillary menu bar widget.
@@ -19,17 +21,26 @@ class AuxillaryMenuBar extends StatelessWidget {
   List<Widget> getIcons(context) {
     List<Widget> list = new List<Widget>();
     for (var ic in AuxillaryMenu.values()) {
-      list.add(
-        Expanded(
-          flex: 10,
-          child: IconButton(
-            key: Key('AuxillaryMenu_items_' + ic.title),
-            icon: ic.icon,
-            tooltip: ic.title,
-            onPressed: () => iconSelected(ic, context),
+      if (ic == AuxillaryMenu.ADDITIONAL) {
+        list.add(
+          Expanded(
+            flex: 10,
+            child: additionalMenu(ic),
           ),
-        ),
-      );
+        );
+      } else {
+        list.add(
+          Expanded(
+            flex: 10,
+            child: IconButton(
+              key: Key('AuxillaryMenu_items_' + ic.title),
+              icon: ic.icon,
+              tooltip: ic.title,
+              onPressed: () => iconSelected(ic, context),
+            ),
+          ),
+        );
+      }
       list.add(
         Expanded(
           flex: 5,
@@ -55,13 +66,31 @@ class AuxillaryMenuBar extends StatelessWidget {
           BlocProvider.of<PageBloc>(context).dispatch(SETTINGS());
         }
         break;
-      case AuxillaryMenu.ADDITIONAL:
-        {
-          BlocProvider.of<PageBloc>(context).dispatch(ADDITIONAL());
-        }
-        break;
       default:
         {}
     }
+  }
+
+  /// Pop-up menu for the additional menu button.
+  Widget additionalMenu(ic) {
+    return PopupMenuButton<int>(
+      itemBuilder: (context) => [
+            PopupMenuItem(
+              value: 1,
+              child: Text(
+                "Exit",
+                style: TextStyle(
+                    fontSize: 16, color: Colors.black54, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+      onSelected: (value) {
+        if (value == 1) OSCActions().sendModule(ModuleType.EXIT, "Exit");
+      },
+      key: Key('AuxillaryMenu_items_' + ic.title),
+      tooltip: ic.title,
+      icon: ic.icon,
+      offset: Offset(0, 36),
+    );
   }
 }
