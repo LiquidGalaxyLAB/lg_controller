@@ -10,7 +10,7 @@ import 'package:lg_controller/src/models/SegregatedKMLData.dart';
 /// To handle all functionalities with Google Drive.
 class FileRequests {
   /// Credentials of the service account.
-  final _credentials = new auth.ServiceAccountCredentials.fromJson(r'''
+  final _credentials = r'''
   {
   "private_key_id": "<>",
   "private_key": "<>",
@@ -18,7 +18,7 @@ class FileRequests {
   "client_id": "<>",
   "type": "<>"
   }
-  ''');
+  ''';
 
   /// Drive scope required for getting file data.
   final scopes = [drive.DriveApi.DriveScope];
@@ -31,7 +31,7 @@ class FileRequests {
     var query =
         "mimeType = 'application/vnd.google-earth.kml+xml' and '1Gs-KiheWHACyUtYtvGZma8xsBX6r1iTJ' in parents";
     List<drive.File> files =
-    await searchFiles(api, 24, query).catchError((error) {
+        await searchFiles(api, 24, query).catchError((error) {
       print('An error occured: ' + (error.toString()));
       return null;
     }).whenComplete(() {
@@ -62,13 +62,19 @@ class FileRequests {
 
   /// To authorize and return the client for the service account.
   Future<auth.AuthClient> authorizeUser() async {
-    var client = await auth
-        .clientViaServiceAccount(_credentials, scopes)
-        .catchError((error) {
-      print("An unknown error occured: $error");
+    try {
+      final acc_credentials =
+          new auth.ServiceAccountCredentials.fromJson(_credentials);
+      var client = await auth
+          .clientViaServiceAccount(acc_credentials, scopes)
+          .catchError((error) {
+        print("An unknown error occured: $error");
+        return null;
+      });
+      return client;
+    } catch (e) {
       return null;
-    });
-    return client;
+    }
   }
 
   /// Returns a list of [drive.File] according to the [query] provided.

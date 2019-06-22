@@ -5,26 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f90faa16-3cf3-4cd4-9e10-6e2ed817952b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_assets/1.0x/Sun.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_assets/2.0x/Sun.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_assets/3.0x/Sun.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_assets/4.0x/Sun.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_assets/Sun.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/blocs/PageBloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/blocs/PageBloc.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/menu/FlyToMenu.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/menu/FlyToMenu.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/osc/ModuleType.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/osc/ModuleType.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/states_events/PageActions.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/states_events/PageActions.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/ui/AppTitle.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/AppTitle.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/ui/AuxillaryMenuBar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/AuxillaryMenuBar.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/utils/Images.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/utils/Images.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -145,8 +131,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="6" lean-forward="true" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+            <state relative-caret-position="272">
+              <caret line="16" column="23" lean-forward="true" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -157,8 +143,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/src/screens/HomePage.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="43" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
+            <state relative-caret-position="323">
+              <caret line="19" column="55" lean-forward="true" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -277,24 +266,6 @@
             <path>
               <item name="lg_controller" type="b2602c69:ProjectViewProjectNode" />
               <item name="lg_controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="lg_controller" type="b2602c69:ProjectViewProjectNode" />
-              <item name="lg_controller" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="lg_controller" type="b2602c69:ProjectViewProjectNode" />
-              <item name="lg_controller" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="lg_controller" type="b2602c69:ProjectViewProjectNode" />
-              <item name="lg_controller" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="gdrive" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="lg_controller" type="b2602c69:ProjectViewProjectNode" />
@@ -714,13 +685,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/screens/HomePage.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="43" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/osc/ModuleType.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -822,10 +786,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/screens/HomePage.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="55" lean-forward="true" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="6" lean-forward="true" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+        <state relative-caret-position="272">
+          <caret line="16" column="23" lean-forward="true" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
