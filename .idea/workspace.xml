@@ -12,17 +12,9 @@
       <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_assets/1.0x/background.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_assets/1.0x/background.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_assets/2.0x/background.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_assets/2.0x/background.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_assets/3.0x/background.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_assets/3.0x/background.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_assets/4.0x/background.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_assets/4.0x/background.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_assets/background.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_assets/background.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/blocs/KMLFilesBloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/blocs/KMLFilesBloc.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/screens/POIPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/POIPage.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/ui/HomeContent.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/HomeContent.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/ui/NavBar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/NavBar.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/ui/POIContent.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/POIContent.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/widget_tests/NavBar_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/widget_tests/NavBar_test.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -57,7 +49,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="dart" value="820" />
+          <entry key="dart" value="821" />
           <entry key="flutter-plugins" value="2" />
           <entry key="gitignore" value="4" />
           <entry key="java" value="2" />
@@ -75,7 +67,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Dart" value="820" />
+          <entry key="Dart" value="821" />
           <entry key="Image" value="9" />
           <entry key="JAVA" value="2" />
           <entry key="PLAIN_TEXT" value="12" />
@@ -87,7 +79,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dart" value="33338" />
+          <entry key="dart" value="33348" />
           <entry key="gitignore" value="70" />
           <entry key="md" value="304" />
           <entry key="plist" value="18" />
@@ -97,7 +89,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Dart" value="33338" />
+          <entry key="Dart" value="33348" />
           <entry key="PLAIN_TEXT" value="392" />
           <entry key="XML" value="299" />
           <entry key="YAML" value="282" />
@@ -140,11 +132,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/src/ui/HomeContent.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="40" column="51" selection-start-line="40" selection-start-column="51" selection-end-line="40" selection-end-column="51" />
+            <state relative-caret-position="255">
+              <caret line="38" column="31" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/widget_tests/NavBar_test.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="448">
+              <caret line="43" column="32" lean-forward="true" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -191,7 +195,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/test/unit_tests/KMLFilesBloc_test.dart" />
         <option value="$PROJECT_DIR$/lib/main.dart" />
         <option value="$PROJECT_DIR$/lib/src/blocs/NavBarBloc.dart" />
         <option value="$PROJECT_DIR$/lib/src/menu/AuxillaryMenu.dart" />
@@ -236,16 +239,17 @@
         <option value="$PROJECT_DIR$/test/widget_tests/POIContent_test.dart" />
         <option value="$PROJECT_DIR$/test/unit_tests/FileRequests_test.dart" />
         <option value="$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart" />
-        <option value="$PROJECT_DIR$/lib/src/ui/HomeContent.dart" />
         <option value="$PROJECT_DIR$/test/widget_tests/AuxillaryMenuBar_test.dart" />
         <option value="$PROJECT_DIR$/lib/src/screens/POIPage.dart" />
         <option value="$PROJECT_DIR$/lib/src/ui/NavBar.dart" />
         <option value="$PROJECT_DIR$/lib/src/ui/POIContent.dart" />
         <option value="$PROJECT_DIR$/lib/src/blocs/KMLFilesBloc.dart" />
+        <option value="$PROJECT_DIR$/lib/src/ui/HomeContent.dart" />
+        <option value="$PROJECT_DIR$/test/widget_tests/NavBar_test.dart" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
     <option name="y" value="-10" />
     <option name="width" value="1750" />
@@ -282,6 +286,12 @@
               <item name="lg_controller" type="b2602c69:ProjectViewProjectNode" />
               <item name="lg_controller" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="lg_controller" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lg_controller" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="widget_tests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -337,7 +347,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21677852" />
@@ -406,13 +416,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/src/menu/NavBarMenu.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/models/POIData.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -823,8 +826,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/ui/HomeContent.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="40" column="51" selection-start-line="40" selection-start-column="51" selection-end-line="40" selection-end-column="51" />
+        <state relative-caret-position="255">
+          <caret line="38" column="31" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/widget_tests/NavBar_test.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="43" column="32" lean-forward="true" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>

@@ -23,10 +23,11 @@ void main() {
       checkAll();
       expect(find.text("CATEGORIES : "), findsOneWidget);
       expect(find.byType(Divider), findsOneWidget);
+      expect(find.byType(SingleChildScrollView), findsOneWidget);
 
-      Column col = find.byType(Column).evaluate().toList()[0].widget;
-      expect(col.children.length, 11);
-      int i = 5;
+      Column col = find.byType(Column).evaluate().toList()[1].widget;
+      expect(col.children.length, 6);
+      int i = 0;
       for (var ic_tap in NavBarMenu.values()) {
         GestureDetector option = (col.children[i] as Column).children[0];
         await tester.tap(find.byWidget(option));
@@ -37,7 +38,7 @@ void main() {
             .toList()[0]
             .widget;
         expect(selected.style.fontSize, testTheme().textTheme.body2.fontSize);
-        int j = 5;
+        int j = 0;
         for (var ic_plain in NavBarMenu.values()) {
           if (ic_tap != ic_plain) {
             GestureDetector unselect = (col.children[j] as Column).children[0];

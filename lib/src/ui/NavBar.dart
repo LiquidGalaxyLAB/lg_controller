@@ -6,7 +6,6 @@ import 'package:lg_controller/src/states_events/NavBarActions.dart';
 
 /// Nav menu bar widget.
 class NavBar extends StatelessWidget {
-
   NavBar();
 
   Widget build(BuildContext context) {
@@ -41,14 +40,22 @@ class NavBar extends StatelessWidget {
         height: 16,
       ),
     );
-    list.add(Expanded(child:Container(child:SingleChildScrollView(
-        child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: getLabels(context),
-      ),),),),);
+    list.add(
+      Expanded(
+        child: Container(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: getLabels(context),
+            ),
+          ),
+        ),
+      ),
+    );
     return list;
   }
+
   /// Get list of options of nav bar menu.
   List<Widget> getLabels(context) {
     List<Widget> list = new List<Widget>();
