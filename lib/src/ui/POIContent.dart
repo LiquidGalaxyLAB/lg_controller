@@ -37,6 +37,7 @@ class GridContent extends StatelessWidget {
           } else if (state is ErrorState) {
             return Text("Error.", style: Theme.of(context).textTheme.body1);
           } else if (state is LoadedState) {
+            print('trial'+state.data.toString());
             List<KMLData> content;
             if (choice is SearchState)
               content = (choice as SearchState).searchData;
