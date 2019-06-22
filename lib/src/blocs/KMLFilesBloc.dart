@@ -31,7 +31,7 @@ class KMLFilesBloc extends Bloc<KMLFilesEvent, KMLFilesState> {
         dataNetwork["Recently_Viewed"] = data["Recently_Viewed"];
       if (dataNetwork != null) {
         yield LoadedState(dataNetwork);
-        database.saveData(dataNetwork);
+        await database.saveData(dataNetwork);
       }
     }
   }

@@ -14,13 +14,13 @@ class NavBar extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: getLabels(context),
+        children: getHeader(context),
       ),
     );
   }
 
-  /// Get list of options of nav bar menu.
-  List<Widget> getLabels(context) {
+  ///Get header for the Nav Bar.
+  List<Widget> getHeader(context) {
     List<Widget> list = new List<Widget>();
     list.add(
       SizedBox(
@@ -41,6 +41,17 @@ class NavBar extends StatelessWidget {
         height: 16,
       ),
     );
+    list.add(Expanded(child:Container(child:SingleChildScrollView(
+        child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: getLabels(context),
+      ),),),),);
+    return list;
+  }
+  /// Get list of options of nav bar menu.
+  List<Widget> getLabels(context) {
+    List<Widget> list = new List<Widget>();
     for (var ic in NavBarMenu.values()) {
       list.add(
         Column(

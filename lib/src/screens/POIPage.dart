@@ -52,7 +52,7 @@ class _POIPageState extends State<POIPage> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           SizedBox(
-                            width: 160,
+                            width: 164,
                             child: Container(
                               color: Colors.blueGrey[800],
                               child: NavBar(),
