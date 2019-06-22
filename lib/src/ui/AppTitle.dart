@@ -93,7 +93,7 @@ class AppTitle extends StatelessWidget {
           OSCActions().sendModule(ModuleType.FLYTO, ic.title);
         }
         break;
-      case FlyToMenu.SUN:
+      case FlyToMenu.MARS:
         {
           OSCActions().sendModule(ModuleType.FLYTO, ic.title);
         }

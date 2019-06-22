@@ -9,11 +9,11 @@ class FlyToMenu {
   const FlyToMenu(this.title, this.image);
 
   static values() {
-    return [EARTH, SUN, MOON, SKY];
+    return [EARTH, MARS, MOON, SKY];
   }
 
   static const FlyToMenu EARTH = const FlyToMenu("Earth", Images.EARTH);
-  static const FlyToMenu SUN = const FlyToMenu("Sun", Images.SUN);
+  static const FlyToMenu MARS = const FlyToMenu("Mars", Images.MARS);
   static const FlyToMenu MOON = const FlyToMenu("Moon", Images.MOON);
   static const FlyToMenu SKY = const FlyToMenu("Sky", Images.SKY);
 }
