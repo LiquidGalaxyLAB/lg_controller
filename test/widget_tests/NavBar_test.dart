@@ -26,7 +26,7 @@ void main() {
       expect(find.byType(SingleChildScrollView), findsOneWidget);
 
       Column col = find.byType(Column).evaluate().toList()[1].widget;
-      expect(col.children.length, 6);
+      expect(col.children.length, 12);
       int i = 0;
       for (var ic_tap in NavBarMenu.values()) {
         GestureDetector option = (col.children[i] as Column).children[0];
@@ -51,9 +51,9 @@ void main() {
             expect(
                 selected.style.fontSize, testTheme().textTheme.body1.fontSize);
           }
-          j++;
+          j=j+2;
         }
-        i++;
+        i=i+2;
       }
     });
   }

@@ -93,10 +93,10 @@ class AuxillaryMenuBar extends StatelessWidget {
         if (value == 1) OSCActions().sendModule(ModuleType.EXIT, "Exit");
       },
       key: Key('AuxillaryMenu_items_' + ic.title),
-      tooltip: ic.title,
       child: IconButton(
         iconSize: 24 + 24 * 0.5 * (SizeScaling.getWidthScaling() - 1),
         icon: ic.icon,
+        tooltip: ic.title,
       ),
       offset: Offset(0, 36 * SizeScaling.getHeightScaling()),
     );
