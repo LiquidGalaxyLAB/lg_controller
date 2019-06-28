@@ -11,6 +11,7 @@ import 'package:lg_controller/src/screens/SettingsPage.dart';
 import 'package:lg_controller/src/screens/TourPage.dart';
 import 'package:lg_controller/src/screens/TutorialPage.dart';
 import 'package:lg_controller/src/states_events/PageActions.dart';
+import 'package:lg_controller/src/utils/SizeScaling.dart';
 import 'package:page_transition/page_transition.dart';
 
 /// Entry point of the application.
@@ -21,6 +22,7 @@ void main() async {
   ]);
   runApp(MyApp());
 }
+
 /// Routes of all the major screens of the app.
 var routes = <String, WidgetBuilder>{
   "/HomePage": (BuildContext context) => new HomePage(null),
@@ -41,7 +43,6 @@ class MyApp extends StatefulWidget {
 
 /// State class of root widget.
 class _MyAppState extends State<MyApp> {
-
   /// Instance of [PageBloc] for handling screen navigation.
   PageBloc pageBloc = PageBloc();
 
@@ -52,27 +53,17 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         title: 'LG Controller',
         routes: routes,
-        theme: ThemeData(
-          brightness: Brightness.light,
-          primarySwatch: Colors.teal,
-          cardColor: Colors.white,
-          iconTheme: new IconThemeData(
-            color: Colors.white,
-            opacity: 1.0,
-          ),
-          fontFamily: 'RobotoMono',
-          textTheme: TextTheme(
-            headline: TextStyle(
-                fontSize: 34, color: Colors.white, fontWeight: FontWeight.bold),
-            title: TextStyle(
-                fontSize: 16,
-                color: Colors.black54,
-                fontWeight: FontWeight.bold),
-            body1: TextStyle(fontSize: 12, color: Colors.white),
-            body2: TextStyle(
-                fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        ),
+        builder: (context, navigator) {
+          var w = MediaQuery.of(context).size.width / 600; // 592
+          var h = MediaQuery.of(context).size.height / 360;
+          print('width' + w.toString());
+          SizeScaling.setWidthScaling(w);
+          SizeScaling.setHeightScaling(h);
+          return Theme(
+            data: getBaseTheme(context, w),
+            child: navigator,
+          );
+        },
         home: BlocListener(
           bloc: pageBloc,
           child: TutorialPage(),
@@ -139,5 +130,35 @@ class _MyAppState extends State<MyApp> {
   void dispose() {
     super.dispose();
     pageBloc.dispose();
+  }
+
+  /// Returns the base theme used for the app.
+  ThemeData getBaseTheme(context, scaling_width) {
+    return ThemeData(
+      brightness: Brightness.light,
+      primarySwatch: Colors.teal,
+      cardColor: Colors.white,
+      iconTheme: new IconThemeData(
+        color: Colors.white,
+        opacity: 1.0,
+      ),
+      fontFamily: 'RobotoMono',
+      textTheme: TextTheme(
+        headline: TextStyle(
+            fontSize: 34 + 34 * 0.8 * (scaling_width - 1),
+            color: Colors.white,
+            fontWeight: FontWeight.bold),
+        title: TextStyle(
+            fontSize: 16 + 16 * 0.8 * (scaling_width - 1),
+            color: Colors.black54,
+            fontWeight: FontWeight.bold),
+        body1: TextStyle(
+            fontSize: 12 + 12 * (scaling_width - 1), color: Colors.white),
+        body2: TextStyle(
+            fontSize: 16 + 16 * 0.8 * (scaling_width - 1),
+            color: Colors.white,
+            fontWeight: FontWeight.bold),
+      ),
+    );
   }
 }
