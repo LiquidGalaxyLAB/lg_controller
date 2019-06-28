@@ -12,6 +12,7 @@ import 'package:lg_controller/src/ui/POIContent.dart';
 import 'package:lg_controller/src/ui/ScreenBackground.dart';
 import 'package:lg_controller/src/ui/SearchBar.dart';
 import 'package:lg_controller/src/ui/TitleBar.dart';
+import 'package:lg_controller/src/utils/SizeScaling.dart';
 
 /// POI screen root.
 class POIPage extends StatefulWidget {
@@ -37,7 +38,7 @@ class _POIPageState extends State<POIPage> {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 64,
+                  height: 64 * SizeScaling.getHeightScaling(),
                   child: TitleBar(MainMenu.POI),
                 ),
                 Expanded(
@@ -52,11 +53,15 @@ class _POIPageState extends State<POIPage> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           SizedBox(
-                            width: 164,
+                            width: 164 * SizeScaling.getWidthScaling(),
                             child: Container(
                               color: Colors.blueGrey[800],
                               child: NavBar(),
                             ),
+                          ),
+                          SizedBox(
+                            width: 4 +
+                                4 * 0.5 * (SizeScaling.getWidthScaling() - 1),
                           ),
                           Expanded(
                             child: Column(
@@ -67,6 +72,10 @@ class _POIPageState extends State<POIPage> {
                                 ),
                               ],
                             ),
+                          ),
+                          SizedBox(
+                            width: 4 +
+                                4 * 0.5 * (SizeScaling.getWidthScaling() - 1),
                           ),
                         ],
                       ),

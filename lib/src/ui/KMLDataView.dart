@@ -4,6 +4,7 @@ import 'package:lg_controller/src/blocs/PageBloc.dart';
 import 'package:lg_controller/src/models/KMLData.dart';
 import 'package:lg_controller/src/states_events/PageActions.dart';
 import 'package:lg_controller/src/utils/Images.dart';
+import 'package:lg_controller/src/utils/SizeScaling.dart';
 
 /// Show details of KMLData.
 class KMLDataView extends StatelessWidget {
@@ -16,8 +17,8 @@ class KMLDataView extends StatelessWidget {
     return Container(
       padding: new EdgeInsets.symmetric(vertical: 2.0, horizontal: 2.0),
       child: SizedBox(
-        height: 80,
-        width: 320,
+        height: 80 * SizeScaling.getHeightScaling(),
+        width: 320 * SizeScaling.getWidthScaling(),
         child: Hero(
           tag: 'KML_View_Card' + data.getTitle() + data.getDesc(),
           child: GestureDetector(
@@ -31,12 +32,14 @@ class KMLDataView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     CircleAvatar(
-                      maxRadius: 24,
+                      maxRadius: 24 * SizeScaling.getWidthScaling(),
                       backgroundColor: Colors.transparent,
                       backgroundImage: Images.APP_LOGO,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 6.0),
+                      padding: EdgeInsets.only(
+                          left: 6.0 +
+                              6 * 0.5 * (SizeScaling.getWidthScaling() - 1)),
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -45,7 +48,10 @@ class KMLDataView extends StatelessWidget {
                         Text(
                           data.getTitle(),
                           style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 16 +
+                                  16 *
+                                      0.8 *
+                                      (SizeScaling.getWidthScaling() - 1),
                               color: Colors.black54,
                               fontWeight: FontWeight.bold),
                         ),
@@ -54,7 +60,10 @@ class KMLDataView extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                           style: TextStyle(
-                              fontSize: 12,
+                              fontSize: 12 +
+                                  12 *
+                                      0.8 *
+                                      (SizeScaling.getWidthScaling() - 1),
                               color: Colors.black54,
                               fontWeight: FontWeight.bold),
                         ),
@@ -65,10 +74,12 @@ class KMLDataView extends StatelessWidget {
                     ),
                     Align(
                       alignment: Alignment.topRight,
-                      child: GestureDetector(
-                        onTap: () => BlocProvider.of<PageBloc>(context)
+                      child: IconButton(
+                        onPressed: () => BlocProvider.of<PageBloc>(context)
                             .dispatch(CLEARDATA()),
-                        child: Icon(
+                        iconSize:
+                            24 + 24 * 0.5 * (SizeScaling.getWidthScaling() - 1),
+                        icon: Icon(
                             IconData(0xe5cd, fontFamily: 'MaterialIcons'),
                             color: Colors.white),
                       ),

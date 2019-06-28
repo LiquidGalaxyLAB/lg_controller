@@ -6,6 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lg_controller/src/models/KMLData.dart';
 import 'package:lg_controller/src/osc/ModuleType.dart';
 import 'package:lg_controller/src/osc/OSCActions.dart';
+import 'package:lg_controller/src/utils/SizeScaling.dart';
 
 /// Navigation view (Google map view) for home screen.
 class NavigationView extends StatelessWidget {
@@ -56,8 +57,8 @@ class NavigationView extends StatelessWidget {
           Hero(
             tag: "Nav_view",
             child: SizedBox(
-              width: 240,
-              height: 120,
+              width: 240 * SizeScaling.getWidthScaling(),
+              height: 120 * SizeScaling.getHeightScaling(),
               child: Card(
                   child: GoogleMap(
                     onMapCreated: (controller) =>

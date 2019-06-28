@@ -9,6 +9,7 @@ import 'package:lg_controller/src/osc/OSCActions.dart';
 import 'package:lg_controller/src/ui/HomeContent.dart';
 import 'package:lg_controller/src/ui/ScreenBackground.dart';
 import 'package:lg_controller/src/ui/TitleBar.dart';
+import 'package:lg_controller/src/utils/SizeScaling.dart';
 
 /// Home screen root.
 class HomePage extends StatefulWidget {
@@ -45,7 +46,7 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 64,
+                  height: 64 * SizeScaling.getHeightScaling(),
                   child: TitleBar(MainMenu.HOME),
                 ),
                 Expanded(

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:lg_controller/src/menu/MainMenu.dart';
 import 'package:lg_controller/src/ui/ScreenBackground.dart';
 import 'package:lg_controller/src/ui/TitleBar.dart';
+import 'package:lg_controller/src/utils/SizeScaling.dart';
 
 /// Settings screen root.
 class SettingsPage extends StatefulWidget {
@@ -24,7 +25,7 @@ class _SettingsPageState extends State<SettingsPage> {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 64,
+                  height: 64 * SizeScaling.getHeightScaling(),
                   child: TitleBar(MainMenu.NONE),
                 ),
                 Expanded(

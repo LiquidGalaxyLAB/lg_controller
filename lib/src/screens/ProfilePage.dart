@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:lg_controller/src/menu/MainMenu.dart';
 import 'package:lg_controller/src/ui/ScreenBackground.dart';
 import 'package:lg_controller/src/ui/TitleBar.dart';
-import 'package:lg_controller/src/menu/MainMenu.dart';
+import 'package:lg_controller/src/utils/SizeScaling.dart';
 
 /// Profile screen root.
 class ProfilePage extends StatefulWidget {
@@ -24,13 +25,13 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 64,
+                  height: 64 * SizeScaling.getHeightScaling(),
                   child: TitleBar(MainMenu.NONE),
                 ),
                 Expanded(
                   child: Container(
                     padding:
-                    EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+                        EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
                     child: Center(
                       child: Text("profile"),
                     ),

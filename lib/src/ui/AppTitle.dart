@@ -3,6 +3,7 @@ import 'package:lg_controller/src/menu/FlyToMenu.dart';
 import 'package:lg_controller/src/osc/ModuleType.dart';
 import 'package:lg_controller/src/osc/OSCActions.dart';
 import 'package:lg_controller/src/utils/Images.dart';
+import 'package:lg_controller/src/utils/SizeScaling.dart';
 
 /// App title widget.
 class AppTitle extends StatelessWidget {
@@ -21,7 +22,7 @@ class AppTitle extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   CircleAvatar(
-                    maxRadius: 12,
+                    maxRadius: 12 * SizeScaling.getWidthScaling(),
                     backgroundColor: Colors.transparent,
                     backgroundImage: Images.APP_LOGO,
                   ),
@@ -46,8 +47,8 @@ class AppTitle extends StatelessWidget {
       builder: (BuildContext context) {
         return AlertDialog(
           content: SizedBox(
-            width: 300,
-            height: 80,
+            width: 300 * SizeScaling.getWidthScaling(),
+            height: 80 * SizeScaling.getWidthScaling(),
             child: Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -72,8 +73,8 @@ class AppTitle extends StatelessWidget {
             Navigator.of(context).pop();
           },
           child: CircleAvatar(
-            maxRadius: 30,
-            minRadius: 24,
+            maxRadius: 30 * SizeScaling.getWidthScaling(),
+            minRadius: 24 * SizeScaling.getWidthScaling(),
             backgroundColor: Colors.transparent,
             backgroundImage: ic.image,
           ),

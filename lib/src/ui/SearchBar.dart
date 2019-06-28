@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:lg_controller/src/utils/SizeScaling.dart';
 
 /// Search bar widget.
 class SearchBar extends StatelessWidget {
   /// Controller for text field.
   final TextEditingController controller = TextEditingController();
+
   /// Focus controller of the text field.
   final FocusNode focus = new FocusNode();
+
   /// Clear option widget.
   ClearOption clearOption = new ClearOption();
+
   /// Search query text.
   String searchText = "";
+
   /// To be executed on clearing text field.
   Function onClear;
+
   /// To be executed on searching the query.
   Function onSearch;
+
   /// To be executed on completing search tasks.
   Function onComplete;
 
@@ -30,12 +37,13 @@ class SearchBar extends StatelessWidget {
     return Container(
       padding: new EdgeInsets.symmetric(vertical: 2.0, horizontal: 2.0),
       child: SizedBox(
-        height: 42,
-        width: 240,
+        height: 42 + 42 * 0.8 * (SizeScaling.getWidthScaling() - 1),
+        width: 240 * SizeScaling.getWidthScaling(),
         child: Card(
           color: Colors.white70,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(21.0),
+            borderRadius: BorderRadius.circular(
+                21 + 21.0 * 0.8 * (SizeScaling.getWidthScaling() - 1)),
           ),
           child: Row(
             children: <Widget>[
@@ -103,6 +111,7 @@ class ClearOption extends StatefulWidget {
 class _ClearOptionState extends State<ClearOption> {
   /// To be executed on selecting this widget.
   Function clear;
+
   /// Enabling state of clear option.
   bool closeEnable = false;
 
@@ -120,6 +129,7 @@ class _ClearOptionState extends State<ClearOption> {
   Widget build(BuildContext context) {
     return (closeEnable)
         ? IconButton(
+            iconSize: 24 + 24 * 0.5 * (SizeScaling.getWidthScaling() - 1),
             icon: Icon(IconData(0xe5cd, fontFamily: 'MaterialIcons'),
                 color: Colors.black54),
             onPressed: () => clear(context),
