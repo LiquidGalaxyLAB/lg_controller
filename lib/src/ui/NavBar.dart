@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lg_controller/src/blocs/NavBarBloc.dart';
 import 'package:lg_controller/src/menu/NavBarMenu.dart';
 import 'package:lg_controller/src/states_events/NavBarActions.dart';
+import 'package:lg_controller/src/utils/SizeScaling.dart';
 
 /// Nav menu bar widget.
 class NavBar extends StatelessWidget {
@@ -23,7 +24,7 @@ class NavBar extends StatelessWidget {
     List<Widget> list = new List<Widget>();
     list.add(
       SizedBox(
-        height: 24,
+        height: 24 + 24 * 0.5 * (SizeScaling.getWidthScaling() - 1),
       ),
     );
     list.add(
@@ -31,13 +32,13 @@ class NavBar extends StatelessWidget {
     );
     list.add(
       SizedBox(
-        height: 12,
+        height: 12 + 12 * 0.5 * (SizeScaling.getWidthScaling() - 1),
       ),
     );
     list.add(Divider(color: Colors.white70));
     list.add(
       SizedBox(
-        height: 16,
+        height: 16 + 16 * 0.5 * (SizeScaling.getWidthScaling() - 1),
       ),
     );
     list.add(
@@ -82,6 +83,11 @@ class NavBar extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      );
+      list.add(
+        SizedBox(
+          height: 16 * 0.5 * (SizeScaling.getHeightScaling() - 1),
         ),
       );
     }

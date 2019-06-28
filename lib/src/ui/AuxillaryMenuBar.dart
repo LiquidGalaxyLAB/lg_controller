@@ -5,6 +5,7 @@ import 'package:lg_controller/src/menu/AuxillaryMenu.dart';
 import 'package:lg_controller/src/osc/ModuleType.dart';
 import 'package:lg_controller/src/osc/OSCActions.dart';
 import 'package:lg_controller/src/states_events/PageActions.dart';
+import 'package:lg_controller/src/utils/SizeScaling.dart';
 
 /// auxillary menu bar widget.
 class AuxillaryMenuBar extends StatelessWidget {
@@ -25,7 +26,7 @@ class AuxillaryMenuBar extends StatelessWidget {
         list.add(
           Expanded(
             flex: 10,
-            child: additionalMenu(ic),
+            child: additionalMenu(ic, context),
           ),
         );
       } else {
@@ -33,6 +34,7 @@ class AuxillaryMenuBar extends StatelessWidget {
           Expanded(
             flex: 10,
             child: IconButton(
+              iconSize: 24 + 24 * 0.5 * (SizeScaling.getWidthScaling() - 1),
               key: Key('AuxillaryMenu_items_' + ic.title),
               icon: ic.icon,
               tooltip: ic.title,
@@ -72,7 +74,7 @@ class AuxillaryMenuBar extends StatelessWidget {
   }
 
   /// Pop-up menu for the additional menu button.
-  Widget additionalMenu(ic) {
+  Widget additionalMenu(ic, context) {
     return PopupMenuButton<int>(
       itemBuilder: (context) => [
             PopupMenuItem(
@@ -80,7 +82,10 @@ class AuxillaryMenuBar extends StatelessWidget {
               child: Text(
                 "Exit",
                 style: TextStyle(
-                    fontSize: 16, color: Colors.black54, fontWeight: FontWeight.bold),
+                    fontSize:
+                        16 + 16 * 0.8 * (SizeScaling.getWidthScaling() - 1),
+                    color: Colors.black54,
+                    fontWeight: FontWeight.bold),
               ),
             ),
           ],
@@ -89,8 +94,11 @@ class AuxillaryMenuBar extends StatelessWidget {
       },
       key: Key('AuxillaryMenu_items_' + ic.title),
       tooltip: ic.title,
-      icon: ic.icon,
-      offset: Offset(0, 36),
+      child: IconButton(
+        iconSize: 24 + 24 * 0.5 * (SizeScaling.getWidthScaling() - 1),
+        icon: ic.icon,
+      ),
+      offset: Offset(0, 36 * SizeScaling.getHeightScaling()),
     );
   }
 }

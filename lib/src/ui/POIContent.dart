@@ -6,6 +6,7 @@ import 'package:lg_controller/src/models/KMLData.dart';
 import 'package:lg_controller/src/states_events/KMLFilesActions.dart';
 import 'package:lg_controller/src/states_events/NavBarActions.dart';
 import 'package:lg_controller/src/ui/KMLModuleView.dart';
+import 'package:lg_controller/src/utils/SizeScaling.dart';
 
 /// Content of POI screen.
 class POIContent extends StatelessWidget {
@@ -44,11 +45,14 @@ class GridContent extends StatelessWidget {
               content = state.data[choice.toString()];
             return GridView.builder(
               itemCount: content.length,
+              padding: EdgeInsets.all(
+                  4 + 4 * 0.5 * (SizeScaling.getWidthScaling() - 1)),
               scrollDirection: Axis.vertical,
               gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
                 childAspectRatio: 1.667,
-                crossAxisCount:
-                    ((MediaQuery.of(context).size.width - 176) ~/ 128),
+                crossAxisCount: ((426 * SizeScaling.getHeightScaling()) ~/
+                        (128 * SizeScaling.getHeightScaling()))
+                    .toInt(),
               ),
               itemBuilder: (BuildContext context, int index) {
                 return new KMLModuleView(choice, content[index]);
