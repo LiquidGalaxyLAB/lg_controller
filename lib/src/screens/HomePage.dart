@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lg_controller/src/menu/MainMenu.dart';
 import 'package:lg_controller/src/models/KMLData.dart';
+import 'package:lg_controller/src/models/POIData.dart';
+import 'package:lg_controller/src/models/TourData.dart';
 import 'package:lg_controller/src/osc/ModuleType.dart';
 import 'package:lg_controller/src/osc/OSCActions.dart';
 import 'package:lg_controller/src/ui/HomeContent.dart';
@@ -29,7 +31,10 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     if (data != null) {
-      OSCActions().sendModule(ModuleType.POI, jsonEncode(data));
+      if (data is POIData)
+        OSCActions().sendModule(ModuleType.POI, jsonEncode(data));
+      else if (data is TourData)
+        OSCActions().sendModule(ModuleType.TOUR, jsonEncode(data));
     }
     super.initState();
   }
