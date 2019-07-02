@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lg_controller/src/blocs/NavBarBloc.dart';
-import 'package:lg_controller/src/menu/NavBarMenu.dart';
+import 'package:lg_controller/src/menu/MainMenu.dart';
+import 'package:lg_controller/src/menu/POINavBarMenu.dart';
 import 'package:lg_controller/src/ui/NavBar.dart';
 
 void main() {
-  for (var ic in NavBarMenu.values()) {
+  for (var ic in POINavBarMenu.values()) {
     testWidgets('Nav menu bar ' + ic.title + ' component check',
         (WidgetTester tester) async {
       Widget root = BlocProviderTree(
         blocProviders: [
           BlocProvider<NavBarBloc>(bloc: new NavBarBloc()),
         ],
-        child: new NavBar(),
+        child: new NavBar(MainMenu.POI),
       );
       await tester.pumpWidget(
           new Material(child: new MaterialApp(theme: testTheme(), home: root)));
@@ -28,7 +29,7 @@ void main() {
       Column col = find.byType(Column).evaluate().toList()[1].widget;
       expect(col.children.length, 12);
       int i = 0;
-      for (var ic_tap in NavBarMenu.values()) {
+      for (var ic_tap in POINavBarMenu.values()) {
         GestureDetector option = (col.children[i] as Column).children[0];
         await tester.tap(find.byWidget(option));
         await tester.pumpAndSettle();
@@ -39,7 +40,7 @@ void main() {
             .widget;
         expect(selected.style.fontSize, testTheme().textTheme.body2.fontSize);
         int j = 0;
-        for (var ic_plain in NavBarMenu.values()) {
+        for (var ic_plain in POINavBarMenu.values()) {
           if (ic_tap != ic_plain) {
             GestureDetector unselect = (col.children[j] as Column).children[0];
             Text selected = find
@@ -51,16 +52,16 @@ void main() {
             expect(
                 selected.style.fontSize, testTheme().textTheme.body1.fontSize);
           }
-          j=j+2;
+          j = j + 2;
         }
-        i=i+2;
+        i = i + 2;
       }
     });
   }
 }
 
 checkAll() {
-  for (var ic in NavBarMenu.values()) {
+  for (var ic in POINavBarMenu.values()) {
     expect(find.text(ic.title), findsOneWidget);
   }
 }

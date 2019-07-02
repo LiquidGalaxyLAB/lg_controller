@@ -1,7 +1,9 @@
 import 'package:googleapis/drive/v2.dart' as drive;
 import 'package:lg_controller/src/gdrive/FileRequests.dart';
-import 'package:lg_controller/src/menu/NavBarMenu.dart';
+import 'package:lg_controller/src/menu/MainMenu.dart';
+import 'package:lg_controller/src/menu/POINavBarMenu.dart';
 import 'package:lg_controller/src/models/KMLData.dart';
+import 'package:lg_controller/src/models/POIData.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
@@ -60,12 +62,12 @@ main() {
       fileList.items.add(file);
       fileList.nextPageToken = null;
       Map<String, List<KMLData>> test = Map();
-      for (var ic in NavBarMenu.values()) {
+      for (var ic in POINavBarMenu.values()) {
         test.addAll({ic.title: new List<KMLData>()});
       }
       test.addAll({
         "Category_1": new List.of({
-          new KMLData(
+          new POIData(
               title: "POI3",
               desc: "desc3",
               latitude: 0,
@@ -82,7 +84,7 @@ main() {
 
       expect(fileList.items.length, 1);
       expect(await fr.searchFiles(client_dr, 1, "test"), fileList.items);
-      expect(await fr.decodeFiles(fileList.items), test);
+      expect(await fr.decodeFiles(fileList.items, MainMenu.POI), test);
     });
   });
 }

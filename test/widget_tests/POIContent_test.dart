@@ -4,19 +4,20 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lg_controller/src/blocs/KMLFilesBloc.dart';
 import 'package:lg_controller/src/blocs/NavBarBloc.dart';
 import 'package:lg_controller/src/gdrive/FileRequests.dart';
+import 'package:lg_controller/src/menu/MainMenu.dart';
 import 'package:lg_controller/src/resources/SQLDatabase.dart';
-import 'package:lg_controller/src/ui/POIContent.dart';
+import 'package:lg_controller/src/ui/KMLGridContent.dart';
 
 void main() {
   testWidgets('POI Content component check', (WidgetTester tester) async {
     KMLFilesBloc kml_files_bloc =
-        new KMLFilesBloc(FileRequests(), SQLDatabase());
+        new KMLFilesBloc(FileRequests(), SQLDatabase(), MainMenu.POI);
     Widget root = BlocProviderTree(
       blocProviders: [
         BlocProvider<NavBarBloc>(bloc: new NavBarBloc()),
         BlocProvider<KMLFilesBloc>(bloc: kml_files_bloc),
       ],
-      child: new POIContent(),
+      child: new KMLGridContent(),
     );
     await tester.pumpWidget(new Material(child: new MaterialApp(home: root)));
 
