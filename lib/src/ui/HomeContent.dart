@@ -19,8 +19,8 @@ class HomeContent extends StatelessWidget {
   HomeContent(this.data);
 
   Widget build(BuildContext context) {
-    searchbar=SearchBar(() => {}, (searchText) => {},
-            (searchText) => searchPlace(context, searchText));
+    searchbar = SearchBar(() => {}, (searchText) => {},
+        (searchText) => searchPlace(context, searchText));
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -49,10 +49,8 @@ class HomeContent extends StatelessWidget {
           zoom: 0,
           bearing: 0,
           tilt: 0)));
+    } else {
+      searchbar.onClearField(context);
     }
-    else
-      {
-        searchbar.onClearField(context);
-      }
   }
 }
