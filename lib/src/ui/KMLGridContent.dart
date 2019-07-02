@@ -9,7 +9,7 @@ import 'package:lg_controller/src/ui/KMLModuleView.dart';
 import 'package:lg_controller/src/utils/SizeScaling.dart';
 
 /// Content of POI screen.
-class POIContent extends StatelessWidget {
+class KMLGridContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: BlocBuilder<NavBarEvent, NavBarState>(
