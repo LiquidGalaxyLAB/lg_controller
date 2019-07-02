@@ -4,18 +4,25 @@ import 'package:equatable/equatable.dart';
 class KMLData extends Equatable {
   /// Title of the module data.
   String title = "";
+
   /// Description of the module data.
   String desc = "";
+
   /// Latitude of the module data.
   double latitude = 0;
+
   /// Longitude of the module data.
   double longitude = 0;
+
   /// Bearing of the module data.
   double bearing = 0;
+
   /// Zoom of the module data.
   double zoom = 0;
+
   /// Tilt of the module data.
   double tilt = 0;
+
   /// Count of the module data which denotes the no. of times a module has been viewed.
   int count = 0;
 
@@ -26,7 +33,8 @@ class KMLData extends Equatable {
       this.longitude,
       this.bearing,
       this.zoom,
-      this.tilt});
+      this.tilt,
+      this.count});
 
   getTitle() {
     return title;
