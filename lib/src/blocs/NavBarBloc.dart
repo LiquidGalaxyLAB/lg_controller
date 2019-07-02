@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:lg_controller/src/menu/MainMenu.dart';
 import 'package:lg_controller/src/resources/SQLDatabase.dart';
 import 'package:lg_controller/src/screens/POIPage.dart';
 import 'package:lg_controller/src/states_events/NavBarActions.dart';
@@ -17,7 +18,10 @@ class NavBarBloc extends Bloc<NavBarEvent, NavBarState> {
     if (event is RECENTLY) {
       yield RecentlyState();
     } else if (event is SEARCH) {
-      yield SearchState(await database.getSearchData(event.searchText));
+      if (event.pagestate == MainMenu.POI)
+        yield SearchState(await database.getSearchPOIData(event.searchText));
+      else if (event.pagestate == MainMenu.TOURS)
+        yield SearchState(await database.getSearchTourData(event.searchText));
     } else if (event is CATEGORY_1)
       yield Category_1_State();
     else if (event is CATEGORY_2)
@@ -26,6 +30,16 @@ class NavBarBloc extends Bloc<NavBarEvent, NavBarState> {
       yield Category_3_State();
     else if (event is CATEGORY_4)
       yield Category_4_State();
-    else if (event is CATEGORY_5) yield Category_5_State();
+    else if (event is CATEGORY_5)
+      yield Category_5_State();
+    else if (event is CATEGORY_6)
+      yield Category_6_State();
+    else if (event is CATEGORY_7)
+      yield Category_7_State();
+    else if (event is CATEGORY_8)
+      yield Category_8_State();
+    else if (event is CATEGORY_9)
+      yield Category_9_State();
+    else if (event is CATEGORY_10) yield Category_10_State();
   }
 }
