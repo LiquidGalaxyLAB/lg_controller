@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:lg_controller/src/menu/MainMenu.dart';
 import 'package:lg_controller/src/models/KMLData.dart';
 
 /// Bloc events for Nav bar.
@@ -12,7 +13,10 @@ class SEARCH extends NavBarEvent {
   /// Text for search query.
   String searchText;
 
-  SEARCH(this.searchText);
+  /// State of currently open page/screen.
+  final MainMenu pagestate;
+
+  SEARCH(this.searchText, this.pagestate);
 }
 
 /// Category_1 event.
@@ -29,6 +33,21 @@ class CATEGORY_4 extends NavBarEvent {}
 
 /// Category_5 event.
 class CATEGORY_5 extends NavBarEvent {}
+
+/// Category_6 event.
+class CATEGORY_6 extends NavBarEvent {}
+
+/// Category_7 event.
+class CATEGORY_7 extends NavBarEvent {}
+
+/// Category_8 event.
+class CATEGORY_8 extends NavBarEvent {}
+
+/// Category_9 event.
+class CATEGORY_9 extends NavBarEvent {}
+
+/// Category_10 event.
+class CATEGORY_10 extends NavBarEvent {}
 
 /// Bloc states for Nav bar.
 abstract class NavBarState {}
@@ -78,4 +97,34 @@ class Category_4_State extends NavBarState {
 class Category_5_State extends NavBarState {
   @override
   String toString() => 'Category_5';
+}
+
+/// Category_6 state.
+class Category_6_State extends NavBarState {
+  @override
+  String toString() => 'Category_6';
+}
+
+/// Category_7 state.
+class Category_7_State extends NavBarState {
+  @override
+  String toString() => 'Category_7';
+}
+
+/// Category_8 state.
+class Category_8_State extends NavBarState {
+  @override
+  String toString() => 'Category_8';
+}
+
+/// Category_9 state.
+class Category_9_State extends NavBarState {
+  @override
+  String toString() => 'Category_9';
+}
+
+/// Category_10 state.
+class Category_10_State extends NavBarState {
+  @override
+  String toString() => 'Category_10';
 }
