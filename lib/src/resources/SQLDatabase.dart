@@ -1,5 +1,9 @@
-import 'package:lg_controller/src/menu/NavBarMenu.dart';
+import 'package:lg_controller/src/menu/MainMenu.dart';
+import 'package:lg_controller/src/menu/POINavBarMenu.dart';
+import 'package:lg_controller/src/menu/TourNavBarMenu.dart';
 import 'package:lg_controller/src/models/KMLData.dart';
+import 'package:lg_controller/src/models/POIData.dart';
+import 'package:lg_controller/src/models/TourData.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -9,77 +13,126 @@ class SQLDatabase {
   static const int RECENT_SIZE = 12;
 
   /// To save module data in the respective tables according to its category.
-  Future<void> saveData(Map<String, List<KMLData>> data) async {
-    for (var ic in NavBarMenu.values()) {
-      if (ic.title.compareTo(NavBarMenu.RECENTLY_VIEWED.title) == 0) continue;
+  Future<void> saveData(
+      Map<String, List<KMLData>> data, MainMenu pagestate) async {
+    List items = [];
+    if (pagestate == MainMenu.POI)
+      items = POINavBarMenu.values();
+    else if (pagestate == MainMenu.TOURS) items = TourNavBarMenu.values();
+    for (var ic in items) {
+      if (ic.title.compareTo(POINavBarMenu.RECENTLY_VIEWED.title) == 0)
+        continue;
       await insertInTable(ic.title, data[ic.title]);
     }
   }
 
   /// To insert [value] in the table denoted by [key].
   insertInTable(String key, value) async {
-    final Database db = await createDatabase('modules' + key);
+    final Database db = await createDatabase(key);
     for (var mod in value) {
+      Map val = {};
+      if (mod is POIData)
+        val = (mod as POIData).toDatabaseMap();
+      else if (mod is TourData) val = (mod as TourData).toDatabaseMap();
       await db.insert(
         'modules' + key,
-        mod.toDatabaseMap(),
+        val,
         conflictAlgorithm: ConflictAlgorithm.ignore,
       );
     }
   }
 
-  /// To create database and table if it doesn't exist denoted by [title].
+  /// To create database and table if it doesn't exist denoted by [title]. Returns null if [title] is not an allowed value.
   Future<Database> createDatabase(String title) async {
-    final Future<Database> database = openDatabase(
-      join(await getDatabasesPath(), 'modules_database' + title + '.db'),
-      onCreate: (db, version) {
-        return db.execute(
-          "CREATE TABLE " +
-              title +
-              "(id INTEGER PRIMARY KEY, title TEXT UNIQUE, desc TEXT UNIQUE, count INTEGER, latitude REAL, longitude REAL, bearing REAL, zoom REAL, tilt REAL)",
-        );
-      },
-      version: 1,
-    );
-    return database;
+    if (List.generate(POINavBarMenu.values().length, (i) {
+      return POINavBarMenu.values()[i].title;
+    }).contains(title)) {
+      title = 'modules' + title;
+      final Future<Database> database = openDatabase(
+        join(await getDatabasesPath(), 'modules_database' + title + '.db'),
+        onCreate: (db, version) {
+          return db.execute(
+            "CREATE TABLE " +
+                title +
+                "(id INTEGER PRIMARY KEY, title TEXT UNIQUE, desc TEXT UNIQUE, count INTEGER, latitude REAL, longitude REAL, bearing REAL, zoom REAL, tilt REAL)",
+          );
+        },
+        version: 1,
+      );
+      return database;
+    } else if (List.generate(TourNavBarMenu.values().length, (i) {
+      return TourNavBarMenu.values()[i].title;
+    }).contains(title)) {
+      title = 'modules' + title;
+      final Future<Database> database = openDatabase(
+        join(await getDatabasesPath(), 'modules_database' + title + '.db'),
+        onCreate: (db, version) {
+          return db.execute(
+            "CREATE TABLE " +
+                title +
+                "(id INTEGER PRIMARY KEY, title TEXT UNIQUE, desc TEXT UNIQUE, count INTEGER, latitude REAL, longitude REAL, bearing REAL, zoom REAL, tilt REAL, fileID TEXT)",
+          );
+        },
+        version: 1,
+      );
+      return database;
+    } else
+      return null;
   }
 
   /// To retrieve the stored module data.
-  Future<Map<String, List<KMLData>>> getData() async {
+  Future<Map<String, List<KMLData>>> getData(MainMenu pagestate) async {
     Map<String, List<KMLData>> segData = new Map<String, List<KMLData>>();
-    for (var ic in NavBarMenu.values()) {
+    List items = [];
+    if (pagestate == MainMenu.POI)
+      items = POINavBarMenu.values();
+    else if (pagestate == MainMenu.TOURS) items = TourNavBarMenu.values();
+    for (var ic in items) {
       segData.addAll({ic.title: new List<KMLData>()});
     }
-    for (var ic in NavBarMenu.values()) {
-      if (ic.title.compareTo(NavBarMenu.RECENTLY_VIEWED.title) == 0) continue;
-      segData[ic.title].addAll(await getValues(ic.title));
+    for (var ic in items) {
+      if (ic.title.compareTo(POINavBarMenu.RECENTLY_VIEWED.title) == 0)
+        continue;
+      segData[ic.title].addAll(await getValues(ic.title, pagestate));
     }
-    List<KMLData> recent = await getRecent();
+    List<KMLData> recent = await getRecent(pagestate);
     if (recent != null) segData["Recently_Viewed"].addAll(recent);
     return segData;
   }
 
   /// To retrieve the stored module data from table denoted by [key].
-  Future<List<KMLData>> getValues(String key) async {
-    Database db = await createDatabase('modules' + key);
+  Future<List<KMLData>> getValues(String key, MainMenu pagestate) async {
+    Database db = await createDatabase(key);
     List<Map<String, dynamic>> maps = await db.query('modules' + key);
     if (maps == null) return [];
     return List.generate(maps.length, (i) {
-      return KMLData.fromDatabaseMap(maps[i]);
+      if (pagestate == MainMenu.POI)
+        return POIData.fromDatabaseMap(maps[i]);
+      else if (pagestate == MainMenu.TOURS)
+        return TourData.fromDatabaseMap(maps[i]);
     });
   }
 
   /// To retrieve the recents data from all tables.
-  Future<List<KMLData>> getRecent() async {
+  Future<List<KMLData>> getRecent(MainMenu pagestate) async {
     List<KMLData> recent = new List<KMLData>();
-    for (var ic in NavBarMenu.values()) {
-      if (ic.title.compareTo(NavBarMenu.RECENTLY_VIEWED.title) == 0) continue;
-      Database db = await createDatabase('modules' + ic.title);
+    List items = [];
+    if (pagestate == MainMenu.POI)
+      items = POINavBarMenu.values();
+    else if (pagestate == MainMenu.TOURS) items = TourNavBarMenu.values();
+    for (var ic in items) {
+      if (ic.title.compareTo(POINavBarMenu.RECENTLY_VIEWED.title) == 0)
+        continue;
+      Database db = await createDatabase(ic.title);
       List<Map<String, dynamic>> maps = await db
           .rawQuery('SELECT * FROM modules' + ic.title + ' WHERE count > 0');
       if (maps == null) return [];
-      for (int i = 0; i < maps.length; i++)
-        addInOrder(recent, KMLData.fromDatabaseMap(maps[i]));
+      for (int i = 0; i < maps.length; i++) {
+        if (pagestate == MainMenu.POI)
+          addInOrder(recent, POIData.fromDatabaseMap(maps[i]));
+        else if (pagestate == MainMenu.TOURS)
+          addInOrder(recent, TourData.fromDatabaseMap(maps[i]));
+      }
     }
     return recent;
   }
@@ -100,26 +153,48 @@ class SQLDatabase {
 
   /// To update the [data.count] value of the module to denote no. of times it has been viewed.
   updateViewed(String key, KMLData data) async {
-    if (key.compareTo(NavBarMenu.RECENTLY_VIEWED.title) == 0) return;
-    Database db = await createDatabase('modules' + key);
+    if (key.compareTo(POINavBarMenu.RECENTLY_VIEWED.title) == 0) return;
+    Database db = await createDatabase(key);
+    if (db == null) return;
     await db.rawUpdate(
         'UPDATE modules' + key + ' SET count = count+1 WHERE title = ?',
         [data.getTitle()]).catchError((error) {});
   }
 
-  /// To return search results according to given [searchText].
-  Future<List<KMLData>> getSearchData(String searchText) async {
+  /// To return search results in POI modules according to given [searchText].
+  Future<List<KMLData>> getSearchPOIData(String searchText) async {
     List<KMLData> result = new List<KMLData>();
-    for (var ic in NavBarMenu.values()) {
-      if (ic.title.compareTo(NavBarMenu.RECENTLY_VIEWED.title) == 0) continue;
-      result.addAll(await getSearchResult(ic.title, searchText));
+    for (var ic in POINavBarMenu.values()) {
+      if (ic.title.compareTo(POINavBarMenu.RECENTLY_VIEWED.title) == 0)
+        continue;
+      List<Map<String, dynamic>> maps =
+          await getSearchResult(ic.title, searchText);
+      result.addAll(List.generate(maps.length, (i) {
+        return POIData.fromDatabaseMap(maps[i]);
+      }));
+    }
+    return result;
+  }
+
+  /// To return search results in tour modules according to given [searchText].
+  Future<List<KMLData>> getSearchTourData(String searchText) async {
+    List<KMLData> result = new List<KMLData>();
+    for (var ic in TourNavBarMenu.values()) {
+      if (ic.title.compareTo(TourNavBarMenu.RECENTLY_VIEWED.title) == 0)
+        continue;
+      List<Map<String, dynamic>> maps =
+          await getSearchResult(ic.title, searchText);
+      result.addAll(List.generate(maps.length, (i) {
+        return TourData.fromDatabaseMap(maps[i]);
+      }));
     }
     return result;
   }
 
   /// To return search results according to given [searchText] from database denoted by [key].
-  Future<List<KMLData>> getSearchResult(String key, String searchText) async {
-    Database db = await createDatabase('modules' + key);
+  Future<List<Map<String, dynamic>>> getSearchResult(
+      String key, String searchText) async {
+    Database db = await createDatabase(key);
     List<Map<String, dynamic>> maps = await db.rawQuery(
         'SELECT * FROM modules' +
             key +
@@ -127,8 +202,6 @@ class SQLDatabase {
             searchText +
             '%\'');
     if (maps == null) return [];
-    return List.generate(maps.length, (i) {
-      return KMLData.fromDatabaseMap(maps[i]);
-    });
+    return maps;
   }
 }
