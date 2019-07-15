@@ -22,7 +22,7 @@ void main() {
         expect(
             find.descendant(
                 of: find.byWidget(c), matching: find.byType(Container)),
-            findsNWidgets(2));
+            findsNWidgets(3));
         if (ic2 == ic)
           checkUnderline(c);
         else

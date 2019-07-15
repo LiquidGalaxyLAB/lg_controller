@@ -30,31 +30,24 @@ void main() {
       expect(col.children.length, 12);
       int i = 0;
       for (var ic_tap in POINavBarMenu.values()) {
-        GestureDetector option = (col.children[i] as Column).children[0];
+        RawMaterialButton option =
+            find.byType(RawMaterialButton).evaluate().toList()[i].widget;
         await tester.tap(find.byWidget(option));
         await tester.pumpAndSettle();
-        Text selected = find
-            .descendant(of: find.byWidget(option), matching: find.byType(Text))
-            .evaluate()
-            .toList()[0]
-            .widget;
+        Text selected = option.child;
         expect(selected.style.fontSize, testTheme().textTheme.body2.fontSize);
         int j = 0;
         for (var ic_plain in POINavBarMenu.values()) {
           if (ic_tap != ic_plain) {
-            GestureDetector unselect = (col.children[j] as Column).children[0];
-            Text selected = find
-                .descendant(
-                    of: find.byWidget(unselect), matching: find.byType(Text))
-                .evaluate()
-                .toList()[0]
-                .widget;
+            RawMaterialButton unselect =
+                find.byType(RawMaterialButton).evaluate().toList()[0].widget;
+            Text selected = unselect.child;
             expect(
                 selected.style.fontSize, testTheme().textTheme.body1.fontSize);
           }
-          j = j + 2;
+          j = j + 1;
         }
-        i = i + 2;
+        i = i + 1;
       }
     });
   }
@@ -83,7 +76,7 @@ ThemeData testTheme() {
           fontSize: 16, color: Colors.black54, fontWeight: FontWeight.bold),
       body1: TextStyle(fontSize: 12, color: Colors.white),
       body2: TextStyle(
-          fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+          fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold),
     ),
   );
 }
