@@ -4,6 +4,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lg_controller/src/models/KMLData.dart';
+import 'package:lg_controller/src/models/OverlayData.dart';
+import 'package:lg_controller/src/models/OverlayItem.dart';
+import 'package:lg_controller/src/models/PlacemarkData.dart';
 import 'package:lg_controller/src/osc/ModuleType.dart';
 import 'package:lg_controller/src/osc/OSCActions.dart';
 import 'package:lg_controller/src/utils/SizeScaling.dart';
@@ -34,6 +37,23 @@ class NavigationView extends StatelessWidget {
           zoom: 0,
           tilt: 0);
       markers.clear();
+    } else if (initialData is OverlayData) {
+      print('p');
+      for (OverlayItem i in (initialData as OverlayData).itemData) {
+        if (i is PlacemarkData) {
+          print('p');
+          markers[MarkerId(i.id)] = new Marker(
+            markerId: MarkerId(i.id),
+            position: i.point,
+            infoWindow: InfoWindow(
+              title: initialData.getTitle(),
+              snippet: initialData.getDesc(),
+            ),
+            icon: BitmapDescriptor.defaultMarkerWithHue(
+                BitmapDescriptor.hueMagenta),
+          );
+        }
+      }
     } else {
       markers[MarkerId(initialData.toString())] = new Marker(
         markerId: MarkerId(initialData.toString()),
@@ -60,22 +80,27 @@ class NavigationView extends StatelessWidget {
               width: 240 * SizeScaling.getWidthScaling(),
               height: 120 * SizeScaling.getHeightScaling(),
               child: Card(
-                  child: GoogleMap(
-                    onMapCreated: (controller) =>
-                        _controller.complete(controller),
-                    onCameraMove: (cameraPosition) =>
-                        this.current = cameraPosition,
-                    onCameraIdle: () => changePosition(),
-                    mapType: MapType.satellite,
-                    markers: Set<Marker>.of(markers.values),
-                    initialCameraPosition: CameraPosition(
-                      target:
-                          LatLng(initialData.getLat(), initialData.getLgt()),
-                      bearing: initialData.getBearing(),
-                      zoom: initialData.getZoom(),
-                      tilt: initialData.getTilt(),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(4),
+                    child: GoogleMap(
+                      onMapCreated: (controller) =>
+                          _controller.complete(controller),
+                      onCameraMove: (cameraPosition) =>
+                          this.current = cameraPosition,
+                      onCameraIdle: () => changePosition(),
+                      mapType: MapType.satellite,
+                      markers: Set<Marker>.of(markers.values),
+                      initialCameraPosition: CameraPosition(
+                        target:
+                            LatLng(initialData.getLat(), initialData.getLgt()),
+                        bearing: initialData.getBearing(),
+                        zoom: initialData.getZoom(),
+                        tilt: initialData.getTilt(),
+                      ),
                     ),
                   ),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4)),
                   color: Colors.white70),
             ),
           ),
