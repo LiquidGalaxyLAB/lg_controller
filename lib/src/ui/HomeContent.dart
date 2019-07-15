@@ -7,6 +7,7 @@ import 'package:lg_controller/src/states_events/PageActions.dart';
 import 'package:lg_controller/src/ui/KMLDataView.dart';
 import 'package:lg_controller/src/ui/NavigationView.dart';
 import 'package:lg_controller/src/ui/SearchBar.dart';
+import 'package:lg_controller/src/utils/SizeScaling.dart';
 
 /// Content of Home screen.
 class HomeContent extends StatelessWidget {
@@ -26,7 +27,13 @@ class HomeContent extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           searchbar,
-          (data != null) ? KMLDataView(data) : Container(),
+          (data != null)
+              ? KMLDataView(data)
+              : SizedBox(
+                  height: (SizeScaling.getWidthScaling() < 1)
+                      ? 0
+                      : 28 * (SizeScaling.getWidthScaling() - 1),
+                ),
           Expanded(
             child: NavigationView(data),
           ),
@@ -37,7 +44,8 @@ class HomeContent extends StatelessWidget {
 
   /// Search and show places on the map.
   searchPlace(BuildContext context, String text) async {
-    GoogleMapsPlaces _places = GoogleMapsPlaces(apiKey: "<<<API_KEY>>>");
+    GoogleMapsPlaces _places =
+        GoogleMapsPlaces(apiKey: "<<<API_KEY>>>");
     PlacesSearchResponse response = await _places.searchByText(text);
     print(response.status);
     if (response.isOkay && response.results.length > 0) {
