@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lg_controller/src/blocs/PageBloc.dart';
 import 'package:lg_controller/src/menu/MainMenu.dart';
 import 'package:lg_controller/src/states_events/PageActions.dart';
+import 'package:lg_controller/src/utils/SizeScaling.dart';
 
 /// Main menu bar widget.
 class MainMenuBar extends StatelessWidget {
@@ -32,9 +33,18 @@ class MainMenuBar extends StatelessWidget {
               child: GestureDetector(
                 onTap: () => labelSelected(ic, context),
                 child: Container(
+                    child: RawMaterialButton(
+                  onPressed: () => labelSelected(ic, context),
+                  padding: EdgeInsets.all(10),
+                  constraints: BoxConstraints(
+                      minHeight: 28,
+                      minWidth: 48 + 32 * (SizeScaling.getWidthScaling() - 1)),
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   child:
                       Text(ic.title, style: Theme.of(context).textTheme.body1),
-                ),
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                )),
               ),
             ),
             state == ic

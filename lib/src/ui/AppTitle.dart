@@ -27,10 +27,21 @@ class AppTitle extends StatelessWidget {
                     backgroundImage: Images.APP_LOGO,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 6.0),
+                    padding: EdgeInsets.only(left: 4.0),
                   ),
-                  Text('LG Controller',
-                      style: Theme.of(context).textTheme.body2),
+                  RawMaterialButton(
+                    onPressed: () => onFlyTo(context),
+                    padding: EdgeInsets.symmetric(vertical: 2, horizontal: 8),
+                    constraints: BoxConstraints(
+                        minHeight: 28,
+                        minWidth:
+                            88 + 32 * (SizeScaling.getWidthScaling() - 1)),
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    child: Text('LG Controller',
+                        style: Theme.of(context).textTheme.body2),
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                  ),
                 ],
               ),
             ),

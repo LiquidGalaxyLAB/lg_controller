@@ -29,7 +29,7 @@ class NavBar extends StatelessWidget {
     List<Widget> list = new List<Widget>();
     list.add(
       SizedBox(
-        height: 24 + 24 * 0.5 * (SizeScaling.getWidthScaling() - 1),
+        height: 20 + 20 * 0.5 * (SizeScaling.getWidthScaling() - 1),
       ),
     );
     list.add(
@@ -37,13 +37,13 @@ class NavBar extends StatelessWidget {
     );
     list.add(
       SizedBox(
-        height: 12 + 12 * 0.5 * (SizeScaling.getWidthScaling() - 1),
+        height: 8 + 8 * 0.5 * (SizeScaling.getWidthScaling() - 1),
       ),
     );
     list.add(Divider(color: Colors.white70));
     list.add(
       SizedBox(
-        height: 16 + 16 * 0.5 * (SizeScaling.getWidthScaling() - 1),
+        height: 8 + 8 * (SizeScaling.getWidthScaling() - 1),
       ),
     );
     list.add(
@@ -51,7 +51,7 @@ class NavBar extends StatelessWidget {
         child: Container(
           child: SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: getLabels(context),
             ),
@@ -71,32 +71,46 @@ class NavBar extends StatelessWidget {
     else if (pagestate == MainMenu.POI) labels = POINavBarMenu.values();
     for (var ic in labels) {
       list.add(
-        Column(
-          children: <Widget>[
-            GestureDetector(
-              onTap: () => labelSelected(ic, context),
-              child: Container(
-                padding: EdgeInsets.all(8),
-                child: BlocBuilder<NavBarEvent, NavBarState>(
-                  bloc: BlocProvider.of<NavBarBloc>(context),
-                  builder: (BuildContext context, NavBarState state) {
-                    if (ic.title.compareTo(state.toString()) == 0) {
-                      return Text(ic.title,
-                          style: Theme.of(context).textTheme.body2);
-                    } else {
-                      return Text(ic.title,
-                          style: Theme.of(context).textTheme.body1);
-                    }
-                  },
-                ),
-              ),
-            ),
-          ],
+        Container(
+          child: BlocBuilder<NavBarEvent, NavBarState>(
+            bloc: BlocProvider.of<NavBarBloc>(context),
+            builder: (BuildContext context, NavBarState state) {
+              if (ic.title.compareTo(state.toString()) == 0) {
+                return RawMaterialButton(
+                  onPressed: () => labelSelected(ic, context),
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  constraints: BoxConstraints(
+                      minHeight: 36,
+                      minWidth: 88 + 44 * (SizeScaling.getWidthScaling() - 1)),
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  child:
+                      Text(ic.title, style: Theme.of(context).textTheme.body2),
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                );
+              } else {
+                return RawMaterialButton(
+                  onPressed: () => labelSelected(ic, context),
+                  child:
+                      Text(ic.title, style: Theme.of(context).textTheme.body1),
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  constraints: BoxConstraints(
+                      minHeight: 36,
+                      minWidth: 88 + 44 * (SizeScaling.getWidthScaling() - 1)),
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                );
+              }
+            },
+          ),
         ),
       );
       list.add(
         SizedBox(
-          height: 16 * 0.5 * (SizeScaling.getHeightScaling() - 1),
+          height: (SizeScaling.getWidthScaling() < 1)
+              ? 0
+              : 28 * (SizeScaling.getWidthScaling() - 1),
         ),
       );
     }
@@ -132,9 +146,9 @@ class NavBar extends StatelessWidget {
             BlocProvider.of<NavBarBloc>(context).dispatch(CATEGORY_9());
           }
           break;
-        case TourNavBarMenu.CATEGORY_10:
+        case TourNavBarMenu.PRIVATE_2:
           {
-            BlocProvider.of<NavBarBloc>(context).dispatch(CATEGORY_10());
+            BlocProvider.of<NavBarBloc>(context).dispatch(PRIVATE_2());
           }
           break;
         default:
@@ -167,9 +181,9 @@ class NavBar extends StatelessWidget {
             BlocProvider.of<NavBarBloc>(context).dispatch(CATEGORY_4());
           }
           break;
-        case POINavBarMenu.CATEGORY_5:
+        case POINavBarMenu.PRIVATE_1:
           {
-            BlocProvider.of<NavBarBloc>(context).dispatch(CATEGORY_5());
+            BlocProvider.of<NavBarBloc>(context).dispatch(PRIVATE_1());
           }
           break;
         default:
