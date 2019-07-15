@@ -15,8 +15,7 @@ import 'package:lg_controller/src/models/TourData.dart';
 class FileRequests {
   /// Credentials of the service account.
   final _credentials = r'''
-  {
-  }
+
   ''';
 
   /// Drive scope required for getting file data.

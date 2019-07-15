@@ -2,6 +2,7 @@ import 'package:lg_controller/src/menu/MainMenu.dart';
 import 'package:lg_controller/src/menu/POINavBarMenu.dart';
 import 'package:lg_controller/src/menu/TourNavBarMenu.dart';
 import 'package:lg_controller/src/models/KMLData.dart';
+import 'package:lg_controller/src/models/OverlayData.dart';
 import 'package:lg_controller/src/models/POIData.dart';
 import 'package:lg_controller/src/models/TourData.dart';
 import 'package:path/path.dart';
@@ -20,8 +21,8 @@ class SQLDatabase {
       items = POINavBarMenu.values();
     else if (pagestate == MainMenu.TOURS) items = TourNavBarMenu.values();
     for (var ic in items) {
-      if (ic.title.compareTo(POINavBarMenu.RECENTLY_VIEWED.title) == 0)
-        continue;
+      if (ic.title.compareTo(POINavBarMenu.RECENTLY_VIEWED.title) == 0 ||
+          ic.title.compareTo(POINavBarMenu.PRIVATE_1.title) == 0) continue;
       await insertInTable(ic.title, data[ic.title]);
     }
   }
@@ -30,21 +31,37 @@ class SQLDatabase {
   insertInTable(String key, value) async {
     final Database db = await createDatabase(key);
     for (var mod in value) {
-      Map val = {};
+      Map val = mod.toDatabaseMap();
       if (mod is POIData)
         val = (mod as POIData).toDatabaseMap();
-      else if (mod is TourData) val = (mod as TourData).toDatabaseMap();
+      else if (mod is TourData)
+        val = (mod as TourData).toDatabaseMap();
+      else if (mod is OverlayData) val = (mod as OverlayData).toDatabaseMap();
       await db.insert(
         'modules' + key,
         val,
-        conflictAlgorithm: ConflictAlgorithm.ignore,
+        conflictAlgorithm: ConflictAlgorithm.replace,
       );
     }
   }
 
   /// To create database and table if it doesn't exist denoted by [title]. Returns null if [title] is not an allowed value.
   Future<Database> createDatabase(String title) async {
-    if (List.generate(POINavBarMenu.values().length, (i) {
+    if (title.compareTo(POINavBarMenu.PRIVATE_1.title) == 0) {
+      title = 'modules' + title;
+      final Future<Database> database = openDatabase(
+        join(await getDatabasesPath(), 'modules_database' + title + '.db'),
+        onCreate: (db, version) {
+          return db.execute(
+            "CREATE TABLE " +
+                title +
+                "(id INTEGER PRIMARY KEY, title TEXT UNIQUE, desc TEXT UNIQUE, count INTEGER, latitude REAL, longitude REAL, bearing REAL, zoom REAL, tilt REAL, itemData TEXT)",
+          );
+        },
+        version: 1,
+      );
+      return database;
+    } else if (List.generate(POINavBarMenu.values().length, (i) {
       return POINavBarMenu.values()[i].title;
     }).contains(title)) {
       title = 'modules' + title;
@@ -91,12 +108,15 @@ class SQLDatabase {
       segData.addAll({ic.title: new List<KMLData>()});
     }
     for (var ic in items) {
-      if (ic.title.compareTo(POINavBarMenu.RECENTLY_VIEWED.title) == 0)
-        continue;
+      if (ic.title.compareTo(POINavBarMenu.RECENTLY_VIEWED.title) == 0 ||
+          ic.title.compareTo(POINavBarMenu.PRIVATE_1.title) == 0) continue;
       segData[ic.title].addAll(await getValues(ic.title, pagestate));
     }
     List<KMLData> recent = await getRecent(pagestate);
     if (recent != null) segData["Recently_Viewed"].addAll(recent);
+    List<OverlayData> privateData = await getPrivate();
+    if (privateData != null)
+      segData[POINavBarMenu.PRIVATE_1.title].addAll(privateData);
     return segData;
   }
 
@@ -113,6 +133,17 @@ class SQLDatabase {
     });
   }
 
+  /// To retrieve the private data.
+  Future<List<OverlayData>> getPrivate() async {
+    Database db = await createDatabase(POINavBarMenu.PRIVATE_1.title);
+    List<Map<String, dynamic>> maps =
+        await db.query('modules' + POINavBarMenu.PRIVATE_1.title);
+    if (maps == null) return [];
+    return List.generate(maps.length, (i) {
+      return OverlayData.fromDatabaseMap(maps[i]);
+    });
+  }
+
   /// To retrieve the recents data from all tables.
   Future<List<KMLData>> getRecent(MainMenu pagestate) async {
     List<KMLData> recent = new List<KMLData>();
@@ -121,8 +152,8 @@ class SQLDatabase {
       items = POINavBarMenu.values();
     else if (pagestate == MainMenu.TOURS) items = TourNavBarMenu.values();
     for (var ic in items) {
-      if (ic.title.compareTo(POINavBarMenu.RECENTLY_VIEWED.title) == 0)
-        continue;
+      if (ic.title.compareTo(POINavBarMenu.RECENTLY_VIEWED.title) == 0 ||
+          ic.title.compareTo(POINavBarMenu.PRIVATE_1.title) == 0) continue;
       Database db = await createDatabase(ic.title);
       List<Map<String, dynamic>> maps = await db
           .rawQuery('SELECT * FROM modules' + ic.title + ' WHERE count > 0');
@@ -170,7 +201,10 @@ class SQLDatabase {
       List<Map<String, dynamic>> maps =
           await getSearchResult(ic.title, searchText);
       result.addAll(List.generate(maps.length, (i) {
-        return POIData.fromDatabaseMap(maps[i]);
+        if (maps[i].containsKey('itemData'))
+          return OverlayData.fromDatabaseMap(maps[i]);
+        else
+          return POIData.fromDatabaseMap(maps[i]);
       }));
     }
     return result;
