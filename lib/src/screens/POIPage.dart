@@ -56,7 +56,7 @@ class _POIPageState extends State<POIPage> {
                           SizedBox(
                             width: 164 * SizeScaling.getWidthScaling(),
                             child: Container(
-                              color: Colors.blueGrey[800],
+                              color: Colors.black54,
                               child: NavBar(MainMenu.POI),
                             ),
                           ),
