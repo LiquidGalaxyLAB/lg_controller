@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lg_controller/src/menu/MainMenu.dart';
 import 'package:lg_controller/src/models/KMLData.dart';
+import 'package:lg_controller/src/models/OverlayData.dart';
 import 'package:lg_controller/src/models/POIData.dart';
 import 'package:lg_controller/src/models/TourData.dart';
 import 'package:lg_controller/src/osc/ModuleType.dart';
@@ -35,6 +36,8 @@ class _HomePageState extends State<HomePage> {
         OSCActions().sendModule(ModuleType.POI, jsonEncode(data));
       else if (data is TourData)
         OSCActions().sendModule(ModuleType.TOUR, jsonEncode(data));
+      else if (data is OverlayData)
+        OSCActions().sendModule(ModuleType.OVERLAY, jsonEncode(data));
     }
     super.initState();
   }
