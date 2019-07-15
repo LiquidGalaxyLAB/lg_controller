@@ -31,8 +31,8 @@ class CATEGORY_3 extends NavBarEvent {}
 /// Category_4 event.
 class CATEGORY_4 extends NavBarEvent {}
 
-/// Category_5 event.
-class CATEGORY_5 extends NavBarEvent {}
+/// Private_1 event.
+class PRIVATE_1 extends NavBarEvent {}
 
 /// Category_6 event.
 class CATEGORY_6 extends NavBarEvent {}
@@ -46,8 +46,8 @@ class CATEGORY_8 extends NavBarEvent {}
 /// Category_9 event.
 class CATEGORY_9 extends NavBarEvent {}
 
-/// Category_10 event.
-class CATEGORY_10 extends NavBarEvent {}
+/// Private_10 event.
+class PRIVATE_2 extends NavBarEvent {}
 
 /// Bloc states for Nav bar.
 abstract class NavBarState {}
@@ -93,10 +93,10 @@ class Category_4_State extends NavBarState {
   String toString() => 'Category_4';
 }
 
-/// Category_5 state.
-class Category_5_State extends NavBarState {
+/// Private_1 state.
+class Private_1_State extends NavBarState {
   @override
-  String toString() => 'Category_5';
+  String toString() => 'Private';
 }
 
 /// Category_6 state.
@@ -123,8 +123,8 @@ class Category_9_State extends NavBarState {
   String toString() => 'Category_9';
 }
 
-/// Category_10 state.
-class Category_10_State extends NavBarState {
+/// Private_2 state.
+class Private_2_State extends NavBarState {
   @override
-  String toString() => 'Category_10';
+  String toString() => 'Private';
 }
