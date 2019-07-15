@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lg_controller/src/blocs/PageBloc.dart';
 import 'package:lg_controller/src/menu/AuxillaryMenu.dart';
@@ -6,6 +7,7 @@ import 'package:lg_controller/src/osc/ModuleType.dart';
 import 'package:lg_controller/src/osc/OSCActions.dart';
 import 'package:lg_controller/src/states_events/PageActions.dart';
 import 'package:lg_controller/src/utils/SizeScaling.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// auxillary menu bar widget.
 class AuxillaryMenuBar extends StatelessWidget {
@@ -90,7 +92,15 @@ class AuxillaryMenuBar extends StatelessWidget {
             ),
           ],
       onSelected: (value) {
-        if (value == 1) OSCActions().sendModule(ModuleType.EXIT, "Exit");
+        if (value == 1) {
+          SharedPreferences.getInstance().then((prefs) {
+            prefs.remove('ip');
+            prefs.remove('socket');
+            prefs.remove('id');
+            OSCActions().sendModule(ModuleType.EXIT, "Exit");
+            SystemNavigator.pop();
+          });
+        }
       },
       key: Key('AuxillaryMenu_items_' + ic.title),
       child: IconButton(
