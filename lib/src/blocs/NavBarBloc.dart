@@ -30,8 +30,8 @@ class NavBarBloc extends Bloc<NavBarEvent, NavBarState> {
       yield Category_3_State();
     else if (event is CATEGORY_4)
       yield Category_4_State();
-    else if (event is CATEGORY_5)
-      yield Category_5_State();
+    else if (event is PRIVATE_1)
+      yield Private_1_State();
     else if (event is CATEGORY_6)
       yield Category_6_State();
     else if (event is CATEGORY_7)
@@ -40,6 +40,6 @@ class NavBarBloc extends Bloc<NavBarEvent, NavBarState> {
       yield Category_8_State();
     else if (event is CATEGORY_9)
       yield Category_9_State();
-    else if (event is CATEGORY_10) yield Category_10_State();
+    else if (event is PRIVATE_2) yield Private_2_State();
   }
 }
