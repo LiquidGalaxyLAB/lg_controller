@@ -9,7 +9,7 @@ class ModuleType {
   const ModuleType(this.encoding, this.path);
 
   static values() {
-    return [EXIT, GESTURE, FLYTO, POI, TOUR];
+    return [EXIT, GESTURE, FLYTO, POI, TOUR, OVERLAY];
   }
 
   static const ModuleType EXIT = const ModuleType(-1, "/exit");
@@ -17,4 +17,5 @@ class ModuleType {
   static const ModuleType FLYTO = const ModuleType(1, "/flyto");
   static const ModuleType POI = const ModuleType(2, "/poi");
   static const ModuleType TOUR = const ModuleType(3, "/tour");
+  static const ModuleType OVERLAY = const ModuleType(4, "/overlay");
 }
