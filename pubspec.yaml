@@ -28,6 +28,7 @@ dependencies:
   sqflite: '^1.1.0'
   google_maps_flutter: '^0.5.16'
   flutter_google_places: '^0.2.3'
+  toast: '^0.1.3'
   flutter:
     sdk: flutter
 
