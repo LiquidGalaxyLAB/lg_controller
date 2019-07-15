@@ -73,49 +73,49 @@ class _MyAppState extends State<MyApp> {
                   context,
                   PageTransition(
                       type: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 500),
+                      duration: Duration(milliseconds: 250),
                       child: HomePage(state.data)));
             } else if (state is POIState) {
               Navigator.pushReplacement(
                   context,
                   PageTransition(
                       type: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 500),
+                      duration: Duration(milliseconds: 250),
                       child: POIPage()));
             } else if (state is GuideState) {
               Navigator.pushReplacement(
                   context,
                   PageTransition(
                       type: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 500),
+                      duration: Duration(milliseconds: 250),
                       child: GuidePage()));
             } else if (state is OverState) {
               Navigator.pushReplacement(
                   context,
                   PageTransition(
                       type: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 500),
+                      duration: Duration(milliseconds: 250),
                       child: OverlayPage()));
             } else if (state is TourState) {
               Navigator.pushReplacement(
                   context,
                   PageTransition(
                       type: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 500),
+                      duration: Duration(milliseconds: 250),
                       child: TourPage()));
             } else if (state is ProfileState) {
               Navigator.pushReplacement(
                   context,
                   PageTransition(
                       type: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 500),
+                      duration: Duration(milliseconds: 250),
                       child: ProfilePage()));
             } else if (state is SettingsState) {
               Navigator.pushReplacement(
                   context,
                   PageTransition(
                       type: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 500),
+                      duration: Duration(milliseconds: 250),
                       child: SettingsPage()));
             } else if (state is TutorialState) {
               Navigator.popAndPushNamed(context, '/TutorialPage');
