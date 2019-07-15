@@ -527,6 +527,13 @@
             </list>
           </value>
         </entry>
+        <entry key="toast">
+          <value>
+            <list>
+              <option value="D:/Applications/flutter/.pub-cache/hosted/pub.dartlang.org/toast-0.1.4/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="typed_data">
           <value>
             <list>
@@ -649,6 +656,7 @@
       <root url="file://D:/Applications/flutter/.pub-cache/hosted/pub.dartlang.org/test-1.6.1/lib" />
       <root url="file://D:/Applications/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.4/lib" />
       <root url="file://D:/Applications/flutter/.pub-cache/hosted/pub.dartlang.org/test_core-0.2.3/lib" />
+      <root url="file://D:/Applications/flutter/.pub-cache/hosted/pub.dartlang.org/toast-0.1.4/lib" />
       <root url="file://D:/Applications/flutter/.pub-cache/hosted/pub.dartlang.org/typed_data-1.1.6/lib" />
       <root url="file://D:/Applications/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.0.8/lib" />
       <root url="file://D:/Applications/flutter/.pub-cache/hosted/pub.dartlang.org/vm_service_client-0.2.6+1/lib" />
