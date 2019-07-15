@@ -25,8 +25,14 @@ class KMLFilesBloc extends Bloc<KMLFilesEvent, KMLFilesState> {
   @override
   Stream<KMLFilesState> mapEventToState(KMLFilesEvent event) async* {
     if (event is GET_FILES) {
+      Map<String, List<KMLData>> data;
       yield LoadingState();
-      Map<String, List<KMLData>> data = await database.getData(pagestate);
+      try {
+        data = await database.getData(pagestate);
+      } catch (e) {
+        print(e);
+      }
+      print(data);
       if (data != null) {
         yield LoadedState(data);
       }
@@ -34,7 +40,11 @@ class KMLFilesBloc extends Bloc<KMLFilesEvent, KMLFilesState> {
           await fileRequests.getFiles(pagestate);
       if (data != null && data.containsKey("Recently_Viewed"))
         dataNetwork["Recently_Viewed"] = data["Recently_Viewed"];
+      if (data != null && data.containsKey("Private"))
+        dataNetwork["Private"] = data["Private"];
+      print(dataNetwork);
       if (dataNetwork != null) {
+        yield LoadingState();
         yield LoadedState(dataNetwork);
         await database.saveData(dataNetwork, pagestate);
       }
