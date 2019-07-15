@@ -47,6 +47,7 @@ class KMLDataView extends StatelessWidget {
                       children: <Widget>[
                         Text(
                           data.getTitle(),
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                               fontSize: 16 +
                                   16 *
@@ -58,7 +59,7 @@ class KMLDataView extends StatelessWidget {
                         Text(
                           data.getDesc(),
                           overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
+                          maxLines: 3,
                           style: TextStyle(
                               fontSize: 12 +
                                   12 *

@@ -50,33 +50,38 @@ class KMLModuleView extends StatelessWidget {
                           left: 6.0 +
                               6 * 0.5 * (SizeScaling.getWidthScaling() - 1)),
                     ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          data.getTitle(),
-                          style: TextStyle(
-                              fontSize: 14 +
-                                  14 *
-                                      0.8 *
-                                      (SizeScaling.getWidthScaling() - 1),
-                              color: Colors.black54,
-                              fontWeight: FontWeight.bold),
+                    Flexible(
+                      child: Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              data.getTitle(),
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  fontSize: 14 +
+                                      14 *
+                                          0.8 *
+                                          (SizeScaling.getWidthScaling() - 1),
+                                  color: Colors.black54,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              data.getDesc(),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 3,
+                              style: TextStyle(
+                                  fontSize: 10 +
+                                      10 *
+                                          0.8 *
+                                          (SizeScaling.getWidthScaling() - 1),
+                                  color: Colors.black54,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
                         ),
-                        Text(
-                          data.getDesc(),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                          style: TextStyle(
-                              fontSize: 10 +
-                                  10 *
-                                      0.8 *
-                                      (SizeScaling.getWidthScaling() - 1),
-                              color: Colors.black54,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
+                      ),
                     ),
                   ],
                 ),
