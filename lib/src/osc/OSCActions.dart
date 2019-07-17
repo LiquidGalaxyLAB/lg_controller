@@ -11,7 +11,7 @@ class OSCActions {
   OSCSender sender;
 
   /// Send module [data] as an OSC Message.
-  void sendModule(ModuleType modtype, String data) async {
+  Future<void> sendModule(ModuleType modtype, String data) async {
     await initializeOSC();
     final message = new OSCMessage(
         path: modtype.path,

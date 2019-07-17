@@ -91,15 +91,14 @@ class AuxillaryMenuBar extends StatelessWidget {
               ),
             ),
           ],
-      onSelected: (value) {
+      onSelected: (value) async {
         if (value == 1) {
-          SharedPreferences.getInstance().then((prefs) {
-            prefs.remove('ip');
-            prefs.remove('socket');
-            prefs.remove('id');
-            OSCActions().sendModule(ModuleType.EXIT, "Exit");
-            SystemNavigator.pop();
-          });
+          await OSCActions().sendModule(ModuleType.EXIT, "Exit");
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.remove('ip');
+          prefs.remove('socket');
+          prefs.remove('id');
+          SystemNavigator.pop();
         }
       },
       key: Key('AuxillaryMenu_items_' + ic.title),
