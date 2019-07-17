@@ -9,7 +9,13 @@ class PlacemarkData extends OverlayItem {
   /// ID of the placemark.
   String id;
 
-  PlacemarkData(this.point, this.id);
+  String title;
+  String desc;
+  double zInd;
+  int iconSize = 3;
+  double iconColor = BitmapDescriptor.hueMagenta;
+
+  PlacemarkData(this.point, this.id, this.title, this.desc, this.zInd);
 
   /// Convert [PlacemarkData] instance to JSON map.
   Map<String, dynamic> toJson() {
@@ -18,6 +24,11 @@ class PlacemarkData extends OverlayItem {
       'type': 'Placemark',
       'latitude': point.latitude,
       'longitude': point.longitude,
+      'title': title,
+      'desc': desc,
+      'zInd': zInd,
+      'iconSize': iconSize,
+      'iconColor': iconColor,
     };
   }
 
@@ -25,6 +36,11 @@ class PlacemarkData extends OverlayItem {
   PlacemarkData.fromJson(Map<String, dynamic> json) {
     this.id = json['id'];
     this.point = LatLng(json['latitude'], json['longitude']);
+    this.title = json['title'];
+    this.desc = json['desc'];
+    this.zInd = json['zInd'];
+    this.iconSize = json['iconSize'];
+    this.iconColor = json['iconColor'];
   }
 
   /// Give JSON map as string in toString override.
