@@ -13,6 +13,7 @@ import 'package:lg_controller/src/osc/ModuleType.dart';
 import 'package:lg_controller/src/osc/OSCActions.dart';
 import 'package:lg_controller/src/states_events/OverlayActions.dart';
 import 'package:lg_controller/src/states_events/PointActions.dart';
+import 'package:lg_controller/src/ui/PropertiesDialog.dart';
 
 /// Overlay (Google map view).
 class OverlayMapView extends StatelessWidget {
@@ -55,14 +56,33 @@ class OverlayMapView extends StatelessWidget {
                   markers = <MarkerId, Marker>{};
                   for (var i in state.data) {
                     markers[MarkerId((i as PlacemarkData).id)] = new Marker(
+                      onTap: () => showDialog(
+                          context: context,
+                          builder: (BuildContext context2) {
+                            return PropertiesDialog(
+                                markers[MarkerId((i as PlacemarkData).id)],
+                                OverlayMenu.ROUND_TEMP, (data) {
+                              print((i as PlacemarkData).title);
+                              state.data.remove(i);
+                              state.data.add(data);
+                              BlocProvider.of<PointBloc>(context)
+                                  .dispatch(MODIFY_EVENT());
+                            }, () {
+                              state.data.remove(i);
+                              BlocProvider.of<PointBloc>(context)
+                                  .dispatch(MODIFY_EVENT());
+                            });
+                          }),
+                      consumeTapEvents: true,
                       markerId: MarkerId((i as PlacemarkData).id),
                       position: (i as PlacemarkData).point,
                       infoWindow: InfoWindow(
-                        title: "q",
-                        snippet: "w",
+                        title: (i as PlacemarkData).title,
+                        snippet: (i as PlacemarkData).desc,
                       ),
+                      zIndex: (i as PlacemarkData).zInd,
                       icon: BitmapDescriptor.defaultMarkerWithHue(
-                          BitmapDescriptor.hueMagenta),
+                          (i as PlacemarkData).iconColor),
                     );
                   }
                 }
