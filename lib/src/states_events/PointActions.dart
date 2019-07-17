@@ -20,6 +20,9 @@ class TAP_EVENT extends PointEvent {
 /// Event for clearing tap gesture.
 class CLEAR_EVENT extends PointEvent {}
 
+/// Event for clearing tap gesture.
+class MODIFY_EVENT extends PointEvent {}
+
 /// Bloc states for handling tap gestures.
 abstract class PointState extends Equatable {}
 
@@ -44,8 +47,5 @@ class ProcessingState extends PointState {
 
 /// State of completion of drawing overlay feature.
 class CompletedState extends PointState {
-  /// Data of the overlay feature.
-  OverlayItem data;
-
-  CompletedState(this.data);
+  CompletedState();
 }

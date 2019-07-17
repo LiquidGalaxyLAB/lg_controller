@@ -24,12 +24,15 @@ class PointBloc extends Bloc<PointEvent, PointState> {
         String id = String.fromCharCodes(
             List<int>.generate(10, (i) => (97 + rnd.nextInt(26))));
 
-        data.add(PlacemarkData(event.point, id));
-        yield CompletedState(PlacemarkData(event.point, id));
+        data.add(PlacemarkData(event.point, id, "Default", "Def", 0));
+        yield CompletedState();
       } else {
         yield UninitializedState(data);
       }
     } else if (event is CLEAR_EVENT) {
+      yield UninitializedState(data);
+    } else if (event is MODIFY_EVENT) {
+      yield CompletedState();
       yield UninitializedState(data);
     }
   }
