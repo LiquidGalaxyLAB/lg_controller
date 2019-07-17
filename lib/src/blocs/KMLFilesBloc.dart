@@ -42,7 +42,6 @@ class KMLFilesBloc extends Bloc<KMLFilesEvent, KMLFilesState> {
         dataNetwork["Recently_Viewed"] = data["Recently_Viewed"];
       if (data != null && data.containsKey("Private"))
         dataNetwork["Private"] = data["Private"];
-      print(dataNetwork);
       if (dataNetwork != null) {
         yield LoadingState();
         yield LoadedState(dataNetwork);
