@@ -26,4 +26,6 @@ class OverlayMenu {
       "Pan", Icon(IconData(59685, fontFamily: 'MaterialIcons')));
   static const OverlayMenu SAVE = const OverlayMenu(
       "Save", Icon(IconData(57697, fontFamily: 'MaterialIcons')));
+  static const OverlayMenu NEW = const OverlayMenu(
+      "New", Icon(IconData(59491, fontFamily: 'MaterialIcons')));
 }

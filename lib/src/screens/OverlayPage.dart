@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lg_controller/src/blocs/FreezeBloc.dart';
+import 'package:lg_controller/src/blocs/PageBloc.dart';
 import 'package:lg_controller/src/blocs/PointBloc.dart';
 import 'package:lg_controller/src/menu/MainMenu.dart';
+import 'package:lg_controller/src/menu/OverlayMenu.dart';
+import 'package:lg_controller/src/states_events/PageActions.dart';
 import 'package:lg_controller/src/ui/OverlayMapView.dart';
 import 'package:lg_controller/src/ui/OverlayMenuBar.dart';
 import 'package:lg_controller/src/ui/ScreenBackground.dart';
@@ -65,10 +68,44 @@ class _OverlayPageState extends State<OverlayPage> {
                                   children: <Widget>[
                                     OverlayMapView(),
                                     Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: <Widget>[
                                         OverlayMenuBar(),
+                                      ],
+                                    ),
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: <Widget>[
+                                        Container(
+                                          padding: EdgeInsets.all(16),
+                                          child: Card(
+                                              elevation: 4,
+                                              child: IconButton(
+                                                iconSize: 24 +
+                                                    24 *
+                                                        0.5 *
+                                                        (SizeScaling
+                                                                .getWidthScaling() -
+                                                            1),
+                                                key: Key('New_Overlay'),
+                                                icon: OverlayMenu.NEW.icon,
+                                                color: Colors.black54,
+                                                tooltip: OverlayMenu.NEW.title,
+                                                onPressed: () =>
+                                                    BlocProvider.of<PageBloc>(
+                                                            context)
+                                                        .dispatch(OVERLAY()),
+                                              ),
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(8)),
+                                              color: Colors.white70),
+                                        ),
                                       ],
                                     ),
                                   ],
