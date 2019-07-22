@@ -129,7 +129,8 @@ class OverlayMenuBar extends StatelessWidget {
   }
 
   /// Save the [data] passed.
-  onSave(context, OverlayData data, String title, String desc) {
+  onSave(context, OverlayData data, String title, String desc, String url) {
+    print('t' + url);
     try {
       if (title != null && title.compareTo("") != 0)
         data.title = title;
@@ -139,6 +140,10 @@ class OverlayMenuBar extends StatelessWidget {
         data.desc = desc;
       else
         data.desc = "Default Desc";
+      if (url != null)
+        data.imageUrl = url;
+      else
+        data.imageUrl = "";
 
       List<OverlayData> list = List();
       list.add(data);
@@ -163,12 +168,15 @@ class OverlayMenuBar extends StatelessWidget {
   /// Initiate save action.
   onSaveInitiate(context, OverlayData data) {
     final FocusNode desc_node = FocusNode();
+    final FocusNode url_node = FocusNode();
     String title = "Default Title";
     String desc = "Default Desc";
+    String url = "";
     final TextEditingController title_controller =
         TextEditingController(text: title);
     final TextEditingController desc_controller =
         TextEditingController(text: desc);
+    final TextEditingController url_controller = TextEditingController();
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -181,7 +189,7 @@ class OverlayMenuBar extends StatelessWidget {
               child: Text('Cancel', style: Theme.of(context).textTheme.title),
             ),
             FlatButton(
-              onPressed: () => onSave(context, data, title, desc),
+              onPressed: () => onSave(context, data, title, desc, url),
               child: Text('Save', style: Theme.of(context).textTheme.title),
             ),
           ],
@@ -213,6 +221,7 @@ class OverlayMenuBar extends StatelessWidget {
                   focusNode: desc_node,
                   onSubmitted: (value) {
                     desc = value;
+                    FocusScope.of(context).requestFocus(url_node);
                   },
                   onChanged: (value) {
                     desc = value;
@@ -224,6 +233,24 @@ class OverlayMenuBar extends StatelessWidget {
                     labelText: "Description..",
                   ),
                   maxLines: 3,
+                  style: Theme.of(context).textTheme.title,
+                ),
+                TextField(
+                  controller: url_controller,
+                  focusNode: url_node,
+                  onSubmitted: (value) {
+                    url = value;
+                  },
+                  onChanged: (value) {
+                    url = value;
+                  },
+                  keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.next,
+                  autocorrect: true,
+                  decoration: new InputDecoration(
+                    labelText: "Image URL",
+                  ),
+                  maxLines: 1,
                   style: Theme.of(context).textTheme.title,
                 ),
               ],
