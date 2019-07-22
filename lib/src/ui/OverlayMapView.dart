@@ -8,6 +8,8 @@ import 'package:lg_controller/src/blocs/FreezeBloc.dart';
 import 'package:lg_controller/src/blocs/PointBloc.dart';
 import 'package:lg_controller/src/menu/OverlayMenu.dart';
 import 'package:lg_controller/src/models/KMLData.dart';
+import 'package:lg_controller/src/models/LineData.dart';
+import 'package:lg_controller/src/models/OverlayItem.dart';
 import 'package:lg_controller/src/models/PlacemarkData.dart';
 import 'package:lg_controller/src/osc/ModuleType.dart';
 import 'package:lg_controller/src/osc/OSCActions.dart';
@@ -25,6 +27,9 @@ class OverlayMapView extends StatelessWidget {
 
   /// Markers of the google map.
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
+
+  /// Markers of the google map.
+  Map<PolylineId, Polyline> lines = <PolylineId, Polyline>{};
 
   /// Freeze state of the map.
   bool unfreeze = true;
@@ -54,36 +59,69 @@ class OverlayMapView extends StatelessWidget {
                 }
                 if (state is UninitializedState) {
                   markers = <MarkerId, Marker>{};
+                  lines = <PolylineId, Polyline>{};
                   for (var i in state.data) {
-                    markers[MarkerId((i as PlacemarkData).id)] = new Marker(
-                      onTap: () => showDialog(
-                          context: context,
-                          builder: (BuildContext context2) {
-                            return PropertiesDialog(
-                                markers[MarkerId((i as PlacemarkData).id)],
-                                OverlayMenu.ROUND_TEMP, (data) {
-                              print((i as PlacemarkData).title);
-                              state.data.remove(i);
-                              state.data.add(data);
-                              BlocProvider.of<PointBloc>(context)
-                                  .dispatch(MODIFY_EVENT());
-                            }, () {
-                              state.data.remove(i);
-                              BlocProvider.of<PointBloc>(context)
-                                  .dispatch(MODIFY_EVENT());
-                            });
-                          }),
-                      consumeTapEvents: true,
-                      markerId: MarkerId((i as PlacemarkData).id),
-                      position: (i as PlacemarkData).point,
-                      infoWindow: InfoWindow(
-                        title: (i as PlacemarkData).title,
-                        snippet: (i as PlacemarkData).desc,
-                      ),
-                      zIndex: (i as PlacemarkData).zInd,
-                      icon: BitmapDescriptor.defaultMarkerWithHue(
-                          (i as PlacemarkData).iconColor),
-                    );
+                    if (i is PlacemarkData) {
+                      markers[MarkerId((i as PlacemarkData).id)] = new Marker(
+                        onTap: () => showDialog(
+                            context: context,
+                            builder: (BuildContext context2) {
+                              return PropertiesDialog(
+                                  i as PlacemarkData, OverlayMenu.ROUND_TEMP,
+                                  (data) {
+                                state.data.removeWhere((item) =>
+                                    (item is PlacemarkData &&
+                                        item.id == data.id));
+                                state.data.add(data);
+                                BlocProvider.of<PointBloc>(context)
+                                    .dispatch(MODIFY_EVENT());
+                              }, (data) {
+                                state.data.removeWhere((item) =>
+                                    (item is PlacemarkData &&
+                                        item.id == data.id));
+                                BlocProvider.of<PointBloc>(context)
+                                    .dispatch(MODIFY_EVENT());
+                              });
+                            }),
+                        consumeTapEvents: true,
+                        markerId: MarkerId((i as PlacemarkData).id),
+                        position: (i as PlacemarkData).point.point,
+                        infoWindow: InfoWindow(
+                          title: (i as PlacemarkData).title,
+                          snippet: (i as PlacemarkData).desc,
+                        ),
+                        zIndex: (i as PlacemarkData).point.zInd,
+                        icon: BitmapDescriptor.defaultMarkerWithHue(
+                            (i as PlacemarkData).iconColor),
+                      );
+                    } else if (i is LineData) {
+                      lines[PolylineId((i as LineData).id)] = new Polyline(
+                        polylineId: PolylineId((i as LineData).id),
+                        onTap: () => showDialog(
+                            context: context,
+                            builder: (BuildContext context2) {
+                              return PropertiesDialog(
+                                  i as LineData, OverlayMenu.LINE, (data) {
+                                state.data.removeWhere((item) =>
+                                    (item is LineData && item.id == data.id));
+                                state.data.add(data);
+                                BlocProvider.of<PointBloc>(context)
+                                    .dispatch(MODIFY_EVENT());
+                              }, (OverlayItem data) {
+                                state.data.removeWhere((item) =>
+                                    (item is LineData && item.id == data.id));
+                                BlocProvider.of<PointBloc>(context)
+                                    .dispatch(MODIFY_EVENT());
+                              });
+                            }),
+                        consumeTapEvents: true,
+                        points:
+                            List<LatLng>.generate(2, (j) => i.points[j].point),
+                        zIndex: i.points[0].zInd.toInt(),
+                        width: i.width,
+                        color: Color(i.color),
+                      );
+                    }
                   }
                 }
                 return GoogleMap(
@@ -99,6 +137,7 @@ class OverlayMapView extends StatelessWidget {
                   onCameraIdle: () => changePosition(context),
                   mapType: MapType.satellite,
                   markers: Set<Marker>.of(markers.values),
+                  polylines: Set<Polyline>.of(lines.values),
                   initialCameraPosition: CameraPosition(
                     target: LatLng(0.0, 0.0),
                     bearing: 0.0,
