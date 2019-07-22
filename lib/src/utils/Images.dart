@@ -9,4 +9,5 @@ class Images {
   static const MOON = const AssetImage("image_assets/Moon.png");
   static const SKY = const AssetImage("image_assets/Sky.png");
   static const TAP_GESTURE = const AssetImage("image_assets/tapGesture.gif");
+  static const PROFILE = const AssetImage("image_assets/profile.png");
 }
