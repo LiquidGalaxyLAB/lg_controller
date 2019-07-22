@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lg_controller/src/models/KMLData.dart';
+import 'package:lg_controller/src/models/LineData.dart';
 import 'package:lg_controller/src/models/OverlayData.dart';
 import 'package:lg_controller/src/models/OverlayItem.dart';
 import 'package:lg_controller/src/models/PlacemarkData.dart';
@@ -27,6 +28,7 @@ class NavigationView extends StatelessWidget {
   Widget build(BuildContext context) {
     _controller = Completer();
     Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
+    Map<PolylineId, Polyline> lines = <PolylineId, Polyline>{};
     if (initialData == null) {
       initialData = new KMLData(
           title: "Default",
@@ -38,19 +40,26 @@ class NavigationView extends StatelessWidget {
           tilt: 0);
       markers.clear();
     } else if (initialData is OverlayData) {
-      print('p');
       for (OverlayItem i in (initialData as OverlayData).itemData) {
         if (i is PlacemarkData) {
-          print('p');
           markers[MarkerId(i.id)] = new Marker(
             markerId: MarkerId(i.id),
-            position: i.point,
+            position: (i as PlacemarkData).point.point,
             infoWindow: InfoWindow(
-              title: initialData.getTitle(),
-              snippet: initialData.getDesc(),
+              title: (i as PlacemarkData).title,
+              snippet: (i as PlacemarkData).desc,
             ),
+            zIndex: (i as PlacemarkData).point.zInd,
             icon: BitmapDescriptor.defaultMarkerWithHue(
-                BitmapDescriptor.hueMagenta),
+                (i as PlacemarkData).iconColor),
+          );
+        } else if (i is LineData) {
+          lines[PolylineId((i as LineData).id)] = new Polyline(
+            polylineId: PolylineId((i as LineData).id),
+            points: List<LatLng>.generate(2, (j) => i.points[j].point),
+            zIndex: i.points[0].zInd.toInt(),
+            width: i.width,
+            color: Color(i.color),
           );
         }
       }
@@ -90,6 +99,7 @@ class NavigationView extends StatelessWidget {
                       onCameraIdle: () => changePosition(),
                       mapType: MapType.satellite,
                       markers: Set<Marker>.of(markers.values),
+                      polylines: Set<Polyline>.of(lines.values),
                       initialCameraPosition: CameraPosition(
                         target:
                             LatLng(initialData.getLat(), initialData.getLgt()),
