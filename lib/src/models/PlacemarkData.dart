@@ -1,32 +1,29 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lg_controller/src/models/OverlayItem.dart';
+import 'package:lg_controller/src/models/PointData.dart';
 
 /// Placemark data model class.
 class PlacemarkData extends OverlayItem {
   /// Coordinates of the point.
-  LatLng point;
+  PointData point;
 
-  /// ID of the placemark.
-  String id;
-
-  String title;
-  String desc;
-  double zInd;
+  /// Size of placemark icon.
   int iconSize = 3;
+
+  /// Color of placemark icon.
   double iconColor = BitmapDescriptor.hueMagenta;
 
-  PlacemarkData(this.point, this.id, this.title, this.desc, this.zInd);
+  PlacemarkData(this.point, id, title, desc)
+      : super(id: id, title: title, desc: desc);
 
   /// Convert [PlacemarkData] instance to JSON map.
   Map<String, dynamic> toJson() {
     return {
       'id': id,
       'type': 'Placemark',
-      'latitude': point.latitude,
-      'longitude': point.longitude,
+      'point': point,
       'title': title,
       'desc': desc,
-      'zInd': zInd,
       'iconSize': iconSize,
       'iconColor': iconColor,
     };
@@ -35,10 +32,9 @@ class PlacemarkData extends OverlayItem {
   /// Create [PlacemarkData] instance from JSON map.
   PlacemarkData.fromJson(Map<String, dynamic> json) {
     this.id = json['id'];
-    this.point = LatLng(json['latitude'], json['longitude']);
+    this.point = PointData.fromJson(json['point']);
     this.title = json['title'];
     this.desc = json['desc'];
-    this.zInd = json['zInd'];
     this.iconSize = json['iconSize'];
     this.iconColor = json['iconColor'];
   }
