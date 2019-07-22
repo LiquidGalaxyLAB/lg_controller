@@ -26,6 +26,9 @@ class KMLData extends Equatable {
   /// Count of the module data which denotes the no. of times a module has been viewed.
   int count = 0;
 
+  /// Url of the image for the KML module.
+  String imageUrl = "";
+
   KMLData(
       {this.title,
       this.desc,
@@ -34,7 +37,8 @@ class KMLData extends Equatable {
       this.bearing,
       this.zoom,
       this.tilt,
-      this.count});
+      this.count,
+      this.imageUrl});
 
   getTitle() {
     return title;
@@ -72,7 +76,8 @@ class KMLData extends Equatable {
         longitude = json['longitude'],
         bearing = json['bearing'],
         zoom = json['zoom'],
-        tilt = json['tilt'];
+        tilt = json['tilt'],
+        imageUrl = json['imageUrl'];
 
   /// Convert [KMLData] instance to JSON map.
   Map<String, dynamic> toJson() => {
@@ -83,6 +88,7 @@ class KMLData extends Equatable {
         'bearing': bearing,
         'zoom': zoom,
         'tilt': tilt,
+        'imageUrl': imageUrl,
       };
 
   /// Convert [KMLData] instance to database map.
@@ -95,6 +101,7 @@ class KMLData extends Equatable {
         'zoom': zoom,
         'tilt': tilt,
         'count': 0,
+        'imageUrl': imageUrl,
       };
 
   /// Create [KMLData] instance from database map.
@@ -106,5 +113,6 @@ class KMLData extends Equatable {
         bearing = json['bearing'],
         zoom = json['zoom'],
         tilt = json['tilt'],
-        count = json['count'];
+        count = json['count'],
+        imageUrl = json['imageUrl'];
 }

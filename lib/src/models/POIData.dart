@@ -29,6 +29,7 @@ class POIData extends KMLData {
     this.bearing = json['bearing'];
     this.zoom = json['zoom'];
     this.tilt = json['tilt'];
+    this.imageUrl = json['imageUrl'];
   }
 
   /// Convert [POIData] instance to JSON map.
@@ -40,6 +41,7 @@ class POIData extends KMLData {
         'bearing': bearing,
         'zoom': zoom,
         'tilt': tilt,
+        'imageUrl': imageUrl,
       };
 
   /// Convert [POIData] instance to database map.
@@ -52,6 +54,7 @@ class POIData extends KMLData {
         'zoom': zoom,
         'tilt': tilt,
         'count': 0,
+        'imageUrl': imageUrl,
       };
 
   /// Create [POIData] instance from database map.
@@ -64,5 +67,6 @@ class POIData extends KMLData {
     this.zoom = json['zoom'];
     this.tilt = json['tilt'];
     this.count = json['count'];
+    this.imageUrl = json['imageUrl'];
   }
 }

@@ -36,6 +36,7 @@ class TourData extends KMLData {
     this.zoom = json['zoom'];
     this.tilt = json['tilt'];
     this.fileID = json['fileID'];
+    imageUrl = json['imageUrl'];
   }
 
   /// Convert [TourData] instance to JSON map.
@@ -48,6 +49,7 @@ class TourData extends KMLData {
         'zoom': zoom,
         'tilt': tilt,
         'fileID': fileID,
+        'imageUrl': imageUrl,
       };
 
   /// Convert [TourData] instance to database map.
@@ -61,6 +63,7 @@ class TourData extends KMLData {
         'tilt': tilt,
         'fileID': fileID,
         'count': 0,
+        'imageUrl': imageUrl,
       };
 
   /// Create [TourData] instance from database map.
@@ -74,5 +77,6 @@ class TourData extends KMLData {
     this.tilt = json['tilt'];
     this.fileID = json['fileID'];
     this.count = json['count'];
+    this.imageUrl = json['imageUrl'];
   }
 }

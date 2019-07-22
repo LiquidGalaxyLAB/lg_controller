@@ -39,6 +39,7 @@ class OverlayData extends KMLData {
     this.zoom = data.getZoom();
     this.tilt = data.getTilt();
     this.itemData = [];
+    this.imageUrl = data.imageUrl;
   }
 
   /// Create [OverlayData] instance from JSON map.
@@ -52,6 +53,7 @@ class OverlayData extends KMLData {
     this.tilt = json['tilt'];
     var items = json['itemData'] as List;
     this.itemData = items.map((i) => OverlayItem.fromJson(i)).toList();
+    this.imageUrl = json['imageUrl'];
   }
 
   /// Convert [OverlayData] instance to JSON map.
@@ -64,6 +66,7 @@ class OverlayData extends KMLData {
         'zoom': zoom,
         'tilt': tilt,
         'itemData': itemData,
+        'imageUrl': imageUrl,
       };
 
   /// Convert [OverlayData] instance to database map.
@@ -77,6 +80,7 @@ class OverlayData extends KMLData {
         'tilt': tilt,
         'itemData': jsonEncode(itemData),
         'count': 0,
+        'imageUrl': imageUrl,
       };
 
   /// Create [OverlayData] instance from database map.
@@ -88,6 +92,7 @@ class OverlayData extends KMLData {
     this.bearing = json['bearing'];
     this.zoom = json['zoom'];
     this.tilt = json['tilt'];
+    this.imageUrl = json['imageUrl'];
     try {
       var items = jsonDecode(json['itemData']) as List;
       this.itemData = items.map((i) => OverlayItem.fromJson(i)).toList();
