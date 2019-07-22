@@ -63,7 +63,7 @@ class SQLDatabase {
           return db.execute(
             "CREATE TABLE " +
                 title +
-                "(id INTEGER PRIMARY KEY, title TEXT UNIQUE, desc TEXT UNIQUE, count INTEGER, latitude REAL, longitude REAL, bearing REAL, zoom REAL, tilt REAL, itemData TEXT)",
+                "(id INTEGER PRIMARY KEY, title TEXT UNIQUE, desc TEXT UNIQUE, imageUrl TEXT, count INTEGER, latitude REAL, longitude REAL, bearing REAL, zoom REAL, tilt REAL, itemData TEXT)",
           );
         },
         version: 1,
@@ -79,7 +79,7 @@ class SQLDatabase {
           return db.execute(
             "CREATE TABLE " +
                 title +
-                "(id INTEGER PRIMARY KEY, title TEXT UNIQUE, desc TEXT UNIQUE, count INTEGER, latitude REAL, longitude REAL, bearing REAL, zoom REAL, tilt REAL)",
+                "(id INTEGER PRIMARY KEY, title TEXT UNIQUE, desc TEXT UNIQUE, imageUrl TEXT, count INTEGER, latitude REAL, longitude REAL, bearing REAL, zoom REAL, tilt REAL)",
           );
         },
         version: 1,
@@ -95,7 +95,7 @@ class SQLDatabase {
           return db.execute(
             "CREATE TABLE " +
                 title +
-                "(id INTEGER PRIMARY KEY, title TEXT UNIQUE, desc TEXT UNIQUE, count INTEGER, latitude REAL, longitude REAL, bearing REAL, zoom REAL, tilt REAL, fileID TEXT)",
+                "(id INTEGER PRIMARY KEY, title TEXT UNIQUE, desc TEXT UNIQUE, imageUrl TEXT, count INTEGER, latitude REAL, longitude REAL, bearing REAL, zoom REAL, tilt REAL, fileID TEXT)",
           );
         },
         version: 1,
