@@ -52,6 +52,10 @@ class _OSCDialogState extends State<OSCDialog> {
                         id_key.currentState.validate())
                       await widget.setParams(ip_controller.text,
                           soc_controller.text, id_controller.text);
+                    else
+                      setState(() {
+                        loading = false;
+                      });
                   },
                   child: Text('Ok', style: Theme.of(context).textTheme.title),
                 ),
