@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:googleapis/drive/v2.dart' as drive;
 import 'package:googleapis_auth/auth_io.dart' as auth;
@@ -10,6 +11,7 @@ import 'package:lg_controller/src/models/KMLData.dart';
 import 'package:lg_controller/src/models/POIData.dart';
 import 'package:lg_controller/src/models/SegregatedKMLData.dart';
 import 'package:lg_controller/src/models/TourData.dart';
+import 'package:path_provider/path_provider.dart';
 
 /// To handle all functionalities with Google Drive.
 class FileRequests {
@@ -54,6 +56,7 @@ class FileRequests {
       SegregatedKmlData d;
       try {
         for (var file in files) {
+          print(file.title);
           d = new SegregatedKmlData.fromJson(jsonDecode(file.description));
           if (segData.containsKey(d.category)) {
             segData[d.category].add(POIData.fromJson(jsonDecode(d.data)));
@@ -121,5 +124,47 @@ class FileRequests {
     }
 
     return next(null);
+  }
+
+  /// Uploads the [data] as a .kml file with the required properties.
+  Future<bool> uploadFile(KMLData data) async {
+    try {
+      var client = await authorizeUser();
+      if (client == null) return false;
+      var api = new drive.DriveApi(client);
+      final directory = await getApplicationDocumentsDirectory();
+      final file = File('${directory.path}/temp.kml');
+      await file.writeAsString(
+          "<?xml version=\"1.0\" encoding=\"UTF-8\"?><kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\"><Document id=\"19\"></Document></kml>");
+      String title = data.title;
+      title = title.replaceAll(" ", "_");
+      SegregatedKmlData segregatedKmlData = SegregatedKmlData();
+      segregatedKmlData.data = jsonEncode(data);
+      segregatedKmlData.category = "Category_3";
+      String desc = jsonEncode(segregatedKmlData);
+      drive.File f = await upload(api, file.path, title + '.kml', desc);
+      file.delete();
+      if (f == null)
+        return false;
+      else
+        return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /// Uploads [file] in Google Drive.
+  Future upload(
+      drive.DriveApi api, String file, String name, String desc) async {
+    var localFile = new File(file);
+    var media = new drive.Media(localFile.openRead(), localFile.lengthSync());
+    var driveFile = new drive.File()..title = name;
+    var poiParent = drive.ParentReference();
+    poiParent.id = "1Gs-KiheWHACyUtYtvGZma8xsBX6r1iTJ";
+    driveFile.parents = List<drive.ParentReference>();
+    driveFile.parents.add(poiParent);
+    driveFile.description = desc;
+    driveFile.mimeType = 'application/vnd.google-earth.kml+xml';
+    return api.files.insert(driveFile, uploadMedia: media);
   }
 }
