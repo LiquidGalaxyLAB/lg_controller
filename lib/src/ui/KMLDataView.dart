@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lg_controller/src/blocs/PageBloc.dart';
@@ -31,10 +32,17 @@ class KMLDataView extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    CircleAvatar(
-                      maxRadius: 24 * SizeScaling.getWidthScaling(),
-                      backgroundColor: Colors.transparent,
-                      backgroundImage: Images.APP_LOGO,
+                    CachedNetworkImage(
+                      imageUrl: (data.imageUrl != null) ? data.imageUrl : "",
+                      imageBuilder: (context, imageProvider) => CircleAvatar(
+                            maxRadius: 30 * SizeScaling.getWidthScaling(),
+                            backgroundColor: Colors.transparent,
+                            backgroundImage: imageProvider,
+                          ),
+                      placeholder: (context, url) =>
+                          CircularProgressIndicator(),
+                      errorWidget: (context, url, error) =>
+                          Image(image: Images.APP_LOGO),
                     ),
                     Padding(
                       padding: EdgeInsets.only(
