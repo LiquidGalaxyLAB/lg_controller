@@ -51,8 +51,15 @@ class GridContent extends StatelessWidget {
               gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
                 childAspectRatio: 1.667,
                 crossAxisCount: ((426 * SizeScaling.getHeightScaling()) ~/
-                        (128 * SizeScaling.getHeightScaling()))
-                    .toInt(),
+                            (128 * SizeScaling.getHeightScaling()))
+                        .toInt() +
+                    ((SizeScaling.getHeightScaling() > 1)
+                        ? ((SizeScaling.getHeightScaling() - 1) *
+                                0.5 *
+                                (426 * SizeScaling.getHeightScaling()) ~/
+                                (128 * SizeScaling.getHeightScaling()))
+                            .toInt()
+                        : 0),
               ),
               itemBuilder: (BuildContext context, int index) {
                 return new KMLModuleView(choice, content[index]);
