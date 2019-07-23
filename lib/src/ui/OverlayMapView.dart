@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lg_controller/src/blocs/FreezeBloc.dart';
@@ -20,7 +21,7 @@ import 'package:lg_controller/src/ui/PropertiesDialog.dart';
 /// Overlay (Google map view).
 class OverlayMapView extends StatelessWidget {
   /// Controller for google map.
-  Completer<GoogleMapController> _controller = Completer();
+  GoogleMapController _controller;
 
   /// Current position of camera of the map.
   CameraPosition current;
@@ -28,7 +29,7 @@ class OverlayMapView extends StatelessWidget {
   /// Markers of the google map.
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
 
-  /// Markers of the google map.
+  /// Polyline of the google map.
   Map<PolylineId, Polyline> lines = <PolylineId, Polyline>{};
 
   /// Freeze state of the map.
@@ -40,7 +41,7 @@ class OverlayMapView extends StatelessWidget {
   OverlayMapView();
 
   Widget build(BuildContext context) {
-    _controller = Completer();
+    getInitialData();
     return BlocBuilder<OverlayEvent, OverlaysState>(
         bloc: BlocProvider.of<FreezeBloc>(context),
         builder: (BuildContext context, OverlaysState state) {
@@ -57,7 +58,20 @@ class OverlayMapView extends StatelessWidget {
                 if (state is CompletedState) {
                   BlocProvider.of<FreezeBloc>(context).dispatch(UNFREEZE(null));
                 }
-                if (state is UninitializedState) {
+                else if (state is ProcessingState) {
+                  print((state.data as LineData).points[0].point);
+                  if (state.data is LineData) {
+                    markers[MarkerId(state.data.id)] = new Marker(
+                      onTap: () => {},
+                      consumeTapEvents: true,
+                      markerId: MarkerId(state.data.id),
+                      position: (state.data as LineData).points[0].point,
+                      zIndex: 10,
+                      icon: BitmapDescriptor.fromAsset("image_assets/place.png"),
+                    );
+                  }
+                }
+                else if (state is UninitializedState) {
                   markers = <MarkerId, Marker>{};
                   lines = <PolylineId, Polyline>{};
                   for (var i in state.data) {
@@ -131,7 +145,7 @@ class OverlayMapView extends StatelessWidget {
                   zoomGesturesEnabled: unfreeze,
                   onTap: (point) => sendPoint(context, point),
                   onMapCreated: (controller) =>
-                      _controller.complete(controller),
+                      this._controller = controller,
                   onCameraMove: (cameraPosition) =>
                       this.current = cameraPosition,
                   onCameraIdle: () => changePosition(context),
@@ -166,5 +180,19 @@ class OverlayMapView extends StatelessWidget {
   /// Register tap action.
   sendPoint(context, LatLng point) {
     BlocProvider.of<PointBloc>(context).dispatch(TAP_EVENT(point, menu));
+  }
+  getInitialData() async{
+    String defData = (await SharedPreferences.getInstance()).getString('defaultData');
+    await Future.delayed(Duration(seconds: 1));
+    if (defData != null && _controller!=null) {
+      KMLData initialData = KMLData.fromJson(jsonDecode(defData));
+      _controller.animateCamera(CameraUpdate.newCameraPosition(
+        CameraPosition(
+            target: LatLng(initialData.latitude, initialData.longitude),
+            zoom: initialData.zoom,
+            tilt: initialData.tilt,
+            bearing: initialData.bearing),
+      ),);
+    }
   }
 }

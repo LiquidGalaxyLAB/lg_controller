@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lg_controller/src/models/KMLData.dart';
 import 'package:lg_controller/src/models/LineData.dart';
@@ -14,8 +15,9 @@ import 'package:lg_controller/src/utils/SizeScaling.dart';
 
 /// Navigation view (Google map view) for home screen.
 class NavigationView extends StatelessWidget {
+  
   /// Controller for google map.
-  Completer<GoogleMapController> _controller = Completer();
+  GoogleMapController controller;
 
   /// Current position of camera of the map.
   CameraPosition current;
@@ -26,7 +28,6 @@ class NavigationView extends StatelessWidget {
   NavigationView(this.initialData);
 
   Widget build(BuildContext context) {
-    _controller = Completer();
     Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
     Map<PolylineId, Polyline> lines = <PolylineId, Polyline>{};
     if (initialData == null) {
@@ -38,6 +39,7 @@ class NavigationView extends StatelessWidget {
           bearing: 0,
           zoom: 0,
           tilt: 0);
+      getInitialData();
       markers.clear();
     } else if (initialData is OverlayData) {
       for (OverlayItem i in (initialData as OverlayData).itemData) {
@@ -93,7 +95,7 @@ class NavigationView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4),
                     child: GoogleMap(
                       onMapCreated: (controller) =>
-                          _controller.complete(controller),
+                          this.controller=controller,
                       onCameraMove: (cameraPosition) =>
                           this.current = cameraPosition,
                       onCameraIdle: () => changePosition(),
@@ -133,5 +135,19 @@ class NavigationView extends StatelessWidget {
         zoom: current.zoom,
         tilt: current.tilt);
     OSCActions().sendModule(ModuleType.GESTURE, jsonEncode(data));
+  }
+  getInitialData() async{
+    String defData = (await SharedPreferences.getInstance()).getString('defaultData');
+    await Future.delayed(Duration(seconds: 1));
+    if (defData != null && controller!=null) {
+      initialData = KMLData.fromJson(jsonDecode(defData));
+      controller.animateCamera(CameraUpdate.newCameraPosition(
+        CameraPosition(
+            target: LatLng(initialData.latitude, initialData.longitude),
+            zoom: initialData.zoom,
+        tilt: initialData.tilt,
+        bearing: initialData.bearing),
+      ),);
+    }
   }
 }
