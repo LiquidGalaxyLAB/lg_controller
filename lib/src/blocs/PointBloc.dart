@@ -41,6 +41,7 @@ class PointBloc extends Bloc<PointEvent, PointState> {
           (temp as LineData).setPoint(
             PointData(event.point, 0),
           );
+          yield ProcessingState(temp);
         } else {
           (temp as LineData).setPoint(
             PointData(event.point, 0),
