@@ -13,6 +13,8 @@ class OSCActions {
   /// Send module [data] as an OSC Message.
   Future<void> sendModule(ModuleType modtype, String data) async {
     await initializeOSC();
+    if(modtype.encoding==0 && (await SharedPreferences.getInstance()).getBool('gesEnabled')==false)
+      return;
     final message = new OSCMessage(
         path: modtype.path,
         id: await getUniqueId(),
