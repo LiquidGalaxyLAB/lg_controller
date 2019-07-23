@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lg_controller/src/models/KMLData.dart';
 import 'package:lg_controller/src/states_events/NavBarActions.dart';
@@ -10,11 +11,9 @@ void main() {
         RecentlyState(), KMLData(title: "test", desc: "test2"));
     await tester.pumpWidget(new Material(child: new MaterialApp(home: root)));
 
-    await tester.pumpAndSettle();
-
     expect(find.text("test"), findsOneWidget);
     expect(find.text("test2"), findsOneWidget);
-    expect(find.byType(CircleAvatar), findsOneWidget);
+    expect(find.byType(CachedNetworkImage), findsOneWidget);
     expect(find.byType(Card), findsOneWidget);
     expect(
         find.descendant(

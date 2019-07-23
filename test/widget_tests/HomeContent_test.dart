@@ -16,10 +16,9 @@ void main() {
         longitude: 0,
         bearing: 0,
         zoom: 0,
-        tilt: 0));
+        tilt: 0,
+        imageUrl: null));
     await tester.pumpWidget(new Material(child: new MaterialApp(home: root)));
-
-    await tester.pumpAndSettle();
 
     expect(find.byType(SearchBar), findsOneWidget);
     expect(find.byType(KMLDataView), findsOneWidget);
