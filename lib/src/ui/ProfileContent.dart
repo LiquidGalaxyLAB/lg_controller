@@ -152,8 +152,8 @@ class PrivateData extends StatelessWidget {
         itemBuilder: (context, index) {
           return Card(
             child: ListTile(
-              title: Text(data[0].title),
-              subtitle: Text(data[0].desc),
+              title: Text(data[index].title),
+              subtitle: Text(data[index].desc),
               trailing: (!admin)
                   ? null
                   : IconButton(
