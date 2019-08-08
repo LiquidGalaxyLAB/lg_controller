@@ -9,11 +9,9 @@
       <change beforePath="$PROJECT_DIR$/lib/src/blocs/PointBloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/blocs/PointBloc.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/menu/OverlayMenu.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/menu/OverlayMenu.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/models/ImageData.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/models/ImageData.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/models/LineData.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/models/LineData.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/models/OverlayData.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/models/OverlayData.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/models/PlacemarkData.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/models/PlacemarkData.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/models/PolygonData.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/models/PolygonData.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/osc/ModuleType.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/osc/ModuleType.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/osc/OSCActions.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/osc/OSCActions.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/osc/OSCMessage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/osc/OSCMessage.dart" afterDir="false" />
@@ -23,8 +21,6 @@
       <change beforePath="$PROJECT_DIR$/lib/src/ui/OverlayMapView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/OverlayMapView.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/ui/OverlayMenuBar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/OverlayMenuBar.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/ui/PropertiesDialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/PropertiesDialog.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/ui/QRReceiverDialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/QRReceiverDialog.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/ui/QRSenderDialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/QRSenderDialog.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -62,17 +58,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="25" column="3" lean-forward="true" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
+            <state relative-caret-position="255">
+              <caret line="28" column="49" lean-forward="true" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/src/osc/OSCMessage.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="256">
+              <caret line="64" column="67" selection-start-line="64" selection-start-column="67" selection-end-line="64" selection-end-column="67" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/src/ui/ProfileContent.dart">
+        <entry file="file://$PROJECT_DIR$/lib/src/osc/OSCReceiver.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="30" column="19" lean-forward="true" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+            <state relative-caret-position="391">
+              <caret line="23" column="11" lean-forward="true" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+              <folding>
+                <element signature="e#0#17#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -116,8 +127,8 @@
       <find>text</find>
       <find>sizesc</find>
       <find>onrec</find>
-      <find>print</find>
       <find>QRS</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -166,17 +177,17 @@
         <option value="$PROJECT_DIR$/lib/src/menu/OverlayMenu.dart" />
         <option value="$PROJECT_DIR$/lib/src/ui/OverlayMenuBar.dart" />
         <option value="$PROJECT_DIR$/lib/src/osc/OSCReceiver.dart" />
-        <option value="$PROJECT_DIR$/lib/src/osc/OSCActions.dart" />
         <option value="$PROJECT_DIR$/lib/src/osc/OSCMessage.dart" />
         <option value="$PROJECT_DIR$/lib/src/models/OverlayData.dart" />
         <option value="$PROJECT_DIR$/lib/src/models/PlacemarkData.dart" />
-        <option value="$PROJECT_DIR$/lib/src/ui/ProfileContent.dart" />
         <option value="$PROJECT_DIR$/lib/src/ui/OverlayMapView.dart" />
         <option value="$PROJECT_DIR$/lib/src/blocs/PointBloc.dart" />
         <option value="$PROJECT_DIR$/lib/src/models/ImageData.dart" />
         <option value="$PROJECT_DIR$/lib/src/models/PolygonData.dart" />
         <option value="$PROJECT_DIR$/lib/src/ui/QRSenderDialog.dart" />
+        <option value="$PROJECT_DIR$/lib/src/ui/ProfileContent.dart" />
         <option value="$PROJECT_DIR$/lib/src/ui/QRReceiverDialog.dart" />
+        <option value="$PROJECT_DIR$/lib/src/osc/OSCActions.dart" />
       </list>
     </option>
   </component>
@@ -217,7 +228,7 @@
               <item name="lg_controller" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
+              <item name="osc" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="lg_controller" type="b2602c69:ProjectViewProjectNode" />
@@ -564,33 +575,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/osc/ModuleType.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/osc/OSCMessage.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="64" column="67" selection-start-line="64" selection-start-column="67" selection-end-line="64" selection-end-column="67" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/osc/OSCActions.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="50" column="20" lean-forward="true" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/ui/NavigationView.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="571">
@@ -666,16 +650,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/osc/OSCReceiver.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/blocs/PageBloc.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -736,36 +710,77 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/ui/QRSenderDialog.dart">
+    <entry file="file://$PROJECT_DIR$/lib/src/ui/ProfileContent.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+        <state relative-caret-position="647">
+          <caret line="357" selection-start-line="357" selection-end-line="357" />
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#0#22#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/ui/QRReceiverDialog.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="480">
+          <caret line="52" column="46" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart">
+    <entry file="file://$PROJECT_DIR$/lib/src/ui/QRSenderDialog.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="25" column="3" lean-forward="true" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
+        <state relative-caret-position="394">
+          <caret line="25" column="11" lean-forward="true" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/ui/ProfileContent.dart">
+    <entry file="file://$PROJECT_DIR$/lib/src/osc/OSCActions.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/osc/ModuleType.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
-          <caret line="30" column="19" lean-forward="true" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+          <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="28" column="49" lean-forward="true" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/osc/OSCMessage.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="64" column="67" selection-start-line="64" selection-start-column="67" selection-end-line="64" selection-end-column="67" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/osc/OSCReceiver.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="11" lean-forward="true" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
