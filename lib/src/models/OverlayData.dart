@@ -44,6 +44,7 @@ class OverlayData extends KMLData {
 
   /// Create [OverlayData] instance from JSON map.
   OverlayData.fromJson(Map<String, dynamic> json) {
+    print('lk');
     this.title = json['title'];
     this.desc = json['desc'];
     this.latitude = json['latitude'];
@@ -65,8 +66,8 @@ class OverlayData extends KMLData {
         'bearing': bearing,
         'zoom': zoom,
         'tilt': tilt,
-        'itemData': itemData,
         'imageUrl': imageUrl,
+        'itemData': itemData,
       };
 
   /// Convert [OverlayData] instance to database map.

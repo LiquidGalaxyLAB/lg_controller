@@ -10,7 +10,7 @@ class LineData extends OverlayItem {
   int width = 10;
 
   /// Color of the line.
-  int color = 0xFFFF00FF;
+  int color = 0xFF00FF00;
 
   LineData(id, title, desc) : super(id: id, title: title, desc: desc);
 

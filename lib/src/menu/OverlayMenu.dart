@@ -9,15 +9,13 @@ class OverlayMenu {
   const OverlayMenu(this.title, this.icon);
 
   static values() {
-    return [LINE, POLYGON, CIRCLE, ROUND_TEMP, IMAGE, PAN, SAVE];
+    return [LINE, POLYGON, ROUND_TEMP, IMAGE, PAN, SAVE];
   }
 
   static const OverlayMenu LINE = const OverlayMenu(
       "Line", Icon(IconData(57691, fontFamily: 'MaterialIcons')));
   static const OverlayMenu POLYGON = const OverlayMenu(
       "Polygon", Icon(IconData(58310, fontFamily: 'MaterialIcons')));
-  static const OverlayMenu CIRCLE = const OverlayMenu(
-      "Circle", Icon(IconData(59446, fontFamily: 'MaterialIcons')));
   static const OverlayMenu ROUND_TEMP = const OverlayMenu(
       "Round Template", Icon(IconData(58719, fontFamily: 'MaterialIcons')));
   static const OverlayMenu IMAGE = const OverlayMenu(

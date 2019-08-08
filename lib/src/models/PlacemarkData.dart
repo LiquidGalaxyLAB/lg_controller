@@ -1,4 +1,5 @@
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'dart:convert';
+
 import 'package:lg_controller/src/models/OverlayItem.dart';
 import 'package:lg_controller/src/models/PointData.dart';
 
@@ -11,7 +12,7 @@ class PlacemarkData extends OverlayItem {
   int iconSize = 3;
 
   /// Color of placemark icon.
-  double iconColor = BitmapDescriptor.hueMagenta;
+  int iconColor = 0;
 
   PlacemarkData(this.point, id, title, desc)
       : super(id: id, title: title, desc: desc);
@@ -21,11 +22,11 @@ class PlacemarkData extends OverlayItem {
     return {
       'id': id,
       'type': 'Placemark',
-      'point': point,
       'title': title,
       'desc': desc,
       'iconSize': iconSize,
       'iconColor': iconColor,
+      'point': point,
     };
   }
 
