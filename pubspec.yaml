@@ -31,6 +31,10 @@ dependencies:
   cached_network_image: ^1.1.0
   toast: '^0.1.3'
   url_launcher: ^3.0.3
+  qr_flutter: ^2.0.0
+  barcode_scan: ^0.0.4
+  image_picker_modern: ^0.4.12+2
+  get_ip: ^0.3.0
   flutter:
     sdk: flutter
 
