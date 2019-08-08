@@ -12,6 +12,7 @@ import 'package:lg_controller/src/models/KMLData.dart';
 import 'package:lg_controller/src/models/LineData.dart';
 import 'package:lg_controller/src/models/OverlayItem.dart';
 import 'package:lg_controller/src/models/PlacemarkData.dart';
+import 'package:lg_controller/src/models/ImageData.dart';
 import 'package:lg_controller/src/osc/ModuleType.dart';
 import 'package:lg_controller/src/osc/OSCActions.dart';
 import 'package:lg_controller/src/states_events/OverlayActions.dart';
@@ -106,7 +107,7 @@ class OverlayMapView extends StatelessWidget {
                         ),
                         zIndex: (i as PlacemarkData).point.zInd,
                         icon: BitmapDescriptor.defaultMarkerWithHue(
-                            (i as PlacemarkData).iconColor),
+                            (i as PlacemarkData).iconColor.toDouble()),
                       );
                     } else if (i is LineData) {
                       lines[PolylineId((i as LineData).id)] = new Polyline(
@@ -134,6 +135,36 @@ class OverlayMapView extends StatelessWidget {
                         zIndex: i.points[0].zInd.toInt(),
                         width: i.width,
                         color: Color(i.color),
+                      );
+                    }
+                    else if (i is ImageData) {
+                      markers[MarkerId((i as ImageData).id)] = new Marker(
+                        onTap: () => showDialog(
+                            context: context,
+                            builder: (BuildContext context2) {
+                              return PropertiesDialog(
+                                  i as ImageData, OverlayMenu.LINE, (data) {
+                                state.data.removeWhere((item) =>
+                                (item is ImageData && item.id == data.id));
+                                state.data.add(data);
+                                BlocProvider.of<PointBloc>(context)
+                                    .dispatch(MODIFY_EVENT());
+                              }, (OverlayItem data) {
+                                state.data.removeWhere((item) =>
+                                (item is ImageData && item.id == data.id));
+                                BlocProvider.of<PointBloc>(context)
+                                    .dispatch(MODIFY_EVENT());
+                              });
+                            }),
+                        consumeTapEvents: true,
+                        markerId: MarkerId((i as ImageData).id),
+                        position: (i as ImageData).point.point,
+                        infoWindow: InfoWindow(
+                          title: (i as ImageData).title,
+                          snippet: (i as ImageData).desc,
+                        ),
+                        zIndex: (i as ImageData).point.zInd,
+                        icon: BitmapDescriptor.fromBytes(i.thumbnail),
                       );
                     }
                   }
