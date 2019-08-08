@@ -91,12 +91,6 @@ class OverlayMenuBar extends StatelessWidget {
               .dispatch(FREEZE(OverlayMenu.POLYGON));
         }
         break;
-      case OverlayMenu.CIRCLE:
-        {
-          BlocProvider.of<FreezeBloc>(context)
-              .dispatch(FREEZE(OverlayMenu.CIRCLE));
-        }
-        break;
       case OverlayMenu.ROUND_TEMP:
         {
           BlocProvider.of<FreezeBloc>(context)
@@ -130,7 +124,6 @@ class OverlayMenuBar extends StatelessWidget {
 
   /// Save the [data] passed.
   onSave(context, OverlayData data, String title, String desc, String url) {
-    print('t' + url);
     try {
       if (title != null && title.compareTo("") != 0)
         data.title = title;

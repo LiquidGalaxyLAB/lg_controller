@@ -53,7 +53,7 @@ class NavigationView extends StatelessWidget {
             ),
             zIndex: (i as PlacemarkData).point.zInd,
             icon: BitmapDescriptor.defaultMarkerWithHue(
-                (i as PlacemarkData).iconColor),
+                (i as PlacemarkData).iconColor.toDouble()),
           );
         } else if (i is LineData) {
           lines[PolylineId((i as LineData).id)] = new Polyline(
