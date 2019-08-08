@@ -6,7 +6,6 @@ class ImageData extends OverlayItem {
   /// Coordinates of the point.
   PointData point;
 
-
   /// Color of placemark icon.
   List<int> image;
 
@@ -35,7 +34,7 @@ class ImageData extends OverlayItem {
     this.title = json['title'];
     this.desc = json['desc'];
     this.image = json['image'];
-    this.thumbnail =json['thumbnail'];
+    this.thumbnail = json['thumbnail'];
   }
 
   /// Give JSON map as string in toString override.

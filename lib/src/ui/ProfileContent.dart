@@ -83,7 +83,8 @@ class _ProfileContentState extends State<ProfileContent> {
                                     barrierDismissible: false,
                                     context: context,
                                     builder: (BuildContext context) {
-                                      return AdminAccessDialog(() => setAdmin(true));
+                                      return AdminAccessDialog(
+                                          () => setAdmin(true));
                                     },
                                   );
                                 },
@@ -93,17 +94,20 @@ class _ProfileContentState extends State<ProfileContent> {
                       ]),
                 ],
               ),
-        Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                height: 32,
-              child: IconButton(
-                color: Colors.black87,
-                  icon: Icon(IconData(58052, fontFamily: 'MaterialIcons')),
-                  onPressed: () => receiveModule(),),),
-            ]),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 32,
+                      child: IconButton(
+                        color: Colors.black87,
+                        icon:
+                            Icon(IconData(58052, fontFamily: 'MaterialIcons')),
+                        onPressed: () => receiveModule(),
+                      ),
+                    ),
+                  ]),
               (listLoading)
                   ? Center(
                       child: CircularProgressIndicator(),
@@ -144,8 +148,8 @@ class _ProfileContentState extends State<ProfileContent> {
     });
   }
 
-  receiveModule()
-  {
+  /// Show receiver dialog.
+  receiveModule() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -153,11 +157,9 @@ class _ProfileContentState extends State<ProfileContent> {
       },
     );
   }
-  onReceived(String json)
-  {
-    print(json);
-    //json='{"title":"Default Titleb","desc":"Default Descm","latitude":-0.8380608551358772,"longitude":42.59794771671295,"bearing":0.0,"zoom":3.0,"tilt":0.0,"imageUrl":"","itemData":[{"id":"exwdwksknr","type":"Placemark","point":{"latitude":0.8270847384101528,"longitude":84.64270021766424,"zInd":0.0},"title":"Default","desc":"Def","iconSize":3,"iconColor":0}]}';
-    //print(json);
+
+  /// Process the received module data.
+  onReceived(String json) {
     try {
       OverlayData data = OverlayData.fromJson(jsonDecode(json));
       List<OverlayData> list = List();
@@ -170,7 +172,6 @@ class _ProfileContentState extends State<ProfileContent> {
         gravity: Toast.BOTTOM,
       );
     } catch (e) {
-      print('pp'+e.toString());
       Toast.show(
         'Error occured in sharing module. Please retry.',
         context,
@@ -204,19 +205,25 @@ class PrivateData extends StatelessWidget {
               subtitle: Text(data[index].desc),
               trailing: (!admin)
                   ? IconButton(
-                  icon: Icon(IconData(59405, fontFamily: 'MaterialIcons')),
-                  onPressed: () => shareModule(context, data[index]))
-                  :
-              Container(
-                width: 96,
-                child: Row(
-                children: <Widget>[
-              IconButton(
-              icon: Icon(IconData(59405, fontFamily: 'MaterialIcons')),
-              onPressed: () => shareModule(context, data[index])),
-                  IconButton(
-                      icon: Icon(IconData(58054, fontFamily: 'MaterialIcons')),
-                      onPressed: () => uploadFile(context, data[index])),],),),
+                      icon: Icon(IconData(59405, fontFamily: 'MaterialIcons')),
+                      onPressed: () => shareModule(context, data[index]))
+                  : Container(
+                      width: 96,
+                      child: Row(
+                        children: <Widget>[
+                          IconButton(
+                              icon: Icon(
+                                  IconData(59405, fontFamily: 'MaterialIcons')),
+                              onPressed: () =>
+                                  shareModule(context, data[index])),
+                          IconButton(
+                              icon: Icon(
+                                  IconData(58054, fontFamily: 'MaterialIcons')),
+                              onPressed: () =>
+                                  uploadFile(context, data[index])),
+                        ],
+                      ),
+                    ),
             ),
           );
         },
@@ -224,8 +231,8 @@ class PrivateData extends StatelessWidget {
     );
   }
 
-  shareModule(context, KMLData data)
-  {
+  /// Show send dialog.
+  shareModule(context, KMLData data) {
     showDialog(
       context: context,
       builder: (BuildContext context) {

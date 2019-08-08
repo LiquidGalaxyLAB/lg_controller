@@ -15,23 +15,24 @@ class PolygonData extends OverlayItem {
   /// Color of the polygon.
   int color = 0xFF00FF00;
 
-  bool complete=false;
+  bool complete = false;
 
   /// Color of the stroke.
   int strokeColor = 0xFF00FF00;
 
-  PolygonData(id, title, desc, this.vertices) : super(id: id, title: title, desc: desc);
+  PolygonData(id, title, desc, this.vertices)
+      : super(id: id, title: title, desc: desc);
 
   /// Sets the end points in consecutive fashion.
   void setPoint(PointData data) {
-    if(points.length<vertices)
+    if (points.length < vertices)
       try {
         points.add(data);
       } catch (e) {
         print(e);
       }
     else
-      complete=true;
+      complete = true;
   }
 
   /// Convert [PolygonData] instance to JSON map.
