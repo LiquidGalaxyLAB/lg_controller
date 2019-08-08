@@ -1,7 +1,12 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:lg_controller/src/gdrive/FileRequests.dart';
 import 'package:lg_controller/src/models/KMLData.dart';
+import 'package:lg_controller/src/models/OverlayData.dart';
 import 'package:lg_controller/src/resources/SQLDatabase.dart';
+import 'package:lg_controller/src/ui/QRSenderDialog.dart';
+import 'package:lg_controller/src/ui/QRReceiverDialog.dart';
+import 'package:lg_controller/src/menu/POINavBarMenu.dart';
 import 'package:lg_controller/src/utils/Images.dart';
 import 'package:lg_controller/src/utils/SizeScaling.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -78,8 +83,7 @@ class _ProfileContentState extends State<ProfileContent> {
                                     barrierDismissible: false,
                                     context: context,
                                     builder: (BuildContext context) {
-                                      return AdminAccessDialog(
-                                          () => setAdmin(true));
+                                      return AdminAccessDialog(() => setAdmin(true));
                                     },
                                   );
                                 },
@@ -89,10 +93,17 @@ class _ProfileContentState extends State<ProfileContent> {
                       ]),
                 ],
               ),
-              Padding(
-                padding: EdgeInsets.all(
-                    4.0 + 4 * 0.5 * (SizeScaling.getWidthScaling() - 1)),
-              ),
+        Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(
+                height: 32,
+              child: IconButton(
+                color: Colors.black87,
+                  icon: Icon(IconData(58052, fontFamily: 'MaterialIcons')),
+                  onPressed: () => receiveModule(),),),
+            ]),
               (listLoading)
                   ? Center(
                       child: CircularProgressIndicator(),
@@ -132,6 +143,43 @@ class _ProfileContentState extends State<ProfileContent> {
       listLoading = false;
     });
   }
+
+  receiveModule()
+  {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return QRReceiverDialog(onReceived);
+      },
+    );
+  }
+  onReceived(String json)
+  {
+    print(json);
+    //json='{"title":"Default Titleb","desc":"Default Descm","latitude":-0.8380608551358772,"longitude":42.59794771671295,"bearing":0.0,"zoom":3.0,"tilt":0.0,"imageUrl":"","itemData":[{"id":"exwdwksknr","type":"Placemark","point":{"latitude":0.8270847384101528,"longitude":84.64270021766424,"zInd":0.0},"title":"Default","desc":"Def","iconSize":3,"iconColor":0}]}';
+    //print(json);
+    try {
+      OverlayData data = OverlayData.fromJson(jsonDecode(json));
+      List<OverlayData> list = List();
+      list.add(data);
+      SQLDatabase().insertInTable(POINavBarMenu.PRIVATE_1.title, list);
+      Toast.show(
+        'KML successfully saved in your private directory.',
+        context,
+        duration: Toast.LENGTH_LONG,
+        gravity: Toast.BOTTOM,
+      );
+    } catch (e) {
+      print('pp'+e.toString());
+      Toast.show(
+        'Error occured in sharing module. Please retry.',
+        context,
+        duration: Toast.LENGTH_LONG,
+        gravity: Toast.BOTTOM,
+      );
+    }
+    Navigator.of(context).pop();
+  }
 }
 
 /// Private data list widget.
@@ -144,7 +192,7 @@ class PrivateData extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Container(
-      height: 136,
+      height: 112,
       child: ListView.builder(
         padding: EdgeInsets.all(0),
         physics: BouncingScrollPhysics(),
@@ -155,14 +203,34 @@ class PrivateData extends StatelessWidget {
               title: Text(data[index].title),
               subtitle: Text(data[index].desc),
               trailing: (!admin)
-                  ? null
-                  : IconButton(
+                  ? IconButton(
+                  icon: Icon(IconData(59405, fontFamily: 'MaterialIcons')),
+                  onPressed: () => shareModule(context, data[index]))
+                  :
+              Container(
+                width: 96,
+                child: Row(
+                children: <Widget>[
+              IconButton(
+              icon: Icon(IconData(59405, fontFamily: 'MaterialIcons')),
+              onPressed: () => shareModule(context, data[index])),
+                  IconButton(
                       icon: Icon(IconData(58054, fontFamily: 'MaterialIcons')),
-                      onPressed: () => uploadFile(context, data[index])),
+                      onPressed: () => uploadFile(context, data[index])),],),),
             ),
           );
         },
       ),
+    );
+  }
+
+  shareModule(context, KMLData data)
+  {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return QRSenderDialog(jsonEncode(data));
+      },
     );
   }
 
