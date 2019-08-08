@@ -5,7 +5,10 @@ import 'package:lg_controller/src/menu/OverlayMenu.dart';
 import 'package:lg_controller/src/models/LineData.dart';
 import 'package:lg_controller/src/models/OverlayItem.dart';
 import 'package:lg_controller/src/models/PlacemarkData.dart';
+import 'package:lg_controller/src/models/ImageData.dart';
 import 'package:lg_controller/src/models/PointData.dart';
+import 'package:lg_controller/src/utils/LineColors.dart';
+import 'package:lg_controller/src/utils/MarkerColors.dart';
 import 'package:lg_controller/src/utils/SizeScaling.dart';
 
 /// Dialog for Properties.
@@ -44,6 +47,13 @@ class _PropertiesDialogState extends State<PropertiesDialog> {
               (widget.data as PlacemarkData).point.point.longitude.toString());
       zInd_controller = TextEditingController(
           text: (widget.data as PlacemarkData).point.zInd.toString());
+    } else if (widget.data is ImageData) {
+      lat_controller = TextEditingController(
+          text: (widget.data as ImageData).point.point.latitude.toString());
+      lgt_controller = TextEditingController(
+          text: (widget.data as ImageData).point.point.longitude.toString());
+      zInd_controller = TextEditingController(
+          text: (widget.data as ImageData).point.zInd.toString());
     } else if (widget.data is LineData) {
       lat_controller = TextEditingController(
           text: (widget.data as LineData).points[0].point.latitude.toString());
@@ -59,9 +69,23 @@ class _PropertiesDialogState extends State<PropertiesDialog> {
   Widget build(BuildContext context) {
     Widget dataSpecific;
     if (widget.data is PlacemarkData)
-      dataSpecific = PlacemarkLayer();
+      dataSpecific = PlacemarkLayer(widget.data, (value) {
+        (widget.data as PlacemarkData).iconSize = value;
+        setState(() {});
+      }, (value) {
+        (widget.data as PlacemarkData).iconColor = value;
+        setState(() {});
+      });
     else if (widget.data is LineData)
-      dataSpecific = LineDataLayer();
+      dataSpecific = LineDataLayer(widget.data, (value) {
+        (widget.data as LineData).width = value;
+        setState(() {});
+      }, (value) {
+        (widget.data as LineData).color = value;
+        setState(() {});
+      });
+    else if (widget.data is ImageData)
+      dataSpecific = ImageDataLayer((widget.data as ImageData).image);
     else
       dataSpecific = Container();
     return WillPopScope(
@@ -95,6 +119,22 @@ class _PropertiesDialogState extends State<PropertiesDialog> {
                     widget.data.id,
                     title_controller.text,
                     desc_controller.text);
+              (temp as PlacemarkData).iconColor =
+                  (widget.data as PlacemarkData).iconColor;
+              (temp as PlacemarkData).iconSize =
+                  (widget.data as PlacemarkData).iconSize;
+              if (widget.data is ImageData)
+                temp = ImageData(
+                    PointData(
+                      LatLng(double.tryParse(lat_controller.text),
+                          double.tryParse(lgt_controller.text)),
+                      double.tryParse(zInd_controller.text),
+                    ),
+                    widget.data.id,
+                    title_controller.text,
+                    desc_controller.text,
+                    (widget.data as ImageData).image,
+                    (widget.data as ImageData).thumbnail);
               else if (widget.data is LineData) {
                 temp.id = widget.data.id;
                 temp.title = title_controller.text;
@@ -119,10 +159,10 @@ class _PropertiesDialogState extends State<PropertiesDialog> {
               Padding(
                   padding: EdgeInsets.all(
                       8.0 + 8 * 0.5 * (SizeScaling.getWidthScaling() - 1))),
-              (widget.data is PlacemarkData)
-                  ? Container()
-                  : ChoiceChips(2, 0, (i, prev) => changeCoords(i, prev),
-                      ["Point 1", "Point 2"]),
+              (widget.data is LineData)
+                  ? ChoiceChips(2, 0, (i, prev) => changeCoords(i, prev),
+                      ["Point 1", "Point 2"])
+                  : Container(),
               CoordsLayer(lat_controller, lgt_controller, zInd_controller),
               Padding(
                   padding: EdgeInsets.all(
@@ -284,43 +324,146 @@ class CoordsLayer extends StatelessWidget {
 }
 
 class PlacemarkLayer extends StatelessWidget {
-  PlacemarkLayer();
+  final PlacemarkData data;
+  final Function onSizeChange;
+  final Function onColorChange;
+
+  PlacemarkLayer(this.data, this.onSizeChange, this.onColorChange);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: <Widget>[
-        Container(
-          width: 200,
-          child: Text('Icon Size'),
-        ),
-        Padding(padding: EdgeInsets.all(8.0)),
-        Container(
-          width: 200,
-          child: Text('Icon Color'),
-        ),
-      ],
+    return Container(
+      padding: EdgeInsets.all(8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text("Placemark size", style: Theme.of(context).textTheme.title),
+              DropdownButton<int>(
+                value: data.iconSize,
+                onChanged: (int value) => onSizeChange(value),
+                items: <int>[1, 2, 3, 4, 5]
+                    .map<DropdownMenuItem<int>>((int value) {
+                  return DropdownMenuItem<int>(
+                    value: value,
+                    child: Text(value.toString(),
+                        style: Theme.of(context).textTheme.title),
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
+          Padding(padding: EdgeInsets.all(16.0)),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text("Placemark color", style: Theme.of(context).textTheme.title),
+              DropdownButton<MarkerColors>(
+                value: (MarkerColors.values() as List<MarkerColors>)
+                    .firstWhere((val) => val.value == data.iconColor),
+                onChanged: (MarkerColors value) => onColorChange(value.value),
+                items: MarkerColors.values()
+                    .map<DropdownMenuItem<MarkerColors>>((MarkerColors value) {
+                  return DropdownMenuItem<MarkerColors>(
+                    value: value,
+                    child: Text(value.title,
+                        style: Theme.of(context).textTheme.title),
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
 
 class LineDataLayer extends StatelessWidget {
-  LineDataLayer();
+  final LineData data;
+  final Function onWidthChange;
+  final Function onColorChange;
+
+  LineDataLayer(this.data, this.onWidthChange, this.onColorChange);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+    return Container(
+      padding: EdgeInsets.all(8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text("Line width", style: Theme.of(context).textTheme.title),
+              DropdownButton<int>(
+                value: data.width,
+                onChanged: (int value) => onWidthChange(value),
+                items: <int>[2, 4, 6, 8, 10]
+                    .map<DropdownMenuItem<int>>((int value) {
+                  return DropdownMenuItem<int>(
+                    value: value,
+                    child: Text(value.toString(),
+                        style: Theme.of(context).textTheme.title),
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
+          Padding(padding: EdgeInsets.all(16.0)),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text("Line color", style: Theme.of(context).textTheme.title),
+              DropdownButton<LineColors>(
+                value: (LineColors.values() as List<LineColors>)
+                    .firstWhere((val) => val.value == data.color),
+                onChanged: (LineColors value) => onColorChange(value.value),
+                items: LineColors.values()
+                    .map<DropdownMenuItem<LineColors>>((LineColors value) {
+                  return DropdownMenuItem<LineColors>(
+                    value: value,
+                    child: Text(value.title,
+                        style: Theme.of(context).textTheme.title),
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ImageDataLayer extends StatelessWidget {
+  final List<int> image;
+
+  ImageDataLayer(this.image);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
+        Text("Image :", style: Theme.of(context).textTheme.title),
         Container(
-          width: 200,
-          child: Text('Width'),
-        ),
-        Padding(padding: EdgeInsets.all(8.0)),
-        Container(
-          width: 200,
-          child: Text('Icon Color'),
+          constraints: BoxConstraints(
+              maxHeight: 320.0 * SizeScaling.getWidthScaling(),
+              maxWidth: 400.0 * SizeScaling.getWidthScaling(),
+              minWidth: 200.0 * SizeScaling.getWidthScaling(),
+              minHeight: 160.0 * SizeScaling.getWidthScaling()),
+          child: Card(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(4),
+              child: Image.memory(image),
+            ),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+          ),
         ),
       ],
     );
