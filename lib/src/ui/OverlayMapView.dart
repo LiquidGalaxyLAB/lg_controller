@@ -10,6 +10,8 @@ import 'package:lg_controller/src/blocs/PointBloc.dart';
 import 'package:lg_controller/src/menu/OverlayMenu.dart';
 import 'package:lg_controller/src/models/KMLData.dart';
 import 'package:lg_controller/src/models/LineData.dart';
+import 'package:lg_controller/src/models/PointData.dart';
+import 'package:lg_controller/src/models/PolygonData.dart';
 import 'package:lg_controller/src/models/OverlayItem.dart';
 import 'package:lg_controller/src/models/PlacemarkData.dart';
 import 'package:lg_controller/src/models/ImageData.dart';
@@ -32,6 +34,9 @@ class OverlayMapView extends StatelessWidget {
 
   /// Polyline of the google map.
   Map<PolylineId, Polyline> lines = <PolylineId, Polyline>{};
+
+  /// Polygon of the google map.
+  Map<PolygonId, Polygon> polygons = <PolygonId, Polygon>{};
 
   /// Freeze state of the map.
   bool unfreeze = true;
@@ -58,9 +63,7 @@ class OverlayMapView extends StatelessWidget {
               builder: (BuildContext context, PointState state) {
                 if (state is CompletedState) {
                   BlocProvider.of<FreezeBloc>(context).dispatch(UNFREEZE(null));
-                }
-                else if (state is ProcessingState) {
-                  print((state.data as LineData).points[0].point);
+                } else if (state is ProcessingState) {
                   if (state.data is LineData) {
                     markers[MarkerId(state.data.id)] = new Marker(
                       onTap: () => {},
@@ -68,13 +71,33 @@ class OverlayMapView extends StatelessWidget {
                       markerId: MarkerId(state.data.id),
                       position: (state.data as LineData).points[0].point,
                       zIndex: 10,
-                      icon: BitmapDescriptor.fromAsset("image_assets/place.png"),
+                      icon:
+                          BitmapDescriptor.fromAsset("image_assets/place.png"),
                     );
+                  } else if (state.data is PolygonData) {
+                    for (PointData i in (state.data as PolygonData).points)
+                      markers[MarkerId(state.data.id +
+                          (state.data as PolygonData)
+                              .points
+                              .indexOf(i)
+                              .toString())] = new Marker(
+                        onTap: () => {},
+                        consumeTapEvents: true,
+                        markerId: MarkerId(state.data.id +
+                            (state.data as PolygonData)
+                                .points
+                                .indexOf(i)
+                                .toString()),
+                        position: i.point,
+                        zIndex: 10,
+                        icon: BitmapDescriptor.fromAsset(
+                            "image_assets/place.png"),
+                      );
                   }
-                }
-                else if (state is UninitializedState) {
+                } else if (state is UninitializedState) {
                   markers = <MarkerId, Marker>{};
                   lines = <PolylineId, Polyline>{};
+                  polygons = <PolygonId, Polygon>{};
                   for (var i in state.data) {
                     if (i is PlacemarkData) {
                       markers[MarkerId((i as PlacemarkData).id)] = new Marker(
@@ -136,8 +159,7 @@ class OverlayMapView extends StatelessWidget {
                         width: i.width,
                         color: Color(i.color),
                       );
-                    }
-                    else if (i is ImageData) {
+                    } else if (i is ImageData) {
                       markers[MarkerId((i as ImageData).id)] = new Marker(
                         onTap: () => showDialog(
                             context: context,
@@ -145,13 +167,13 @@ class OverlayMapView extends StatelessWidget {
                               return PropertiesDialog(
                                   i as ImageData, OverlayMenu.LINE, (data) {
                                 state.data.removeWhere((item) =>
-                                (item is ImageData && item.id == data.id));
+                                    (item is ImageData && item.id == data.id));
                                 state.data.add(data);
                                 BlocProvider.of<PointBloc>(context)
                                     .dispatch(MODIFY_EVENT());
                               }, (OverlayItem data) {
                                 state.data.removeWhere((item) =>
-                                (item is ImageData && item.id == data.id));
+                                    (item is ImageData && item.id == data.id));
                                 BlocProvider.of<PointBloc>(context)
                                     .dispatch(MODIFY_EVENT());
                               });
@@ -166,6 +188,36 @@ class OverlayMapView extends StatelessWidget {
                         zIndex: (i as ImageData).point.zInd,
                         icon: BitmapDescriptor.fromBytes(i.thumbnail),
                       );
+                    } else if (i is PolygonData && i.complete) {
+                      polygons[PolygonId((i as PolygonData).id)] = new Polygon(
+                        polygonId: PolygonId((i as PolygonData).id),
+                        onTap: () => showDialog(
+                            context: context,
+                            builder: (BuildContext context2) {
+                              return PropertiesDialog(
+                                  i as PolygonData, OverlayMenu.LINE, (data) {
+                                state.data.removeWhere((item) =>
+                                    (item is PolygonData &&
+                                        item.id == data.id));
+                                state.data.add(data);
+                                BlocProvider.of<PointBloc>(context)
+                                    .dispatch(MODIFY_EVENT());
+                              }, (OverlayItem data) {
+                                state.data.removeWhere((item) =>
+                                    (item is PolygonData &&
+                                        item.id == data.id));
+                                BlocProvider.of<PointBloc>(context)
+                                    .dispatch(MODIFY_EVENT());
+                              });
+                            }),
+                        consumeTapEvents: true,
+                        points: List<LatLng>.generate(
+                            i.vertices, (j) => i.points[j].point),
+                        zIndex: i.points[0].zInd.toInt(),
+                        strokeColor: Color(i.strokeColor),
+                        strokeWidth: i.width,
+                        fillColor: Color(i.color),
+                      );
                     }
                   }
                 }
@@ -175,14 +227,14 @@ class OverlayMapView extends StatelessWidget {
                   tiltGesturesEnabled: unfreeze,
                   zoomGesturesEnabled: unfreeze,
                   onTap: (point) => sendPoint(context, point),
-                  onMapCreated: (controller) =>
-                      this._controller = controller,
+                  onMapCreated: (controller) => this._controller = controller,
                   onCameraMove: (cameraPosition) =>
                       this.current = cameraPosition,
                   onCameraIdle: () => changePosition(context),
                   mapType: MapType.satellite,
                   markers: Set<Marker>.of(markers.values),
                   polylines: Set<Polyline>.of(lines.values),
+                  polygons: Set<Polygon>.of(polygons.values),
                   initialCameraPosition: CameraPosition(
                     target: LatLng(0.0, 0.0),
                     bearing: 0.0,
@@ -212,18 +264,22 @@ class OverlayMapView extends StatelessWidget {
   sendPoint(context, LatLng point) {
     BlocProvider.of<PointBloc>(context).dispatch(TAP_EVENT(point, menu));
   }
-  getInitialData() async{
-    String defData = (await SharedPreferences.getInstance()).getString('defaultData');
+
+  getInitialData() async {
+    String defData =
+        (await SharedPreferences.getInstance()).getString('defaultData');
     await Future.delayed(Duration(seconds: 1));
-    if (defData != null && _controller!=null) {
+    if (defData != null && _controller != null) {
       KMLData initialData = KMLData.fromJson(jsonDecode(defData));
-      _controller.animateCamera(CameraUpdate.newCameraPosition(
-        CameraPosition(
-            target: LatLng(initialData.latitude, initialData.longitude),
-            zoom: initialData.zoom,
-            tilt: initialData.tilt,
-            bearing: initialData.bearing),
-      ),);
+      _controller.animateCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(
+              target: LatLng(initialData.latitude, initialData.longitude),
+              zoom: initialData.zoom,
+              tilt: initialData.tilt,
+              bearing: initialData.bearing),
+        ),
+      );
     }
   }
 }

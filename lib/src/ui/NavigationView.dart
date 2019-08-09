@@ -9,13 +9,14 @@ import 'package:lg_controller/src/models/LineData.dart';
 import 'package:lg_controller/src/models/OverlayData.dart';
 import 'package:lg_controller/src/models/OverlayItem.dart';
 import 'package:lg_controller/src/models/PlacemarkData.dart';
+import 'package:lg_controller/src/models/PolygonData.dart';
+import 'package:lg_controller/src/models/ImageData.dart';
 import 'package:lg_controller/src/osc/ModuleType.dart';
 import 'package:lg_controller/src/osc/OSCActions.dart';
 import 'package:lg_controller/src/utils/SizeScaling.dart';
 
 /// Navigation view (Google map view) for home screen.
 class NavigationView extends StatelessWidget {
-  
   /// Controller for google map.
   GoogleMapController controller;
 
@@ -30,6 +31,7 @@ class NavigationView extends StatelessWidget {
   Widget build(BuildContext context) {
     Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
     Map<PolylineId, Polyline> lines = <PolylineId, Polyline>{};
+    Map<PolygonId, Polygon> polygons = <PolygonId, Polygon>{};
     if (initialData == null) {
       initialData = new KMLData(
           title: "Default",
@@ -42,27 +44,52 @@ class NavigationView extends StatelessWidget {
       getInitialData();
       markers.clear();
     } else if (initialData is OverlayData) {
-      for (OverlayItem i in (initialData as OverlayData).itemData) {
-        if (i is PlacemarkData) {
-          markers[MarkerId(i.id)] = new Marker(
-            markerId: MarkerId(i.id),
-            position: (i as PlacemarkData).point.point,
-            infoWindow: InfoWindow(
-              title: (i as PlacemarkData).title,
-              snippet: (i as PlacemarkData).desc,
-            ),
-            zIndex: (i as PlacemarkData).point.zInd,
-            icon: BitmapDescriptor.defaultMarkerWithHue(
-                (i as PlacemarkData).iconColor.toDouble()),
-          );
-        } else if (i is LineData) {
-          lines[PolylineId((i as LineData).id)] = new Polyline(
-            polylineId: PolylineId((i as LineData).id),
-            points: List<LatLng>.generate(2, (j) => i.points[j].point),
-            zIndex: i.points[0].zInd.toInt(),
-            width: i.width,
-            color: Color(i.color),
-          );
+      if ((initialData as OverlayData).itemData != null) {
+        for (OverlayItem i in (initialData as OverlayData).itemData) {
+          if (i is PlacemarkData) {
+            markers[MarkerId(i.id)] = new Marker(
+              markerId: MarkerId(i.id),
+              position: (i as PlacemarkData).point.point,
+              infoWindow: InfoWindow(
+                title: (i as PlacemarkData).title,
+                snippet: (i as PlacemarkData).desc,
+              ),
+              zIndex: (i as PlacemarkData).point.zInd,
+              icon: BitmapDescriptor.defaultMarkerWithHue(
+                  (i as PlacemarkData).iconColor.toDouble()),
+            );
+          } else if (i is LineData) {
+            lines[PolylineId((i as LineData).id)] = new Polyline(
+              polylineId: PolylineId((i as LineData).id),
+              points: List<LatLng>.generate(2, (j) => i.points[j].point),
+              zIndex: i.points[0].zInd.toInt(),
+              width: i.width,
+              color: Color(i.color),
+            );
+          } else if (i is ImageData) {
+            markers[MarkerId((i as ImageData).id)] = new Marker(
+              markerId: MarkerId((i as ImageData).id),
+              position: (i as ImageData).point.point,
+              infoWindow: InfoWindow(
+                title: (i as ImageData).title,
+                snippet: (i as ImageData).desc,
+              ),
+              zIndex: (i as ImageData).point.zInd,
+              icon: (i.thumbnail != null)
+                  ? BitmapDescriptor.defaultMarker
+                  : BitmapDescriptor.fromBytes(i.thumbnail),
+            );
+          } else if (i is PolygonData) {
+            polygons[PolygonId((i as PolygonData).id)] = new Polygon(
+              polygonId: PolygonId((i as PolygonData).id),
+              points: List<LatLng>.generate((i as PolygonData).vertices,
+                  (j) => (i as PolygonData).points[j].point),
+              zIndex: (i as PolygonData).points[0].zInd.toInt(),
+              strokeColor: Color((i as PolygonData).strokeColor),
+              strokeWidth: (i as PolygonData).width,
+              fillColor: Color((i as PolygonData).color),
+            );
+          }
         }
       }
     } else {
@@ -95,13 +122,14 @@ class NavigationView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4),
                     child: GoogleMap(
                       onMapCreated: (controller) =>
-                          this.controller=controller,
+                          this.controller = controller,
                       onCameraMove: (cameraPosition) =>
                           this.current = cameraPosition,
                       onCameraIdle: () => changePosition(),
                       mapType: MapType.satellite,
                       markers: Set<Marker>.of(markers.values),
                       polylines: Set<Polyline>.of(lines.values),
+                      polygons: Set<Polygon>.of(polygons.values),
                       initialCameraPosition: CameraPosition(
                         target:
                             LatLng(initialData.getLat(), initialData.getLgt()),
@@ -136,18 +164,22 @@ class NavigationView extends StatelessWidget {
         tilt: current.tilt);
     OSCActions().sendModule(ModuleType.GESTURE, jsonEncode(data));
   }
-  getInitialData() async{
-    String defData = (await SharedPreferences.getInstance()).getString('defaultData');
+
+  getInitialData() async {
+    String defData =
+        (await SharedPreferences.getInstance()).getString('defaultData');
     await Future.delayed(Duration(seconds: 1));
-    if (defData != null && controller!=null) {
+    if (defData != null && controller != null) {
       initialData = KMLData.fromJson(jsonDecode(defData));
-      controller.animateCamera(CameraUpdate.newCameraPosition(
-        CameraPosition(
-            target: LatLng(initialData.latitude, initialData.longitude),
-            zoom: initialData.zoom,
-        tilt: initialData.tilt,
-        bearing: initialData.bearing),
-      ),);
+      controller.animateCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(
+              target: LatLng(initialData.latitude, initialData.longitude),
+              zoom: initialData.zoom,
+              tilt: initialData.tilt,
+              bearing: initialData.bearing),
+        ),
+      );
     }
   }
 }
