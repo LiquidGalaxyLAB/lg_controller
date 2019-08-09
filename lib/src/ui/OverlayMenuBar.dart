@@ -8,6 +8,7 @@ import 'package:lg_controller/src/models/OverlayData.dart';
 import 'package:lg_controller/src/resources/SQLDatabase.dart';
 import 'package:lg_controller/src/states_events/OverlayActions.dart';
 import 'package:lg_controller/src/states_events/PointActions.dart';
+import 'package:lg_controller/src/ui/AttributeDialog.dart';
 import 'package:lg_controller/src/utils/SizeScaling.dart';
 import 'package:toast/toast.dart';
 
@@ -51,16 +52,30 @@ class OverlayMenuBar extends StatelessWidget {
       list.add(
         Expanded(
           flex: 10,
-          child: GestureDetector(
-            onLongPress: () => {},
-            child: IconButton(
-              iconSize: 24 + 24 * 0.5 * (SizeScaling.getWidthScaling() - 1),
-              key: Key('OverlayMenu_items_' + ic.title),
-              icon: ic.icon,
-              color: (selected == ic) ? Colors.teal : Colors.black54,
-              onPressed: () => iconSelected(ic, context),
-            ),
-          ),
+          child: (ic == OverlayMenu.POLYGON)
+              ? GestureDetector(
+                  onLongPress: () => showDialog(
+                      context: context,
+                      builder: (BuildContext context2) {
+                        return AttributeDialog();
+                      }),
+                  child: IconButton(
+                    iconSize:
+                        24 + 24 * 0.5 * (SizeScaling.getWidthScaling() - 1),
+                    key: Key('OverlayMenu_items_' + ic.title),
+                    icon: ic.icon,
+                    color: (selected == ic) ? Colors.teal : Colors.black54,
+                    onPressed: () => iconSelected(ic, context),
+                  ),
+                )
+              : IconButton(
+                  iconSize: 24 + 24 * 0.5 * (SizeScaling.getWidthScaling() - 1),
+                  key: Key('OverlayMenu_items_' + ic.title),
+                  icon: ic.icon,
+                  color: (selected == ic) ? Colors.teal : Colors.black54,
+                  onPressed: () => iconSelected(ic, context),
+                  tooltip: ic.title,
+                ),
         ),
       );
 
