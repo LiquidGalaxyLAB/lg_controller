@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:lg_controller/src/models/LineData.dart';
+import 'package:lg_controller/src/models/imageData.dart';
+import 'package:lg_controller/src/models/PolygonData.dart';
 import 'package:lg_controller/src/models/PlacemarkData.dart';
 
 /// Overlay feature data model class.
@@ -24,6 +26,10 @@ abstract class OverlayItem extends Equatable {
       return PlacemarkData.fromJson(json);
     else if ((json['type'] as String).compareTo('Line') == 0)
       return LineData.fromJson(json);
+    else if ((json['type'] as String).compareTo('Image') == 0)
+      return ImageData.fromJson(json);
+    else if ((json['type'] as String).compareTo('Polygon') == 0)
+      return PolygonData.fromJson(json);
     return null;
   }
 }

@@ -44,7 +44,6 @@ class OverlayData extends KMLData {
 
   /// Create [OverlayData] instance from JSON map.
   OverlayData.fromJson(Map<String, dynamic> json) {
-    print('lk');
     this.title = json['title'];
     this.desc = json['desc'];
     this.latitude = json['latitude'];

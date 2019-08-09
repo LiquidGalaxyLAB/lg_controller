@@ -18,7 +18,7 @@ class PolygonData extends OverlayItem {
   bool complete = false;
 
   /// Color of the stroke.
-  int strokeColor = 0xFF00FF00;
+  int strokeColor = 0xFF0000FF;
 
   PolygonData(id, title, desc, this.vertices)
       : super(id: id, title: title, desc: desc);
@@ -31,20 +31,20 @@ class PolygonData extends OverlayItem {
       } catch (e) {
         print(e);
       }
-    else
-      complete = true;
+    if (points.length == vertices) complete = true;
   }
 
   /// Convert [PolygonData] instance to JSON map.
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'type': 'Line',
+      'type': 'Polygon',
       'points': points,
       'title': title,
       'desc': desc,
       'width': width,
       'color': color,
+      'vertices': vertices,
       'strokeColor': strokeColor,
     };
   }
@@ -58,6 +58,7 @@ class PolygonData extends OverlayItem {
     this.desc = json['desc'];
     this.width = json['width'];
     this.color = json['color'];
+    this.vertices = json['vertices'];
     this.strokeColor = json['strokeColor'];
   }
 

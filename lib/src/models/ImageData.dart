@@ -18,7 +18,7 @@ class ImageData extends OverlayItem {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'type': 'Placemark',
+      'type': 'Image',
       'point': point,
       'title': title,
       'desc': desc,
@@ -33,8 +33,8 @@ class ImageData extends OverlayItem {
     this.point = PointData.fromJson(json['point']);
     this.title = json['title'];
     this.desc = json['desc'];
-    this.image = json['image'];
-    this.thumbnail = json['thumbnail'];
+    this.image = null;
+    this.thumbnail = null;
   }
 
   /// Give JSON map as string in toString override.
