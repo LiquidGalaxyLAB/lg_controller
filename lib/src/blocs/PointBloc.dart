@@ -83,6 +83,7 @@ class PointBloc extends Bloc<PointEvent, PointState> {
           (temp as PolygonData).setPoint(
             PointData(event.point, 0),
           );
+          yield UninitializedState(data);
           yield ProcessingState(temp);
         }
         if((temp as PolygonData).complete) {
