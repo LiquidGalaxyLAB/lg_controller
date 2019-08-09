@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lg_controller/src/menu/OverlayMenu.dart';
 import 'package:lg_controller/src/models/LineData.dart';
+import 'package:lg_controller/src/models/PolygonData.dart';
 import 'package:lg_controller/src/models/OverlayItem.dart';
 import 'package:lg_controller/src/models/PlacemarkData.dart';
 import 'package:lg_controller/src/models/ImageData.dart';
@@ -61,6 +62,18 @@ class _PropertiesDialogState extends State<PropertiesDialog> {
           text: (widget.data as LineData).points[0].point.longitude.toString());
       zInd_controller = TextEditingController(
           text: (widget.data as LineData).points[0].zInd.toString());
+    } else if (widget.data is PolygonData) {
+      lat_controller = TextEditingController(
+          text:
+              (widget.data as PolygonData).points[0].point.latitude.toString());
+      lgt_controller = TextEditingController(
+          text: (widget.data as PolygonData)
+              .points[0]
+              .point
+              .longitude
+              .toString());
+      zInd_controller = TextEditingController(
+          text: (widget.data as PolygonData).points[0].zInd.toString());
     }
     super.initState();
   }
@@ -86,6 +99,17 @@ class _PropertiesDialogState extends State<PropertiesDialog> {
       });
     else if (widget.data is ImageData)
       dataSpecific = ImageDataLayer((widget.data as ImageData).image);
+    else if (widget.data is PolygonData)
+      dataSpecific = PolygonDataLayer(widget.data, (value) {
+        (widget.data as PolygonData).width = value;
+        setState(() {});
+      }, (value) {
+        (widget.data as PolygonData).color = value;
+        setState(() {});
+      }, (value) {
+        (widget.data as PolygonData).strokeColor = value;
+        setState(() {});
+      });
     else
       dataSpecific = Container();
     return WillPopScope(
@@ -109,7 +133,7 @@ class _PropertiesDialogState extends State<PropertiesDialog> {
           ),
           FlatButton(
             onPressed: () {
-              if (widget.data is PlacemarkData)
+              if (widget.data is PlacemarkData) {
                 temp = PlacemarkData(
                     PointData(
                       LatLng(double.tryParse(lat_controller.text),
@@ -119,11 +143,11 @@ class _PropertiesDialogState extends State<PropertiesDialog> {
                     widget.data.id,
                     title_controller.text,
                     desc_controller.text);
-              (temp as PlacemarkData).iconColor =
-                  (widget.data as PlacemarkData).iconColor;
-              (temp as PlacemarkData).iconSize =
-                  (widget.data as PlacemarkData).iconSize;
-              if (widget.data is ImageData)
+                (temp as PlacemarkData).iconColor =
+                    (widget.data as PlacemarkData).iconColor;
+                (temp as PlacemarkData).iconSize =
+                    (widget.data as PlacemarkData).iconSize;
+              } else if (widget.data is ImageData)
                 temp = ImageData(
                     PointData(
                       LatLng(double.tryParse(lat_controller.text),
@@ -140,6 +164,15 @@ class _PropertiesDialogState extends State<PropertiesDialog> {
                 temp.title = title_controller.text;
                 temp.desc = desc_controller.text;
                 (temp as LineData).points[selected] = PointData(
+                  LatLng(double.tryParse(lat_controller.text),
+                      double.tryParse(lgt_controller.text)),
+                  double.tryParse(zInd_controller.text),
+                );
+              } else if (widget.data is PolygonData) {
+                temp.id = widget.data.id;
+                temp.title = title_controller.text;
+                temp.desc = desc_controller.text;
+                (temp as PolygonData).points[selected] = PointData(
                   LatLng(double.tryParse(lat_controller.text),
                       double.tryParse(lgt_controller.text)),
                   double.tryParse(zInd_controller.text),
@@ -163,6 +196,14 @@ class _PropertiesDialogState extends State<PropertiesDialog> {
                   ? ChoiceChips(2, 0, (i, prev) => changeCoords(i, prev),
                       ["Point 1", "Point 2"])
                   : Container(),
+              (widget.data is PolygonData)
+                  ? ChoiceChips(
+                      (widget.data as PolygonData).vertices,
+                      0,
+                      (i, prev) => changeCoords(i, prev),
+                      List.generate((widget.data as PolygonData).vertices,
+                          (i) => "Point " + i.toString()))
+                  : Container(),
               CoordsLayer(lat_controller, lgt_controller, zInd_controller),
               Padding(
                   padding: EdgeInsets.all(
@@ -177,11 +218,18 @@ class _PropertiesDialogState extends State<PropertiesDialog> {
 
   changeCoords(int i, int prev) {
     selected = i;
-    (temp as LineData).points[prev] = PointData(
-      LatLng(double.tryParse(lat_controller.text),
-          double.tryParse(lgt_controller.text)),
-      double.tryParse(zInd_controller.text),
-    );
+    if (widget.data is LineData)
+      (temp as LineData).points[prev] = PointData(
+        LatLng(double.tryParse(lat_controller.text),
+            double.tryParse(lgt_controller.text)),
+        double.tryParse(zInd_controller.text),
+      );
+    else if (widget.data is PolygonData)
+      (temp as PolygonData).points[prev] = PointData(
+        LatLng(double.tryParse(lat_controller.text),
+            double.tryParse(lgt_controller.text)),
+        double.tryParse(zInd_controller.text),
+      );
     setState(() {
       if (widget.data is LineData) {
         lat_controller = TextEditingController(
@@ -192,6 +240,21 @@ class _PropertiesDialogState extends State<PropertiesDialog> {
                 (widget.data as LineData).points[i].point.longitude.toString());
         zInd_controller = TextEditingController(
             text: (widget.data as LineData).points[i].zInd.toString());
+      } else if (widget.data is PolygonData) {
+        lat_controller = TextEditingController(
+            text: (widget.data as PolygonData)
+                .points[i]
+                .point
+                .latitude
+                .toString());
+        lgt_controller = TextEditingController(
+            text: (widget.data as PolygonData)
+                .points[i]
+                .point
+                .longitude
+                .toString());
+        zInd_controller = TextEditingController(
+            text: (widget.data as PolygonData).points[i].zInd.toString());
       }
     });
   }
@@ -422,6 +485,87 @@ class LineDataLayer extends StatelessWidget {
                 value: (LineColors.values() as List<LineColors>)
                     .firstWhere((val) => val.value == data.color),
                 onChanged: (LineColors value) => onColorChange(value.value),
+                items: LineColors.values()
+                    .map<DropdownMenuItem<LineColors>>((LineColors value) {
+                  return DropdownMenuItem<LineColors>(
+                    value: value,
+                    child: Text(value.title,
+                        style: Theme.of(context).textTheme.title),
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class PolygonDataLayer extends StatelessWidget {
+  final PolygonData data;
+  final Function onWidthChange;
+  final Function onColorChange;
+  final Function onStrokeColorChange;
+
+  PolygonDataLayer(this.data, this.onWidthChange, this.onColorChange,
+      this.onStrokeColorChange);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text("Stroke width", style: Theme.of(context).textTheme.title),
+              DropdownButton<int>(
+                value: data.width,
+                onChanged: (int value) => onWidthChange(value),
+                items: <int>[2, 4, 6, 8, 10]
+                    .map<DropdownMenuItem<int>>((int value) {
+                  return DropdownMenuItem<int>(
+                    value: value,
+                    child: Text(value.toString(),
+                        style: Theme.of(context).textTheme.title),
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
+          Padding(padding: EdgeInsets.all(16.0)),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text("Polygon color", style: Theme.of(context).textTheme.title),
+              DropdownButton<LineColors>(
+                value: (LineColors.values() as List<LineColors>)
+                    .firstWhere((val) => val.value == data.color),
+                onChanged: (LineColors value) => onColorChange(value.value),
+                items: LineColors.values()
+                    .map<DropdownMenuItem<LineColors>>((LineColors value) {
+                  return DropdownMenuItem<LineColors>(
+                    value: value,
+                    child: Text(value.title,
+                        style: Theme.of(context).textTheme.title),
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
+          Padding(padding: EdgeInsets.all(16.0)),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text("Stroke color", style: Theme.of(context).textTheme.title),
+              DropdownButton<LineColors>(
+                value: (LineColors.values() as List<LineColors>)
+                    .firstWhere((val) => val.value == data.strokeColor),
+                onChanged: (LineColors value) =>
+                    onStrokeColorChange(value.value),
                 items: LineColors.values()
                     .map<DropdownMenuItem<LineColors>>((LineColors value) {
                   return DropdownMenuItem<LineColors>(
