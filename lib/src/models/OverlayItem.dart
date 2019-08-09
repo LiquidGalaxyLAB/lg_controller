@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:lg_controller/src/models/LineData.dart';
-import 'package:lg_controller/src/models/imageData.dart';
+import 'package:lg_controller/src/models/ImageData.dart';
 import 'package:lg_controller/src/models/PolygonData.dart';
 import 'package:lg_controller/src/models/PlacemarkData.dart';
 
