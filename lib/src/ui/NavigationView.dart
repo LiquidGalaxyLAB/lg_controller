@@ -75,7 +75,7 @@ class NavigationView extends StatelessWidget {
                 snippet: (i as ImageData).desc,
               ),
               zIndex: (i as ImageData).point.zInd,
-              icon: (i.thumbnail != null)
+              icon: (i.thumbnail == null)
                   ? BitmapDescriptor.defaultMarker
                   : BitmapDescriptor.fromBytes(i.thumbnail),
             );
