@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -235,6 +237,12 @@ class OverlayMapView extends StatelessWidget {
                   markers: Set<Marker>.of(markers.values),
                   polylines: Set<Polyline>.of(lines.values),
                   polygons: Set<Polygon>.of(polygons.values),
+                  gestureRecognizers:
+                  <Factory<OneSequenceGestureRecognizer>>[
+                    new Factory<OneSequenceGestureRecognizer>(
+                          () => new EagerGestureRecognizer(),
+                    ),
+                  ].toSet(),
                   initialCameraPosition: CameraPosition(
                     target: LatLng(0.0, 0.0),
                     bearing: 0.0,
