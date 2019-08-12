@@ -11,6 +11,7 @@ import 'package:lg_controller/src/osc/OSCActions.dart';
 import 'package:lg_controller/src/utils/Images.dart';
 import 'package:lg_controller/src/utils/SizeScaling.dart';
 
+/// Gesture slide for Guide screen.
 class GuideGesture extends StatefulWidget {
   GuideGesture();
 

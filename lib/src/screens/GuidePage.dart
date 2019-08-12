@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lg_controller/src/blocs/FreezeBloc.dart';
+import 'package:lg_controller/src/blocs/PointBloc.dart';
 import 'package:lg_controller/src/menu/MainMenu.dart';
 import 'package:lg_controller/src/ui/CardSlider.dart';
 import 'package:lg_controller/src/ui/GuideGesture.dart';
+import 'package:lg_controller/src/ui/GuidePlacemark.dart';
 import 'package:lg_controller/src/ui/ScreenBackground.dart';
 import 'package:lg_controller/src/ui/TitleBar.dart';
 import 'package:lg_controller/src/utils/SizeScaling.dart';
@@ -18,6 +22,8 @@ class GuidePage extends StatefulWidget {
 class _GuidePageState extends State<GuidePage> {
   @override
   Widget build(BuildContext context) {
+    PointBloc pBloc = PointBloc();
+    FreezeBloc fBloc = FreezeBloc(pBloc);
     return WillPopScope(
       onWillPop: () => SystemNavigator.pop(),
       child: Scaffold(
@@ -37,13 +43,12 @@ class _GuidePageState extends State<GuidePage> {
                     child: Center(
                         child: CardSlider([
                       GuideGesture(),
-                      Card(
-                        margin: const EdgeInsets.all(8.0),
-                        color: Colors.white70,
-                      ),
-                      Card(
-                        margin: const EdgeInsets.all(8.0),
-                        color: Colors.white70,
+                          BlocProviderTree(
+                              blocProviders: [
+                                BlocProvider<FreezeBloc>(bloc: fBloc),
+                                BlocProvider<PointBloc>(bloc: pBloc),
+                              ],
+                              child: GuidePlacemark(),
                       ),
                     ]) //Text("guide"),
                         ),
