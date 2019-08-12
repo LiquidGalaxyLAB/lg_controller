@@ -20,7 +20,7 @@ class _OSCDialogState extends State<OSCDialog> {
   final FocusNode id_node = FocusNode();
   final TextEditingController ip_controller = TextEditingController();
   final TextEditingController soc_controller =
-      TextEditingController(text: '3000');
+      TextEditingController(text: '8113');
   final TextEditingController id_controller = TextEditingController();
 
   /// To show loading of the dialog.

@@ -5,20 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f90faa16-3cf3-4cd4-9e10-6e2ed817952b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/src/ui/GuidePlacemark.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/kotlin/com/liquidgalaxy/lg_controller/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/kotlin/com/liquidgalaxy/lg_controller/MainActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/screens/GuidePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/screens/GuidePage.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/ui/HomeContent.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/HomeContent.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/ui/NavigationView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/NavigationView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/ui/OSCDialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/OSCDialog.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/ui/OverlayMapView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/ui/OverlayMapView.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -35,11 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="16" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+            <state relative-caret-position="204">
+              <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -56,8 +54,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="26" column="6" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
+            <state relative-caret-position="272">
+              <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/src/ui/GuidePlacemark.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="79" column="45" selection-start-line="79" selection-start-column="45" selection-end-line="79" selection-end-column="45" />
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -73,8 +83,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>nav</find>
-      <find>gener</find>
       <find>file</find>
       <find>prin</find>
       <find>here</find>
@@ -102,6 +110,8 @@
       <find>onrec</find>
       <find>QRS</find>
       <find>pr</find>
+      <find>3000</find>
+      <find>4</find>
       <find>print</find>
     </findStrings>
   </component>
@@ -119,7 +129,6 @@
         <option value="$PROJECT_DIR$/lib/src/models/POIData.dart" />
         <option value="$PROJECT_DIR$/lib/src/models/KMLData.dart" />
         <option value="$PROJECT_DIR$/lib/src/resources/SQLDatabase.dart" />
-        <option value="$PROJECT_DIR$/lib/src/screens/OverlayPage.dart" />
         <option value="$PROJECT_DIR$/lib/src/screens/ProfilePage.dart" />
         <option value="$PROJECT_DIR$/lib/src/screens/SettingsPage.dart" />
         <option value="$PROJECT_DIR$/lib/src/ui/HomeContent.dart" />
@@ -132,7 +141,6 @@
         <option value="$PROJECT_DIR$/test/widget_tests/KMLModuleView_test.dart" />
         <option value="$PROJECT_DIR$/test/widget_tests/KMLDataView_test.dart" />
         <option value="$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart" />
-        <option value="$PROJECT_DIR$/lib/src/ui/OSCDialog.dart" />
         <option value="$PROJECT_DIR$/android/build.gradle" />
         <option value="$PROJECT_DIR$/android/app/build.gradle" />
         <option value="$PROJECT_DIR$/lib/src/osc/ModuleType.dart" />
@@ -147,21 +155,23 @@
         <option value="$PROJECT_DIR$/lib/src/osc/OSCActions.dart" />
         <option value="$PROJECT_DIR$/lib/src/osc/OSCReceiver.dart" />
         <option value="$PROJECT_DIR$/lib/src/osc/OSCMessage.dart" />
-        <option value="$PROJECT_DIR$/lib/src/blocs/PointBloc.dart" />
         <option value="$PROJECT_DIR$/lib/src/models/PlacemarkData.dart" />
         <option value="$PROJECT_DIR$/lib/src/models/PolygonData.dart" />
         <option value="$PROJECT_DIR$/lib/src/ui/AttributeDialog.dart" />
-        <option value="$PROJECT_DIR$/lib/src/ui/OverlayMapView.dart" />
         <option value="$PROJECT_DIR$/lib/src/ui/OverlayMenuBar.dart" />
         <option value="$PROJECT_DIR$/lib/src/ui/PropertiesDialog.dart" />
         <option value="$PROJECT_DIR$/lib/src/models/OverlayData.dart" />
         <option value="$PROJECT_DIR$/lib/src/models/OverlayItem.dart" />
-        <option value="$PROJECT_DIR$/lib/src/ui/GuidePlacemark.dart" />
-        <option value="$PROJECT_DIR$/lib/src/screens/GuidePage.dart" />
         <option value="$PROJECT_DIR$/lib/src/ui/NavigationView.dart" />
         <option value="$PROJECT_DIR$/lib/src/models/ImageData.dart" />
         <option value="$PROJECT_DIR$/android/app/src/main/kotlin/com/liquidgalaxy/lg_controller/MainActivity.kt" />
         <option value="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/lib/src/screens/OverlayPage.dart" />
+        <option value="$PROJECT_DIR$/lib/src/ui/OverlayMapView.dart" />
+        <option value="$PROJECT_DIR$/lib/src/ui/OSCDialog.dart" />
+        <option value="$PROJECT_DIR$/lib/src/screens/GuidePage.dart" />
+        <option value="$PROJECT_DIR$/lib/src/blocs/PointBloc.dart" />
+        <option value="$PROJECT_DIR$/lib/src/ui/GuidePlacemark.dart" />
       </list>
     </option>
   </component>
@@ -313,8 +323,40 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
-    <editor active="true" />
     <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49682876" visible="true" weight="0.17651007" />
+      <window_info id="Captures" order="1" side_tool="true" />
+      <window_info id="Structure" order="2" sideWeight="0.5010571" side_tool="true" weight="0.21677852" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Designer" order="4" />
+      <window_info id="Build Variants" order="5" sideWeight="0.50317127" side_tool="true" weight="0.17449665" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="Favorites" order="7" sideWeight="0.5010571" side_tool="true" weight="0.21677852" />
+      <window_info id="Resources Explorer" order="8" />
+      <window_info anchor="bottom" id="Dart Analysis" order="0" weight="0.32907802" />
+      <window_info anchor="bottom" id="Run" order="1" sideWeight="0.49932885" visible="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="TODO" order="2" weight="0.32907802" />
+      <window_info anchor="bottom" id="Android Profiler" order="3" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Logcat" order="4" weight="0.32907802" />
+      <window_info anchor="bottom" id="Debug" order="5" weight="0.3286119" />
+      <window_info anchor="bottom" id="Terminal" order="6" weight="0.3286119" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50067115" side_tool="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Flutter Performance" order="8" sideWeight="0.50067115" side_tool="true" weight="0.32907802" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Find" order="10" weight="0.32907802" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.3286119" />
+      <window_info anchor="bottom" id="Inspection Results" order="12" weight="0.32907802" />
+      <window_info anchor="bottom" id="Dependency Viewer" order="13" weight="0.32907802" />
+      <window_info anchor="right" id="Capture Analysis" order="0" />
+      <window_info anchor="right" id="Theme Preview" order="1" />
+      <window_info anchor="right" id="Preview" order="2" weight="0.3295302" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Device File Explorer" order="4" side_tool="true" weight="0.3295302" />
+      <window_info anchor="right" id="Flutter Inspector" order="5" weight="0.3295302" />
+      <window_info anchor="right" id="Flutter Outline" order="6" weight="0.23154363" />
+      <window_info anchor="right" id="Assistant" order="7" weight="0.3295302" />
+    </layout>
+    <layout-to-restore>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49682876" visible="true" weight="0.17651007" />
       <window_info id="Captures" order="1" side_tool="true" />
       <window_info id="Structure" order="2" sideWeight="0.5010571" side_tool="true" weight="0.21677852" />
@@ -346,58 +388,13 @@
       <window_info anchor="right" id="Flutter Inspector" order="5" weight="0.3295302" />
       <window_info anchor="right" id="Flutter Outline" order="6" weight="0.23154363" />
       <window_info anchor="right" id="Assistant" order="7" weight="0.3295302" />
-    </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989429" visible="true" weight="0.17449665" />
-      <window_info id="Captures" order="1" side_tool="true" />
-      <window_info id="Structure" order="2" sideWeight="0.5010571" side_tool="true" weight="0.21677852" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="Designer" order="4" />
-      <window_info id="Build Variants" order="5" side_tool="true" />
-      <window_info id="Capture Tool" order="6" />
-      <window_info id="Favorites" order="7" sideWeight="0.5010571" side_tool="true" weight="0.21677852" />
-      <window_info anchor="bottom" id="Dart Analysis" order="0" weight="0.32907802" />
-      <window_info anchor="bottom" id="Run" order="1" sideWeight="0.49932885" visible="true" weight="0.32907802" />
-      <window_info anchor="bottom" id="TODO" order="2" weight="0.32907802" />
-      <window_info anchor="bottom" id="Android Profiler" order="3" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Logcat" order="4" weight="0.32907802" />
-      <window_info anchor="bottom" id="Debug" order="5" weight="0.32907802" />
-      <window_info anchor="bottom" id="Terminal" order="6" weight="0.32907802" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50067115" side_tool="true" weight="0.32907802" />
-      <window_info anchor="bottom" id="Flutter Performance" order="8" sideWeight="0.50067115" side_tool="true" weight="0.32907802" />
-      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Find" order="10" weight="0.32907802" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.32907802" />
-      <window_info anchor="bottom" id="Inspection Results" order="12" weight="0.32907802" />
-      <window_info anchor="bottom" id="Dependency Viewer" order="13" weight="0.32907802" />
-      <window_info anchor="right" id="Capture Analysis" order="0" />
-      <window_info anchor="right" id="Theme Preview" order="1" />
-      <window_info anchor="right" id="Flutter Inspector" order="2" />
-      <window_info anchor="right" id="Preview" order="3" weight="0.3295302" />
-      <window_info anchor="right" id="Palette&#9;" order="4" />
-      <window_info anchor="right" id="Device File Explorer" order="5" side_tool="true" weight="0.3295302" />
-      <window_info anchor="right" id="Flutter Outline" order="6" weight="0.23154363" />
     </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/src/models/KMLData.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="42" column="14" lean-forward="true" selection-start-line="42" selection-start-column="14" selection-end-line="42" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/models/PointData.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/blocs/FreezeBloc.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="30" column="28" lean-forward="true" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -437,16 +434,6 @@
           <caret line="52" column="46" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/osc/OSCActions.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -505,16 +492,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/blocs/PointBloc.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="16" column="52" lean-forward="true" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/models/PolygonData.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="173">
@@ -539,26 +516,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="143">
           <caret line="57" column="22" lean-forward="true" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/ui/OverlayMapView.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="128" column="61" selection-start-line="128" selection-start-column="61" selection-end-line="128" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/ui/OverlayMenuBar.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="63" column="40" selection-start-line="63" selection-start-column="40" selection-end-line="63" selection-end-column="40" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
@@ -736,56 +693,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/screens/OverlayPage.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/ui/GuideGesture.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/ui/GuidePlacemark.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/screens/GuidePage.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="57" column="26" selection-start-line="57" selection-start-column="26" selection-end-line="57" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/ui/NavigationView.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="72" column="37" selection-start-line="72" selection-start-column="37" selection-end-line="72" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/models/ImageData.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="347">
@@ -820,13 +727,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="26" column="6" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/android/app/src/main/kotlin/com/liquidgalaxy/lg_controller/MainActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -839,8 +739,119 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="16" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+        <state relative-caret-position="204">
+          <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/gdrive/FileRequests.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/ui/NavigationView.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="160" column="27" lean-forward="true" selection-start-line="160" selection-start-column="27" selection-end-line="160" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/ui/GuideGesture.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="53" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/blocs/FreezeBloc.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/osc/OSCActions.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="45" column="24" lean-forward="true" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/ui/OSCDialog.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="18" column="41" lean-forward="true" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/screens/OverlayPage.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="101" column="77" lean-forward="true" selection-start-line="101" selection-start-column="77" selection-end-line="101" selection-end-column="77" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/blocs/PointBloc.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="32" column="49" selection-start-line="32" selection-start-column="49" selection-end-line="32" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/ui/OverlayMapView.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="272" column="54" selection-start-line="272" selection-start-column="54" selection-end-line="272" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/ui/OverlayMenuBar.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="58" column="9" selection-start-line="58" selection-start-column="9" selection-end-line="58" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/screens/GuidePage.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="53" column="26" selection-start-line="53" selection-start-column="26" selection-end-line="53" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/ui/GuidePlacemark.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="79" column="45" selection-start-line="79" selection-start-column="45" selection-end-line="79" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
