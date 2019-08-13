@@ -1,12 +1,17 @@
+import 'dart:io';
+import 'package:image/image.dart';
+
 import 'package:lg_controller/src/menu/MainMenu.dart';
 import 'package:lg_controller/src/menu/POINavBarMenu.dart';
 import 'package:lg_controller/src/menu/TourNavBarMenu.dart';
 import 'package:lg_controller/src/models/KMLData.dart';
 import 'package:lg_controller/src/models/OverlayData.dart';
+import 'package:lg_controller/src/models/ImageData.dart';
 import 'package:lg_controller/src/models/POIData.dart';
 import 'package:lg_controller/src/models/TourData.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:path_provider/path_provider.dart';
 
 /// To handle all functionalities with SQL databse for storing module data.
 class SQLDatabase {
@@ -38,6 +43,13 @@ class SQLDatabase {
         val = (mod as TourData).toDatabaseMap();
       else if (mod is OverlayData) {
         val = (mod as OverlayData).toDatabaseMap();
+        for (var img in mod.itemData)
+          if (img is ImageData)
+            await File((await getApplicationDocumentsDirectory()).path +
+                    "/" +
+                    img.title +
+                    ".png")
+                .writeAsBytes(img.thumbnail);
         await db.insert(
           'modules' + key,
           val,
@@ -147,9 +159,24 @@ class SQLDatabase {
     List<Map<String, dynamic>> maps =
         await db.query('modules' + POINavBarMenu.PRIVATE_1.title);
     if (maps == null) return [];
-    return List.generate(maps.length, (i) {
+    List<OverlayData> listData = List.generate(maps.length, (i) {
       return OverlayData.fromDatabaseMap(maps[i]);
     });
+    for (OverlayData data in listData)
+      for (var img in data.itemData)
+        if (img is ImageData) {
+          (img as ImageData).image = await File(
+                  (await getApplicationDocumentsDirectory()).path +
+                      "/" +
+                      img.title +
+                      ".png")
+              .readAsBytes();
+          img.thumbnail = encodePng(copyResize(
+              decodeImage((img as ImageData).image),
+              width: 80,
+              height: 80));
+        }
+    return listData;
   }
 
   /// To retrieve the recents data from all tables.
