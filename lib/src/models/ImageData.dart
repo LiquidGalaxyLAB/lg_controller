@@ -22,8 +22,8 @@ class ImageData extends OverlayItem {
       'point': point,
       'title': title,
       'desc': desc,
-      'image': image,
-      'thumbnail': thumbnail,
+      'image': null,
+      'thumbnail': null,
     };
   }
 
