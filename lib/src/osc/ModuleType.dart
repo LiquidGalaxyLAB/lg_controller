@@ -12,6 +12,7 @@ class ModuleType {
     return [SHARE, EXIT, GESTURE, FLYTO, POI, TOUR, OVERLAY];
   }
 
+  static const ModuleType FEEDBACK = const ModuleType(-3, "/feedback");
   static const ModuleType SHARE = const ModuleType(-2, "/share");
   static const ModuleType EXIT = const ModuleType(-1, "/exit");
   static const ModuleType GESTURE = const ModuleType(0, "/gesture");
