@@ -58,4 +58,11 @@ class OSCActions {
         OSCReceiver(address: InternetAddress.anyIPv4, port: 4000);
     receiver.receiveModule(onReceive);
   }
+
+  /// Receive the feedback to be shown.
+  Future<void> receiveFeedback(Function onReceive) async {
+    OSCReceiver receiver =
+    OSCReceiver(address: InternetAddress.anyIPv4, port: 8114);
+    receiver.receiveModule(onReceive);
+  }
 }

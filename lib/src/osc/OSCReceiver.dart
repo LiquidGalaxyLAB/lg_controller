@@ -12,7 +12,7 @@ class OSCReceiver {
 
   OSCReceiver({this.address, this.port});
 
-  /// Establishes connection and receives OSC message.
+  /// Establishes connection and receives module as OSC message.
   void receiveModule(Function onReceive) {
     RawDatagramSocket.bind(address, port).then((socket) {
       socket.listen((e) {
@@ -28,5 +28,28 @@ class OSCReceiver {
         }
       });
     });
+  }
+  /// Establishes connection and receives feeadback as OSC message.
+  void receiveFeedback(Function onReceive) {
+    try {
+      RawDatagramSocket.bind(address, port).then((socket) {
+        socket.listen((e) {
+          final datagram = socket.receive();
+          if (datagram != null) {
+            print(datagram);
+            final msg = OSCMessage.fromBytes(datagram.data);
+            if (msg != null && msg.data != null) {
+              onReceive(msg.data);
+            } else {
+              onReceive(null);
+            }
+          }
+        });
+      });
+    }
+    catch(e)
+    {
+      print(e);
+    }
   }
 }
