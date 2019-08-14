@@ -212,28 +212,28 @@ class _GuideGestureState extends State<GuideGesture> {
           onPanDown: (DragDownDetails) => setState(() {
                 showAnimationState = false;
               }),
-          child: Image(image: Images.TAP_GESTURE),
+          child: Image(image: Images.SWIPE_GESTURE),
         );
       case 2:
         return GestureDetector(
           onPanDown: (DragDownDetails) => setState(() {
                 showAnimationState = false;
               }),
-          child: Image(image: Images.TAP_GESTURE),
+          child: Image(image: Images.ZOOM_GESTURE),
         );
       case 3:
         return GestureDetector(
           onPanDown: (DragDownDetails) => setState(() {
                 showAnimationState = false;
               }),
-          child: Image(image: Images.TAP_GESTURE),
+          child: Image(image: Images.SWIRL_GESTURE),
         );
       case 4:
         return GestureDetector(
           onPanDown: (DragDownDetails) => setState(() {
                 showAnimationState = false;
               }),
-          child: Image(image: Images.TAP_GESTURE),
+          child: Image(image: Images.Z_GESTURE),
         );
       default:
         return Container();
