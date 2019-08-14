@@ -13,6 +13,8 @@ import 'package:lg_controller/src/screens/TutorialPage.dart';
 import 'package:lg_controller/src/states_events/PageActions.dart';
 import 'package:lg_controller/src/utils/SizeScaling.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:lg_controller/src/osc/OSCActions.dart';
+import 'package:toast/toast.dart';
 
 /// Entry point of the application.
 void main() async {
@@ -45,6 +47,17 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   /// Instance of [PageBloc] for handling screen navigation.
   PageBloc pageBloc = PageBloc();
+
+  @override
+  void initState() {
+    OSCActions().receiveFeedback((data)=> Toast.show(
+      'Some error occured in OSC channel. Please retry.',
+      context,
+      duration: Toast.LENGTH_LONG,
+      gravity: Toast.BOTTOM,
+    ));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
