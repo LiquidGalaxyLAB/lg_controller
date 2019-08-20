@@ -249,28 +249,64 @@ class _GuidePlacemarkState extends State<GuidePlacemark> {
           onPanDown: (DragDownDetails) => setState(() {
                 showAnimationState = false;
               }),
-          child: Image(image: Images.TAP_GESTURE),
+          child: Align(
+            alignment: Alignment(-1, 0.8),
+            child: Container(
+              height:
+              120+ 120 * 0.5 * (SizeScaling.getWidthScaling()-1),
+              width:
+              120+ 120 * 0.5 * (SizeScaling.getWidthScaling()-1),
+              child: Image(image: Images.TAP_GESTURE),
+            ),
+          )
         );
       case 2:
         return GestureDetector(
           onPanDown: (DragDownDetails) => setState(() {
                 showAnimationState = false;
               }),
-          child: Image(image: Images.TAP_GESTURE),
+          child: Align(
+            alignment: Alignment(-1, -1.2),
+            child: Container(
+              height:
+              120+ 120 * 0.5 * (SizeScaling.getWidthScaling()-1),
+              width:
+              120+ 120 * 0.5 * (SizeScaling.getWidthScaling()-1),
+              child: Image(image: Images.TAP_GESTURE),
+            ),
+          )
         );
       case 3:
         return GestureDetector(
           onPanDown: (DragDownDetails) => setState(() {
                 showAnimationState = false;
               }),
-          child: Image(image: Images.TAP_GESTURE),
+          child: Align(
+            alignment: Alignment(0, 0),
+            child: Container(
+              height:
+              120+ 120 * 0.5 * (SizeScaling.getWidthScaling()-1),
+              width:
+              120+ 120 * 0.5 * (SizeScaling.getWidthScaling()-1),
+              child: Image(image: Images.TAP_GESTURE),
+            ),
+          )
         );
       case 4:
         return GestureDetector(
           onPanDown: (DragDownDetails) => setState(() {
                 showAnimationState = false;
               }),
-          child: Image(image: Images.TAP_GESTURE),
+          child: Align(
+            alignment: Alignment(1.8,-1),
+            child: Container(
+              height:
+              120+ 120 * 0.5 * (SizeScaling.getWidthScaling()-1),
+              width:
+              120+ 120 * 0.5 * (SizeScaling.getWidthScaling()-1),
+              child: Image(image: Images.TAP_GESTURE),
+            ),
+          )
         );
       default:
         return Container();
